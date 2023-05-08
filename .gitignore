@@ -1,0 +1,4 @@
+src/dotnet/.vs/
+**/bin/
+**/Debug/
+**/obj/

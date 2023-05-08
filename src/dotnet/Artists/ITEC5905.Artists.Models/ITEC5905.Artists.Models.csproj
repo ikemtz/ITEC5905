@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ProjectGuid>8a0286bc8bb941b9b25d3ea06d7adb79</ProjectGuid>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <OutputType>Library</OutputType>
+    <LangVersion>latest</LangVersion>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Version>6.0.320.06</Version>
+    <AssemblyVersion>6.0.320.06</AssemblyVersion>
+    <FileVersion>6.0.320.06</FileVersion>
+    <InformationalVersion>6.0.320.06</InformationalVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWarn>1701;1702;CA1707;CS1591;CS8618</NoWarn>
+    <DocumentationFile>./ITEC5905.Artists.Models.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="IkeMtz.NRSRx.Core.Models" Version="6.0.319.3" />
+  </ItemGroup>
+</Project>

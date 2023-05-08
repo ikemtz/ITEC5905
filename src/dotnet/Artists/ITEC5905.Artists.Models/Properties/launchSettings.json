@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "ITEC5905.Artists.Models": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:56175;http://localhost:56176"
+    }
+  }
+}
