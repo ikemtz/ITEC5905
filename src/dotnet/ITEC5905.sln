@@ -4,8 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Customers", "Customers", "{89D63C2F-8E62-4585-9A95-9F1336E7C1C9}"
+	ProjectSection(SolutionItems) = preProject
+		Customers\.dockerignore = Customers\.dockerignore
+		Customers\build-and-pub.sh = Customers\build-and-pub.sh
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Artists", "Artists", "{BDDEE926-3342-45DB-A96E-35B01E73B9D5}"
+	ProjectSection(SolutionItems) = preProject
+		Artists\.dockerignore = Artists\.dockerignore
+		Artists\build-and-pub.sh = Artists\build-and-pub.sh
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITEC5905.Artists.Models", "Artists\ITEC5905.Artists.Models\ITEC5905.Artists.Models.csproj", "{8A0286BC-8BB9-41B9-B25D-3EA06D7ADB79}"
 EndProject
@@ -15,7 +23,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITEC5905.Artists.OData", "A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{61E406BB-6BB7-4147-AD85-E749280E0F4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITEC5905.Artists.WebApi", "Artists\ITEC5905.Artists.WebApi\ITEC5905.Artists.WebApi.csproj", "{6C7DC8A9-CE73-46C1-B74E-7C40FF583FB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITEC5905.Artists.WebApi", "Artists\ITEC5905.Artists.WebApi\ITEC5905.Artists.WebApi.csproj", "{6C7DC8A9-CE73-46C1-B74E-7C40FF583FB9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITEC5905.Customers.OData", "Customers\ITEC5905.Customers.OData\ITEC5905.Customers.OData.csproj", "{8E60ED6C-8287-4016-B43B-1901775D57C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITEC5905.Customers.WebApi", "Customers\ITEC5905.Customers.WebApi\ITEC5905.Customers.WebApi.csproj", "{CAB41704-8F80-45EC-9850-EA03AB03859D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +51,14 @@ Global
 		{6C7DC8A9-CE73-46C1-B74E-7C40FF583FB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C7DC8A9-CE73-46C1-B74E-7C40FF583FB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C7DC8A9-CE73-46C1-B74E-7C40FF583FB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E60ED6C-8287-4016-B43B-1901775D57C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E60ED6C-8287-4016-B43B-1901775D57C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E60ED6C-8287-4016-B43B-1901775D57C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E60ED6C-8287-4016-B43B-1901775D57C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAB41704-8F80-45EC-9850-EA03AB03859D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAB41704-8F80-45EC-9850-EA03AB03859D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAB41704-8F80-45EC-9850-EA03AB03859D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAB41704-8F80-45EC-9850-EA03AB03859D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +68,8 @@ Global
 		{FC2DB6FD-C6B0-4EC6-8E2B-10D7B4044BB7} = {89D63C2F-8E62-4585-9A95-9F1336E7C1C9}
 		{A73688AD-8ED5-4271-9487-E7AED4C8DB32} = {BDDEE926-3342-45DB-A96E-35B01E73B9D5}
 		{6C7DC8A9-CE73-46C1-B74E-7C40FF583FB9} = {BDDEE926-3342-45DB-A96E-35B01E73B9D5}
+		{8E60ED6C-8287-4016-B43B-1901775D57C4} = {89D63C2F-8E62-4585-9A95-9F1336E7C1C9}
+		{CAB41704-8F80-45EC-9850-EA03AB03859D} = {89D63C2F-8E62-4585-9A95-9F1336E7C1C9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {43E10A55-94AF-41C6-B629-430EC047977D}
