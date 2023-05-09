@@ -1,0 +1,15 @@
+{{- range .Values.infra.dotnet_microservices }}
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: {{ .name }}-volume
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: /tmp/{{ .name }}-volume
+---
+{{- end -}}

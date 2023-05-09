@@ -1,0 +1,4 @@
+infra:
+  dotnet_microservices:
+    - name: artists
+    - name: customers
