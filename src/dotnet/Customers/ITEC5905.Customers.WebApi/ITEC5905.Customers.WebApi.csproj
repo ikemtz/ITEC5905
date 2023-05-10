@@ -34,13 +34,17 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <None Include="C:\repos\ITEC5905\src\dotnet\Customers\ITEC5905.Customers.WebApi\.editorconfig" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.WebApi" Version="6.0.319.3" />
-    <PackageReference Include="IkeMtz.NRSRx.Logging.ApplicationInsights" Version="6.0.319.3" />
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
-    <PackageReference Include="IkeMtz.NRSRx.Core.EntityFramework" Version="6.0.319.3" />
-    <PackageReference Include="IkeMtz.NRSRx.Events.Publishers.Redis" Version="6.0.319.3" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.WebApi" Version="6.1.130.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Logging.ApplicationInsights" Version="6.1.130.2" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.EntityFramework" Version="6.1.130.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Events.Publishers.Redis" Version="6.1.130.2" />
     <ProjectReference Include="..\ITEC5905.Customers.Models\ITEC5905.Customers.Models.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\repos\ITEC5905\src\dotnet\Customers\ITEC5905.Customers.WebApi\.editorconfig" />
   </ItemGroup>
 </Project>

@@ -1,3 +1,6 @@
+#!/bin/bash
+set -ex
+
 docker build --pull \
     --rm \
     --build-arg DOMAIN_NAME=Customers \
@@ -16,3 +19,13 @@ docker build --pull \
     -t ikemtz/itec5905-customers-webapi:latest .
 
 docker image push ikemtz/itec5905-customers-webapi:latest 
+
+
+docker build --pull \
+    --rm \
+    --build-arg DOMAIN_NAME=Customers \
+    --build-arg DB_NAME=customers \
+    -f "..\..\docker\mysql.Dockerfile" \
+    -t ikemtz/itec5905-customers-db:latest .
+
+docker image push ikemtz/itec5905-customers-db:latest 

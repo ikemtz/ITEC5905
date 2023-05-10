@@ -36,10 +36,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IkeMtz.NRSRx.Core.WebApi" Version="6.0.319.3" />
-    <PackageReference Include="IkeMtz.NRSRx.Logging.ApplicationInsights" Version="6.0.319.3" />
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
-    <PackageReference Include="IkeMtz.NRSRx.Core.EntityFramework" Version="6.0.319.3" />
-    <PackageReference Include="IkeMtz.NRSRx.Events.Publishers.Redis" Version="6.0.319.3" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.WebApi" Version="6.1.130.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Logging.ApplicationInsights" Version="6.1.130.2" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Core.EntityFramework" Version="6.1.130.2" />
+    <PackageReference Include="IkeMtz.NRSRx.Events.Publishers.Redis" Version="6.1.130.2" />
   </ItemGroup>
 </Project>
