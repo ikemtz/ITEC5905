@@ -32,6 +32,11 @@ spec:
             secretKeyRef:
               name: mysql-{{ .name }}-creds
               key: dbConnectionString
+        - name: REDIS_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+              name: redis-creds
+              key: redisConnectionString
         ports:
         - name: webapi
           containerPort: 5000          

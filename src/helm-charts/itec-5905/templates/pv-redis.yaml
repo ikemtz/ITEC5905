@@ -8,6 +8,8 @@ spec:
     storage: 1Gi
   accessModes:
     - ReadWriteMany
+  claimRef:
+    name: redis-volume-claim
   hostPath:
     path: /c/tmp/redis-volume
 ---

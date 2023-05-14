@@ -10,6 +10,8 @@ spec:
     storage: 1Gi
   accessModes:
     - ReadWriteMany
+  claimRef:
+    name: {{ .name }}-volume-claim
   hostPath:
     path: /c/tmp/{{ .name }}-volume
 ---
