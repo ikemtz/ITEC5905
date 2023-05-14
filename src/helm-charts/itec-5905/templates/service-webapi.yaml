@@ -1,0 +1,14 @@
+{{- range .Values.infra.dotnet_microservices }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .name }}-webapi-svc
+spec:
+  selector:
+    app.kubernetes.io/name: {{ .name }}-webapi
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: webapi
+---
+{{- end -}}

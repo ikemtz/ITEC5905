@@ -1,0 +1,14 @@
+{{- range .Values.infra.dotnet_microservices }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .name }}-odata-svc
+spec:
+  selector:
+    app.kubernetes.io/name: {{ .name }}-odata
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: odata
+---
+{{- end -}}

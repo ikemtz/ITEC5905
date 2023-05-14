@@ -1,0 +1,58 @@
+{{- range .Values.infra.dotnet_microservices }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .name }}-odata
+  labels:
+    app: itec5905
+spec:
+  selector:
+    matchLabels:
+      app: itec5905
+      tier: odata
+      app.kubernetes.io/name: {{ .name }}-odata
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: itec5905
+        tier: odata
+        app.kubernetes.io/name: {{ .name }}-odata
+    spec:
+      containers:
+      - image: ikemtz/itec5905-{{ .name }}-odata:latest
+        name: odata
+        env:
+        - name: DbConnectionString
+          valueFrom:
+            secretKeyRef:
+              name: mysql-{{ .name }}-creds
+              key: dbConnectionString
+        ports:
+        - name: odata
+          containerPort: 5000          
+          protocol: TCP
+        livenessProbe:
+          exec:
+            command:
+            - "bash" 
+            - "-c"
+            - "wget http://localhost:5000"
+          initialDelaySeconds: 15
+          periodSeconds: 60
+          timeoutSeconds: 1
+        readinessProbe:
+          exec:
+            command:
+            - "bash" 
+            - "-c"
+            - "wget http://localhost:5000"
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 1
+---
+{{- end -}}

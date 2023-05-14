@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  labels:
+    app: itec5905
+spec:
+  selector:
+    matchLabels:
+      app: itec5905
+      tier: db
+      app.kubernetes.io/name: redis
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: itec5905
+        tier: db
+        app.kubernetes.io/name: redis
+    spec:
+      containers:
+      - image: bitnami/redis:latest
+        name: redis
+        env:
+        - name: REDIS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: redis-creds
+              key: password              
+        - name: REDIS_DISABLE_COMMANDS
+          value: FLUSHDB,FLUSHALL,CONFIG
+        ports:
+        - name: redis
+          containerPort: 6379          
+          protocol: TCP
+        livenessProbe:
+          exec:
+            command:
+            - redis-cli
+            - ping
+          initialDelaySeconds: 15
+          periodSeconds: 60
+          timeoutSeconds: 1
+        readinessProbe:
+          exec:
+            command:
+            - redis-cli
+            - ping
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 1
+        volumeMounts:
+        - name: redis-volume
+          mountPath: /bitnami/redis/data
+      volumes:
+      - name: redis-volume
+        persistentVolumeClaim:
+          claimName: redis-volume-claim
+---

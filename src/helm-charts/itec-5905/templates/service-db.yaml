@@ -1,0 +1,16 @@
+{{- range .Values.infra.dotnet_microservices }}
+{{- if .hasDb }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .name }}-db-svc
+spec:
+  selector:
+    app.kubernetes.io/name: {{ .name }}-db
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: mysql
+---
+{{- end -}}
+{{- end -}}

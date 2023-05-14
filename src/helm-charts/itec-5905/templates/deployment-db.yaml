@@ -1,0 +1,71 @@
+{{- range .Values.infra.dotnet_microservices }}
+{{- if .hasDb }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .name }}-db
+  labels:
+    app: itec5905
+spec:
+  selector:
+    matchLabels:
+      app: itec5905
+      tier: db
+      app.kubernetes.io/name: {{ .name }}-db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: itec5905
+        tier: db
+        app.kubernetes.io/name: {{ .name }}-db
+    spec:
+      containers:
+      - image: ikemtz/itec5905-{{ .name }}-db:latest
+        name: mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-{{ .name }}-creds
+              key: rootPassword
+        - name: MYSQL_USER
+          value: {{ .name }}-user
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-{{ .name }}-creds
+              key: userPassword
+        ports:
+        - name: mysql
+          containerPort: 3306          
+          protocol: TCP
+        livenessProbe:
+          exec:
+            command:
+            - "bash" 
+            - "-c"
+            - "mysql --user=${MYSQL_USER} --password=${MYSQL_PASSWORD} -h 127.0.0.1 {{ .name | snakecase}} --execute=\"SELECT 1;\""
+          initialDelaySeconds: 15
+          periodSeconds: 60
+          timeoutSeconds: 1
+        readinessProbe:
+          exec:
+            command:
+            - "bash" 
+            - "-c"
+            - "mysql --user=${MYSQL_USER} --password=${MYSQL_PASSWORD} -h 127.0.0.1 {{ .name | snakecase}} --execute=\"SELECT 1;\""
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 1
+        volumeMounts:
+        - name: {{ .name }}-persistent-storage
+          mountPath: /bitnami/mysql/data
+      volumes:
+      - name: {{ .name }}-persistent-storage
+        persistentVolumeClaim:
+          claimName: {{ .name }}-volume-claim
+---
+{{- end -}}
+{{- end -}}

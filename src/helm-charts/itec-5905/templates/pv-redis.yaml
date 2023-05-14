@@ -1,0 +1,13 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: redis-volume
+spec:
+  storageClassName: {{$.Values.environment.storageClass}}
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: /c/tmp/redis-volume
+---

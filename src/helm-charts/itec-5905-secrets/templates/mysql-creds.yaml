@@ -1,0 +1,14 @@
+{{- range .Values.infra.dotnet_microservices }}
+{{ $userPassword := randAlphaNum 16 }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-{{ .name }}-creds
+  annotations:
+    "helm.sh/resource-policy": keep ## WARNING: This is stop HELM from removing this during uninstall - does not prohibit updates
+stringData:
+  userPassword: {{$userPassword}}
+  rootPassword: {{randAlphaNum 24}}
+  dbConnectionString: "server={{ .name }}_db_svc;uid={{ .name }}_user;pwd={{ $userPassword }};database={{ .name | snakecase }};"
+---
+{{- end -}}

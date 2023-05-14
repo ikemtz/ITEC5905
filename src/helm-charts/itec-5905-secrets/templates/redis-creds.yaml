@@ -1,0 +1,11 @@
+{{ $password := randAlphaNum 16 }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: redis-creds
+  annotations:
+    "helm.sh/resource-policy": keep ## WARNING: This is stop HELM from removing this during uninstall - does not prohibit updates
+stringData:
+  password: {{$password}} 
+  redisConnectionString: "redis-svc:6379,password={{ $password }}"
+---

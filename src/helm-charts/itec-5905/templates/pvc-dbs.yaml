@@ -1,0 +1,16 @@
+{{- range .Values.infra.dotnet_microservices }}
+{{- if .hasDb }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .name }}-volume-claim
+spec:
+  storageClassName: {{ $.Values.environment.storageClass }}
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+{{- end -}}
+{{- end -}}

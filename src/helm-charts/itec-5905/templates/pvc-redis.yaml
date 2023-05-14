@@ -1,14 +1,12 @@
-{{- range .Values.infra.dotnet_microservices }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .name }}-volume-claim
+  name: redis-volume-claim
 spec:
-  storageClassName: manual
+  storageClassName: {{ $.Values.environment.storageClass }}
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
 ---
-{{- end -}}

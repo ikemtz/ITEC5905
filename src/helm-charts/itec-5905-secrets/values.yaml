@@ -4,7 +4,3 @@ infra:
       hasDb: true
     - name: customers
       hasDb: true
-
-environment:
-  storageClass: hostpath
-  
