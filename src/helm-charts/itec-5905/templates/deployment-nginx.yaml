@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: itec5905
+spec:
+  selector:
+    matchLabels:
+      app: itec5905
+      tier: db
+      app.kubernetes.io/name: nginx
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: itec5905
+        tier: db
+        app.kubernetes.io/name: nginx
+    spec:
+      containers:
+      - image: bitnami/nginx:latest
+        name: nginx
+        env:
+        - name: AUTH_ENDPOINT
+          value: http://google.com
+        ports:
+        - name: nginx
+          containerPort: 8080          
+          protocol: TCP
+        livenessProbe:
+          exec:
+            command:
+            - curl
+            - https://localhost:8080
+          initialDelaySeconds: 15
+          periodSeconds: 60
+          timeoutSeconds: 1
+        readinessProbe:
+          exec:
+            command:
+            - curl
+            - https://localhost:8080
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 1
+---
