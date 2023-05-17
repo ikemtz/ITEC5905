@@ -10,3 +10,5 @@ docker build --pull \
     -t ikemtz/itec5905-nginx:latest ../../
 
 docker image push ikemtz/itec5905-nginx:latest 
+
+kubectl rollout restart deployment/nginx

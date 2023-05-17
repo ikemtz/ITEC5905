@@ -13,5 +13,6 @@ RUN cat <<< "dotnet ITEC5905.$DOMAIN_NAME.$BUILD_TYPE.dll" > /app/publish/entryp
 FROM bitnami/aspnet-core:6 AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+ENV ASPNETCORE_URLS=http://*:5000
 EXPOSE 5000
 ENTRYPOINT ["sh", "entrypoint.sh"]

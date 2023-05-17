@@ -24,4 +24,8 @@ docker build --pull \
     -f "..\..\docker\mysql.Dockerfile" \
     -t ikemtz/itec5905-artists-db:latest .
 
-docker image push ikemtz/itec5905-artists-db:latest 
+docker image push ikemtz/itec5905-artists-db:latest
+
+kubectl rollout restart deployment/artists-db
+kubectl rollout restart deployment/artists-odata
+kubectl rollout restart deployment/artists-webapi

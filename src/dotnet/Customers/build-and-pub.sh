@@ -28,4 +28,8 @@ docker build --pull \
     -f "..\..\docker\mysql.Dockerfile" \
     -t ikemtz/itec5905-customers-db:latest .
 
-docker image push ikemtz/itec5905-customers-db:latest 
+docker image push ikemtz/itec5905-customers-db:latest
+
+kubectl rollout restart deployment/customers-db
+kubectl rollout restart deployment/customers-odata
+kubectl rollout restart deployment/customers-webapi
