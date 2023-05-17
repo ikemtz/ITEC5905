@@ -20,13 +20,19 @@ spec:
         app.kubernetes.io/name: nginx
     spec:
       containers:
-      - image: bitnami/nginx:latest
+      - image: ikemtz/itec5905-nginx:latest 
         name: nginx
         env:
         - name: AUTH_ENDPOINT
           value: http://google.com
-        - name: NGINX_ENABLE_ABSOLUTE_REDIRECT
-          value: "yes"
+        - name: ARTISTS_OD_ENDPOINT
+          value: http://artists-odata-svc:5000
+        - name: ARTISTS_WA_ENDPOINT
+          value: http://artists-webapi-svc:5000
+        - name: CUSTOMERS_OD_ENDPOINT
+          value: http://customers-odata-svc:5000
+        - name: CUSTOMERS_WA_ENDPOINT
+          value: http://customers-webapi-svc:5000
         ports:
         - name: nginx
           containerPort: 8080          
