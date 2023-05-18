@@ -1,3 +1,4 @@
+using ITEC5905.Artists.Models.V1;
 using Microsoft.EntityFrameworkCore;
 
 namespace ITEC5905.Artists.Data

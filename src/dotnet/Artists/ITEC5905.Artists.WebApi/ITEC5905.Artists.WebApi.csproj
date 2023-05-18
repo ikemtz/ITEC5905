@@ -42,4 +42,7 @@
     <PackageReference Include="IkeMtz.NRSRx.Core.EntityFramework" Version="6.1.130.2" />
     <PackageReference Include="IkeMtz.NRSRx.Events.Publishers.Redis" Version="6.1.130.2" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ITEC5905.Artists.Models\ITEC5905.Artists.Models.csproj" />
+  </ItemGroup>
 </Project>

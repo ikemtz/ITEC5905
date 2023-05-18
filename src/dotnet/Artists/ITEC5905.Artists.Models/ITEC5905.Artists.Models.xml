@@ -4,5 +4,10 @@
         <name>ITEC5905.Artists.Models</name>
     </assembly>
     <members>
+        <member name="P:ITEC5905.Artists.Models.V1.Picture.Blob">
+            <summary>
+            Max length is 1 Megabyte
+            </summary>
+        </member>
     </members>
 </doc>
