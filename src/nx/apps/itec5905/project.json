@@ -15,7 +15,15 @@
         "main": "apps/itec5905/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/itec5905/tsconfig.app.json",
-        "assets": ["apps/itec5905/src/favicon.ico", "apps/itec5905/src/assets"],
+        "assets": [
+          "apps/itec5905/src/favicon.ico",
+          "apps/itec5905/src/assets",
+          {
+            "glob": "*",
+            "input": "node_modules/imng-oidc-client/src/assets",
+            "output": "/"
+          }
+        ],
         "styles": ["apps/itec5905/src/styles.scss"],
         "scripts": []
       },
@@ -31,6 +39,12 @@
               "type": "anyComponentStyle",
               "maximumWarning": "2kb",
               "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/itec5905/src/environments/environment.ts",
+              "with":    "apps/itec5905/src/environments/environment.prod.ts"
             }
           ],
           "outputHashing": "all"
@@ -56,7 +70,11 @@
           "browserTarget": "itec5905:build:development"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "development",
+      "options": {
+        "browserTarget": "itec5905:build",
+        "proxyConfig": "apps/itec5905/proxy.conf.js"
+      }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",

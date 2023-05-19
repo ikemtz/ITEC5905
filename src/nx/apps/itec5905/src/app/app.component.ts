@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { OidcFacade } from 'imng-oidc-client';
 
 @Component({
   selector: 'init-root',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'itec5905';
+  constructor(public oidcFacade: OidcFacade) {}
+  public login(): void {
+    this.oidcFacade.signinRedirect();
+  }
 }
