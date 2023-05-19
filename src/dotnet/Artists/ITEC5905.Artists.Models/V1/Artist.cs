@@ -7,12 +7,18 @@ namespace ITEC5905.Artists.Models.V1
   {
     public Guid Id { get; set; }
     [Required]
+    [MinLength(2)]
     [MaxLength(255)]
     public string Name { get; set; }
     [Required]
+    [MinLength(2)]
     [MaxLength(255)]
     public string StageName { get; set; }
-
+    [Required]
+    [EmailAddress]
+    [MinLength(2)]
+    [MaxLength(255)]
+    public string Email { get; set; }
     public virtual ICollection<ArtistGenre> Genres { get; set; }
     public virtual ICollection<Album> Albums { get; set; }
     public virtual ICollection<ArtistSong> ArtistSongs { get; set; }

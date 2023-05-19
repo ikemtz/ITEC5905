@@ -1,6 +1,10 @@
 #!/bin/bash
 set -ex
 
+cd ./ITEC5905.Customers.Migrations
+./reset-migrations.sh
+cd ..
+
 docker build --pull \
     --rm \
     --build-arg DOMAIN_NAME=Customers \

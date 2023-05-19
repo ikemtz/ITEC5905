@@ -117,6 +117,11 @@ namespace ITEC5905.Artists.Migrations.Migrations
                     b.Property<DateTimeOffset>("CreatedOnUtc")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)

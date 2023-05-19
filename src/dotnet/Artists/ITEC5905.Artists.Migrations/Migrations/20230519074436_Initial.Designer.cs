@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ITEC5905.Artists.Migrations.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230518183353_Initial")]
+    [Migration("20230519074436_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -118,6 +118,11 @@ namespace ITEC5905.Artists.Migrations.Migrations
 
                     b.Property<DateTimeOffset>("CreatedOnUtc")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Name")
                         .IsRequired()

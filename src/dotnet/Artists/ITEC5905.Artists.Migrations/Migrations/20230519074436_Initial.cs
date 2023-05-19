@@ -43,6 +43,8 @@ namespace ITEC5905.Artists.Migrations.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     StageName = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    Email = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     AlbumCount = table.Column<int>(type: "int", nullable: false),
                     SongCount = table.Column<int>(type: "int", nullable: false),
                     PictureId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
