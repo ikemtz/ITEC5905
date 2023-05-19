@@ -2,7 +2,9 @@
   "name": "init",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "openApiGen:itec5905": "node ./apps/itec5905/openapi-gen.mjs"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~16.0.0",
@@ -28,6 +30,7 @@
     "@angular/cli": "~16.0.0",
     "@angular/compiler-cli": "~16.0.0",
     "@angular/language-service": "~16.0.0",
+    "@mermaid-js/mermaid-cli": "^10.1.0",
     "@nx/cypress": "16.1.4",
     "@nx/eslint-plugin": "16.1.4",
     "@nx/jest": "16.1.4",
@@ -49,6 +52,8 @@
     "jest-preset-angular": "~13.1.0",
     "nx": "16.1.4",
     "nx-cloud": "latest",
+    "openapi-mermaid": "^2.294.2",
+    "openapi-ts-generator": "^6.53.2",
     "prettier": "^2.6.2",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
