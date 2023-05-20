@@ -9,6 +9,6 @@ metadata:
 stringData:
   userPassword: {{$userPassword}}
   rootPassword: {{randAlphaNum 24}}
-  dbConnectionString: "server={{ .name }}_db_svc;uid={{ .name }}_user;pwd={{ $userPassword }};database={{ .name | snakecase }};"
+  dbConnectionString: "server={{ .name }}-db-svc;uid={{ .name }}-user;pwd={{ $userPassword }};database={{ .name | snakecase }};"
 ---
 {{- end -}}
