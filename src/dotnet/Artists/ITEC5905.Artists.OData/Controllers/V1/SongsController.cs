@@ -11,7 +11,7 @@ using static Microsoft.AspNetCore.Http.StatusCodes;
 namespace ITEC5905.Artists.OData.Controllers.V1
 {
   [ApiVersion("1.0")]
-  [Authorize]
+ // [Authorize]
   [ResponseCache(Location = ResponseCacheLocation.Any, Duration = 600)]
   public class SongsController : ODataController
   {

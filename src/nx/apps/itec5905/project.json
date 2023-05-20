@@ -2,7 +2,7 @@
   "name": "itec5905",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "init",
+  "prefix": "itec",
   "sourceRoot": "apps/itec5905/src",
   "tags": [],
   "targets": {

@@ -9,12 +9,13 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { ImngOidcClientModule } from 'imng-oidc-client';
 import { environment } from '../environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HomeComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
+    RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' , enableTracing: true}),
     StoreModule.forRoot(
       {},
       {

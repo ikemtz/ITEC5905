@@ -11,7 +11,7 @@ namespace ITEC5905.Artists.Models.V1
     public Album Album { get; set; }
     [Required]
     public Guid SongId { get; set; }
-    public Artist Song { get; set; }
+    public Song Song { get; set; }
     [Required]
     public string CreatedBy { get; set; }
     public string? UpdatedBy { get; set; }

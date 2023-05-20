@@ -10,7 +10,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230519074436_Initial') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230520011654_Initial') THEN
 
     ALTER DATABASE CHARACTER SET utf8mb4;
 
@@ -24,7 +24,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230519074436_Initial') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230520011654_Initial') THEN
 
     CREATE TABLE `Pictures` (
         `Id` char(36) COLLATE ascii_general_ci NOT NULL,
@@ -48,7 +48,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230519074436_Initial') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230520011654_Initial') THEN
 
     CREATE TABLE `Artists` (
         `Id` char(36) COLLATE ascii_general_ci NOT NULL,
@@ -77,7 +77,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230519074436_Initial') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230520011654_Initial') THEN
 
     CREATE TABLE `Albums` (
         `Id` char(36) COLLATE ascii_general_ci NOT NULL,
@@ -105,7 +105,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230519074436_Initial') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230520011654_Initial') THEN
 
     CREATE TABLE `ArtistGenres` (
         `Id` char(36) COLLATE ascii_general_ci NOT NULL,
@@ -130,33 +130,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230519074436_Initial') THEN
-
-    CREATE TABLE `AlbumSongs` (
-        `Id` char(36) COLLATE ascii_general_ci NOT NULL,
-        `AlbumId` char(36) COLLATE ascii_general_ci NOT NULL,
-        `SongId` char(36) COLLATE ascii_general_ci NOT NULL,
-        `CreatedBy` longtext CHARACTER SET utf8mb4 NOT NULL,
-        `UpdatedBy` longtext CHARACTER SET utf8mb4 NULL,
-        `CreatedOnUtc` datetime(6) NOT NULL,
-        `UpdatedOnUtc` datetime(6) NULL,
-        `UpdateCount` int NULL,
-        CONSTRAINT `PK_AlbumSongs` PRIMARY KEY (`Id`),
-        CONSTRAINT `FK_AlbumSongs_Albums_AlbumId` FOREIGN KEY (`AlbumId`) REFERENCES `Albums` (`Id`) ON DELETE CASCADE,
-        CONSTRAINT `FK_AlbumSongs_Artists_SongId` FOREIGN KEY (`SongId`) REFERENCES `Artists` (`Id`) ON DELETE CASCADE
-    ) CHARACTER SET=utf8mb4;
-
-    END IF;
-END //
-DELIMITER ;
-CALL MigrationsScript();
-DROP PROCEDURE MigrationsScript;
-
-DROP PROCEDURE IF EXISTS MigrationsScript;
-DELIMITER //
-CREATE PROCEDURE MigrationsScript()
-BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230519074436_Initial') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230520011654_Initial') THEN
 
     CREATE TABLE `Songs` (
         `Id` char(36) COLLATE ascii_general_ci NOT NULL,
@@ -183,7 +157,33 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230519074436_Initial') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230520011654_Initial') THEN
+
+    CREATE TABLE `AlbumSongs` (
+        `Id` char(36) COLLATE ascii_general_ci NOT NULL,
+        `AlbumId` char(36) COLLATE ascii_general_ci NOT NULL,
+        `SongId` char(36) COLLATE ascii_general_ci NOT NULL,
+        `CreatedBy` longtext CHARACTER SET utf8mb4 NOT NULL,
+        `UpdatedBy` longtext CHARACTER SET utf8mb4 NULL,
+        `CreatedOnUtc` datetime(6) NOT NULL,
+        `UpdatedOnUtc` datetime(6) NULL,
+        `UpdateCount` int NULL,
+        CONSTRAINT `PK_AlbumSongs` PRIMARY KEY (`Id`),
+        CONSTRAINT `FK_AlbumSongs_Albums_AlbumId` FOREIGN KEY (`AlbumId`) REFERENCES `Albums` (`Id`) ON DELETE CASCADE,
+        CONSTRAINT `FK_AlbumSongs_Songs_SongId` FOREIGN KEY (`SongId`) REFERENCES `Songs` (`Id`) ON DELETE CASCADE
+    ) CHARACTER SET=utf8mb4;
+
+    END IF;
+END //
+DELIMITER ;
+CALL MigrationsScript();
+DROP PROCEDURE MigrationsScript;
+
+DROP PROCEDURE IF EXISTS MigrationsScript;
+DELIMITER //
+CREATE PROCEDURE MigrationsScript()
+BEGIN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230520011654_Initial') THEN
 
     CREATE TABLE `ArtistSongs` (
         `Id` char(36) COLLATE ascii_general_ci NOT NULL,
@@ -209,7 +209,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230519074436_Initial') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230520011654_Initial') THEN
 
     CREATE INDEX `IX_Albums_ArtistId` ON `Albums` (`ArtistId`);
 
@@ -223,7 +223,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230519074436_Initial') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230520011654_Initial') THEN
 
     CREATE INDEX `IX_Albums_PictureId` ON `Albums` (`PictureId`);
 
@@ -237,7 +237,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230519074436_Initial') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230520011654_Initial') THEN
 
     CREATE INDEX `IX_AlbumSongs_AlbumId` ON `AlbumSongs` (`AlbumId`);
 
@@ -251,7 +251,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230519074436_Initial') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230520011654_Initial') THEN
 
     CREATE INDEX `IX_AlbumSongs_SongId` ON `AlbumSongs` (`SongId`);
 
@@ -265,7 +265,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230519074436_Initial') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230520011654_Initial') THEN
 
     CREATE INDEX `IX_ArtistGenres_ArtistId` ON `ArtistGenres` (`ArtistId`);
 
@@ -279,7 +279,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230519074436_Initial') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230520011654_Initial') THEN
 
     CREATE INDEX `IX_Artists_PictureId` ON `Artists` (`PictureId`);
 
@@ -293,7 +293,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230519074436_Initial') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230520011654_Initial') THEN
 
     CREATE INDEX `IX_ArtistSongs_ArtistId` ON `ArtistSongs` (`ArtistId`);
 
@@ -307,7 +307,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230519074436_Initial') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230520011654_Initial') THEN
 
     CREATE INDEX `IX_ArtistSongs_SongId` ON `ArtistSongs` (`SongId`);
 
@@ -321,7 +321,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230519074436_Initial') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230520011654_Initial') THEN
 
     CREATE INDEX `IX_Songs_AlbumId` ON `Songs` (`AlbumId`);
 
@@ -335,7 +335,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230519074436_Initial') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230520011654_Initial') THEN
 
     CREATE INDEX `IX_Songs_PictureId` ON `Songs` (`PictureId`);
 
@@ -349,10 +349,10 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230519074436_Initial') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230520011654_Initial') THEN
 
     INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
-    VALUES ('20230519074436_Initial', '6.0.16');
+    VALUES ('20230520011654_Initial', '6.0.16');
 
     END IF;
 END //

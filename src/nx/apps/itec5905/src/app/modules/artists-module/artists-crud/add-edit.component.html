@@ -1,0 +1,77 @@
+<imng-data-entry-dialog [width]="700" [height]="550" [parentComponent]="this" autoFocusedElement="#name">
+  <form id="imng-form" novalidate [formGroup]="addEditForm" autocomplete="false" class="row">
+    <div class="col-md-6">
+      <label for="id" class="control-label">Id:</label>
+      <input id="id" type="text" class="form-control" [formControlName]="props.ID" />
+    </div>
+    <div class="col-md-6">
+      <label for="name" class="control-label">Name:</label>
+      <input id="name" type="text" class="form-control" [formControlName]="props.NAME" />
+      <div *ngIf="(submitted$ | async) && formControlErrors(props.NAME)" class="invalid-feedback">
+        <div *ngIf="formControlErrors(props.NAME)?.[RequiredError]">Artist name is required</div>
+        <div *ngIf="formControlErrors(props.NAME)?.[MinLengthError]">
+          Artist name requires a min length of
+          {{formMinLengthError(props.NAME)?.requiredLength}}, currently only
+          {{formMinLengthError(props.NAME)?.actualLength}}.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="stage_name" class="control-label">Stage Name:</label>
+      <input id="stage_name" type="text" class="form-control" [formControlName]="props.STAGE_NAME" />
+      <div *ngIf="(submitted$ | async) && formControlErrors(props.STAGE_NAME)" class="invalid-feedback">
+        <div *ngIf="formControlErrors(props.STAGE_NAME)?.[RequiredError]">Artist stage name is required</div>
+        <div *ngIf="formControlErrors(props.STAGE_NAME)?.[MinLengthError]">
+          Artist stage name requires a min length of
+          {{formMinLengthError(props.STAGE_NAME)?.requiredLength}}, currently only
+          {{formMinLengthError(props.STAGE_NAME)?.actualLength}}.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="email" class="control-label">Email:</label>
+      <input id="email" type="text" class="form-control" [formControlName]="props.EMAIL" />
+      <div *ngIf="(submitted$ | async) && formControlErrors(props.EMAIL)" class="invalid-feedback">
+        <div *ngIf="formControlErrors(props.EMAIL)?.[RequiredError]">Artist email is required</div>
+        <div *ngIf="formControlErrors(props.EMAIL)?.[MinLengthError]">
+          Artist email requires a min length of
+          {{formMinLengthError(props.EMAIL)?.requiredLength}}, currently only
+          {{formMinLengthError(props.EMAIL)?.actualLength}}.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="album_count" class="control-label">Album Count:</label>
+      <input id="album_count" type="number" class="form-control" [formControlName]="props.ALBUM_COUNT" />
+    </div>
+    <div class="col-md-6">
+      <label for="song_count" class="control-label">Song Count:</label>
+      <input id="song_count" type="number" class="form-control" [formControlName]="props.SONG_COUNT" />
+    </div>
+    <div class="col-md-6">
+      <label for="picture_id" class="control-label">Picture Id:</label>
+      <input id="picture_id" type="text" class="form-control" [formControlName]="props.PICTURE_ID" />
+    </div>
+    <div class="col-md-6">
+      <label for="picture" class="control-label">Picture:</label>
+      <kendo-multicolumncombobox
+        id="picture"
+        placeholder="Select a picture..."
+        [formControlName]="props.PICTURE_ID"
+        [data]="pictures$ | async"
+        [textField]="pictureProps.BLOB"
+        [valueField]="pictureProps.ID"
+        [valuePrimitive]="true"
+        [filterable]="true"
+        (filterChange)="handlePictureFilter($event)">
+          <kendo-combobox-column field="blob" title="Blob" [width]="100"></kendo-combobox-column>
+          <kendo-combobox-column field="type" title="Type" [width]="100"></kendo-combobox-column>
+          <kendo-combobox-column field="updateCount" title="Update Count" [width]="100"></kendo-combobox-column>
+      </kendo-multicolumncombobox>
+    </div>
+    <div class="col-md-6">
+      <label for="update_count" class="control-label">Update Count:</label>
+      <input id="update_count" type="number" class="form-control" [formControlName]="props.UPDATE_COUNT" />
+    </div>
+  </form>
+</imng-data-entry-dialog>

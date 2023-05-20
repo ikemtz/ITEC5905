@@ -34,7 +34,6 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="C:\repos\ITEC5905\src\dotnet\Customers\ITEC5905.Customers.WebApi\.editorconfig" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="IkeMtz.NRSRx.Core.WebApi" Version="6.1.130.2" />

@@ -18,7 +18,7 @@
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" [routerLink]="['/artists']">Artists</a>
         </li>
         <li class="nav-item dropdown">
           <a
@@ -42,7 +42,7 @@
         </li>
       </ul>
       <form class="d-flex" role="search">      
-        <button class="btn btn-primary" (click)="login()">Login</button>
+        <button *ngIf="(loggedIn$ | async) !== true" class="btn btn-primary" (click)="login()">Login</button>
       </form>
     </div>
   </div>

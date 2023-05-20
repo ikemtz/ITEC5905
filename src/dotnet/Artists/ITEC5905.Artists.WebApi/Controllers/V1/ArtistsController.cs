@@ -17,7 +17,7 @@ namespace ITEC5905.Artists.WebApi.Controllers.V1
     [Route("api/v{version:apiVersion}/[controller].{format}"), FormatFilter]
     [ApiVersion(VersionDefinitions.v1_0)]
     [ApiController]
-    [Authorize]
+   // [Authorize]
     public class ArtistsController : ControllerBase
     {
         private readonly ILogger<ArtistsController> _logger;

@@ -2,7 +2,8 @@
 set -ex
 
 cd ./ITEC5905.Customers.Migrations
-./reset-migrations.sh
+export DbConnectionString="server=localhost;user=mysql;port=3306;"
+dotnet ef migrations script --context DatabaseContext --idempotent --output ../ITEC5905.Customers.Db/migration.sql
 cd ..
 
 docker build --pull \

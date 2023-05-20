@@ -334,7 +334,7 @@ namespace ITEC5905.Artists.Migrations.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ITEC5905.Artists.Models.V1.Artist", "Song")
+                    b.HasOne("ITEC5905.Artists.Models.V1.Song", "Song")
                         .WithMany()
                         .HasForeignKey("SongId")
                         .OnDelete(DeleteBehavior.Cascade)
