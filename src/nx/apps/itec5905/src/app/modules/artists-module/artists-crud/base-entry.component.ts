@@ -4,7 +4,7 @@ import { BaseDataEntryComponent } from 'imng-kendo-data-entry';
 import { BehaviorSubject, map, Observable, switchMap } from 'rxjs';
 
 import { ArtistCrudFacade } from './crud.facade';
-import { ArtistFormGroupFac, ArtistProperties, IArtist, IArtistForm, IPicture, PictureProperties } from '../../../../models/artists-od';
+import { ArtistFormGroupFac, ArtistProperties, IArtistForm, IPicture, PictureProperties } from '../../../../models/artists-odata';
 
 @Component({ template: '' })
 export abstract class ArtistBaseEntryComponent extends BaseDataEntryComponent<ArtistCrudFacade>

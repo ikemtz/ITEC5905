@@ -8,7 +8,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { artistsFeature } from './artist.reducer';
 import * as artistActionTypes from './artist.actions';
 import { environment } from '../../../../environments/environment';
-import { ArtistProperties, IArtist, IPicture, PictureProperties } from '../../../../models/artists-od';
+import { ArtistProperties, IArtist, IPicture, PictureProperties } from '../../../../models/artists-odata';
 
 import { ArtistApiService } from '../artists-crud';
 

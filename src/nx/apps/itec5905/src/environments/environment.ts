@@ -22,6 +22,7 @@ export const environment = {
     audience: 'ITEC5905',
     response_type: 'code',
     getUserMetadata: true,
+    scope: 'openid email profile picture'
   },
   idleConfig: {
     timeoutWarningInMs: 540000, //9 minutes

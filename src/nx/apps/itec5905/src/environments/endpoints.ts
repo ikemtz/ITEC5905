@@ -1,7 +1,8 @@
-import { Endpoints as customerODataEnpoints } from '../models/customers-od/endpoints';
-import { Endpoints as artistsODataEnpoints } from '../models/artists-od/endpoints';
+
+import { Endpoints as artistsODataEnpoints } from '../models/artists-odata/endpoints';
+import { Endpoints as customerODataEnpoints } from '../models/customers-odata/endpoints';
 
 export const endpoints = {
-  customerODataEnpoints,
   artistsODataEnpoints,
+  customerODataEnpoints,
 };

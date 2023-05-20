@@ -5,7 +5,7 @@ import { ODataState } from 'imng-kendo-odata';
 import { artistsFeature } from '../+state/artist.reducer';
 import { artistQueries } from '../+state/artist.selectors';
 import * as artistActionTypes from '../+state/artist.actions';
-import { ArtistProperties, IArtist, PictureProperties } from '../../../../models/artists-od';
+import { ArtistProperties, IArtist, PictureProperties } from '../../../../models/artists-odata';
 
 @Injectable()
 export class ArtistCrudFacade implements IDataEntryFacade<IArtist> {

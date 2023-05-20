@@ -6,7 +6,7 @@ import { ODataState } from 'imng-kendo-odata';
 
 import { artistsFeature } from '../+state/artist.reducer';
 import * as artistsActionTypes from '../+state/artist.actions';
-import { ArtistProperties, IArtist, PictureProperties } from '../../../../models/artists-od';
+import { ArtistProperties, IArtist, PictureProperties } from '../../../../models/artists-odata';
 
 @Injectable()
 export class ArtistListFacade implements IKendoODataGridFacade<IArtist>, IDataDeleteFacade<IArtist> {

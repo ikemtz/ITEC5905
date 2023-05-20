@@ -16,30 +16,30 @@ const PROXY_CONFIG = {
     },
     '/artists-od':{
         ...defaultRouteOptions,
-        target: `${server}/artists-od`,
+        target: `${server}/artists-odata`,
         pathRewrite: {
-            '^/artists-od':'',
+            '^/artists-odata':'',
         }
     },
     '/artists-wa':{
         ...defaultRouteOptions,
-        target: `${server}/artists-wa`,
+        target: `${server}/artists-webapi`,
         pathRewrite: {
-            '^/artists-wa':'',
+            '^/artists-webapi':'',
         }
     },
     '/customers-od':{
         ...defaultRouteOptions,
-        target: `${server}/customers-od`,
+        target: `${server}/customers-odata`,
         pathRewrite: {
-            '^/customers-od':'',
+            '^/customers-odata':'',
         }
     },
     '/customers-wa':{
         ...defaultRouteOptions,
-        target: `${server}/customers-wa`,
+        target: `${server}/customers-webapi`,
         pathRewrite: {
-            '^/customers-wa':'',
+            '^/customers-webapi':'',
         }
     },
 };

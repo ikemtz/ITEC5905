@@ -1,7 +1,7 @@
 import { createReducer, on, createFeature } from '@ngrx/store';
 import { createKendoODataGridInitialState, getODataPagerSettings, KendoODataGridState } from 'imng-kendo-grid-odata';
 import { imngEffectError, imngEffectErrorReducer } from 'imng-ngrx-utils';
-import { ArtistProperties, IArtist, IPicture, PictureProperties } from '../../../../models/artists-od';
+import { ArtistProperties, IArtist, IPicture, PictureProperties } from '../../../../models/artists-odata';
 
 import * as artistActionTypes from './artist.actions';
 export const ARTISTS_FEATURE_KEY = 'artists';

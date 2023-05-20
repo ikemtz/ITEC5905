@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { NrsrxBaseApiClientService } from 'imng-nrsrx-client-utils';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
-import { ArtistProperties, IArtist, PictureProperties } from '../../../../models/artists-od';
+import { IArtist } from '../../../../models/artists-odata';
 
 @Injectable({
   providedIn: 'root',

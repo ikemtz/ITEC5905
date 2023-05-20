@@ -6,7 +6,7 @@ import { ODataState } from 'imng-kendo-odata';
 
 import { ArtistListFacade } from './list.facade';
 import { ArtistCrudFacade } from '../artists-crud';
-import { ArtistProperties, IArtist, PictureProperties } from '../../../../models/artists-od';
+import { ArtistProperties, IArtist, PictureProperties } from '../../../../models/artists-odata';
 
 const initialGridState: ODataState = {
   take: 20,

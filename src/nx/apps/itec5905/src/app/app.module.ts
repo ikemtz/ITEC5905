@@ -15,7 +15,7 @@ import { HomeComponent } from './home/home.component';
   declarations: [AppComponent, HomeComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' , enableTracing: true}),
+    RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
     StoreModule.forRoot(
       {},
       {
