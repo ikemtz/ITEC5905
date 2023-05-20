@@ -10,6 +10,7 @@ import { ImngOidcClientModule } from 'imng-oidc-client';
 import { environment } from '../environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { HomeComponent } from './home/home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -21,18 +22,24 @@ import { HomeComponent } from './home/home.component';
       {
         metaReducers: [],
         runtimeChecks: {
-          strictActionSerializability: environment.runtimeChecks.strictActionSerializability,
-          strictActionTypeUniqueness: environment.runtimeChecks.strictActionTypeUniqueness,
-          strictStateSerializability: environment.runtimeChecks.strictStateSerializability,
-          strictActionImmutability: environment.runtimeChecks.strictActionImmutability,
-          strictStateImmutability: environment.runtimeChecks.strictStateImmutability,
+          strictActionSerializability:
+            environment.runtimeChecks.strictActionSerializability,
+          strictActionTypeUniqueness:
+            environment.runtimeChecks.strictActionTypeUniqueness,
+          strictStateSerializability:
+            environment.runtimeChecks.strictStateSerializability,
+          strictActionImmutability:
+            environment.runtimeChecks.strictActionImmutability,
+          strictStateImmutability:
+            environment.runtimeChecks.strictStateImmutability,
         },
       }
     ),
-    EffectsModule.forRoot([]),    
+    EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ name: 'ITEC5905' }),
     StoreRouterConnectingModule.forRoot(),
     ImngOidcClientModule.forRoot(environment.oidc_options),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
