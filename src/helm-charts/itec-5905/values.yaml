@@ -9,4 +9,4 @@ environment:
   createVolumes: true
   storageClass: hostpath
   storageAccessMode: ReadWriteMany
-  useRoutes: false
+  useIngress: false

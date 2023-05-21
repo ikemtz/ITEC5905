@@ -2,5 +2,6 @@ environment:
   createVolumes: false
   storageClass: gp2
   storageAccessMode: ReadWriteOnce
-  useRoutes: true
+  useIngress: true
+  hostName: itec5905-ikemtz-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com
   
