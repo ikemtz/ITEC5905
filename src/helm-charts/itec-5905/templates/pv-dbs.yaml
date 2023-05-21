@@ -1,3 +1,4 @@
+{{- if .Values.environment.createVolumes }}
 {{- range .Values.infra.dotnet_microservices }}
 {{- if .hasDb }}
 kind: PersistentVolume
@@ -5,15 +6,16 @@ apiVersion: v1
 metadata:
   name: {{ .name }}-volume
 spec:
-  storageClassName: {{$.Values.environment.storageClass}}
+  storageClassName: {{ $.Values.environment.storageClass }}
   capacity:
     storage: 1Gi
   accessModes:
-    - ReadWriteMany
+    - {{ $.Values.environment.storageAccessMode }}
   claimRef:
     name: {{ .name }}-volume-claim
   hostPath:
     path: /c/tmp/{{ .name }}-volume
 ---
+{{- end -}}
 {{- end -}}
 {{- end -}}

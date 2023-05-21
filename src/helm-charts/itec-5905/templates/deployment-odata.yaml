@@ -41,7 +41,7 @@ spec:
             command:
             - "bash" 
             - "-c"
-            - "wget http://localhost:5000"
+            - "curl -f http://localhost:5000/healthz"
           initialDelaySeconds: 15
           periodSeconds: 60
           timeoutSeconds: 1
@@ -50,7 +50,7 @@ spec:
             command:
             - "bash" 
             - "-c"
-            - "wget http://localhost:5000"
+            - "curl -f http://localhost:5000/healthz"
           initialDelaySeconds: 30
           periodSeconds: 30
           timeoutSeconds: 1

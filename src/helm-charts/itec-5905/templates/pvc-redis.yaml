@@ -5,7 +5,7 @@ metadata:
 spec:
   storageClassName: {{ $.Values.environment.storageClass }}
   accessModes:
-    - ReadWriteMany
+    - {{ $.Values.environment.storageAccessMode }}
   resources:
     requests:
       storage: 1Gi

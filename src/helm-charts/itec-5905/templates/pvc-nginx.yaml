@@ -1,9 +1,7 @@
-{{- range .Values.infra.dotnet_microservices }}
-{{- if .hasDb }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .name }}-volume-claim
+  name: nginx-volume-claim
 spec:
   storageClassName: {{ $.Values.environment.storageClass }}
   accessModes:
@@ -12,5 +10,3 @@ spec:
     requests:
       storage: 1Gi
 ---
-{{- end -}}
-{{- end -}}

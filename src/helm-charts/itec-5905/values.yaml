@@ -6,5 +6,7 @@ infra:
       hasDb: true
 
 environment:
+  createVolumes: true
   storageClass: hostpath
-  
+  storageAccessMode: ReadWriteMany
+  useRoutes: false

@@ -1,0 +1,6 @@
+environment:
+  createVolumes: false
+  storageClass: gp2
+  storageAccessMode: ReadWriteOnce
+  useRoutes: true
+  
