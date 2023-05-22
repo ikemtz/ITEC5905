@@ -5,11 +5,14 @@
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
+
+import { IArtistGenreUpsertRequest } from './artist-genre-upsert-request.model';
+
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IArtistUpsertRequest {
   id?: string | null;
   name?: string;
   stageName?: string;
   email?: string;
-  genres?: string[] | null;
+  genres?: Partial<IArtistGenreUpsertRequest[]>;
 }

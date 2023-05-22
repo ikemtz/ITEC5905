@@ -8,6 +8,7 @@
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IPicture {
   id?: string | null;
+  referenceId?: string | null;
 /**
  * Max length is 1 Megabyte
  */

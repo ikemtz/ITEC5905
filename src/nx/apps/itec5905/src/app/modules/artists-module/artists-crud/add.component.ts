@@ -3,7 +3,7 @@ import { normalizeRequest } from 'imng-nrsrx-client-utils';
 
 import { ArtistCrudFacade } from './crud.facade';
 import { ArtistBaseEntryComponent } from './base-entry.component';
-import { IArtist } from '../../../../models/artists-odata';
+import { IArtist } from '../../../../models/artists-webapi';
 
 @Component({
   selector: 'itec-artist-add',

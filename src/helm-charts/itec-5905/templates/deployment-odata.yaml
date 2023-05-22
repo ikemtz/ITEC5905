@@ -27,6 +27,10 @@ spec:
       - image: ikemtz/itec5905-{{ .name }}-odata:latest
         name: odata
         env:
+        - name: IdentityProvider
+          value: https://itec5905.us.auth0.com/
+        - name: IdentityAudiences
+          value: ITEC5905
         - name: DbConnectionString
           valueFrom:
             secretKeyRef:
@@ -34,7 +38,7 @@ spec:
               key: dbConnectionString
         ports:
         - name: odata
-          containerPort: 5000          
+          containerPort: 5000
           protocol: TCP
         livenessProbe:
           exec:

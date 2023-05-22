@@ -6,7 +6,7 @@ import { ODataState } from 'imng-kendo-odata';
 
 import { artistsFeature } from '../+state/artist.reducer';
 import * as artistsActionTypes from '../+state/artist.actions';
-import { ArtistProperties, IArtist, PictureProperties } from '../../../../models/artists-odata';
+import { IArtist } from '../../../../models/artists-webapi';
 
 @Injectable()
 export class ArtistListFacade implements IKendoODataGridFacade<IArtist>, IDataDeleteFacade<IArtist> {
@@ -15,7 +15,7 @@ export class ArtistListFacade implements IKendoODataGridFacade<IArtist>, IDataDe
   gridPagerSettings$ = this.store.select(artistsFeature.selectGridPagerSettings);
   gridODataState$ = this.store.select(artistsFeature.selectGridODataState);
 
-  constructor(private readonly store: Store) {}
+  constructor(private readonly store: Store) { }
 
   public loadEntities(state: ODataState): void {
     this.store.dispatch(artistsActionTypes.loadArtistsRequest(state));

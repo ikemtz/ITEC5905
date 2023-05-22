@@ -4,7 +4,7 @@ import { BaseDataEntryComponent } from 'imng-kendo-data-entry';
 import { BehaviorSubject, map, Observable, switchMap } from 'rxjs';
 
 import { ArtistCrudFacade } from './crud.facade';
-import { ArtistFormGroupFac, ArtistProperties, IArtistForm, IPicture, PictureProperties } from '../../../../models/artists-odata';
+import { ArtistProperties, ArtistUpsertRequestFormGroupFac, IArtistUpsertRequestForm, IPicture, PictureProperties } from '../../../../models/artists-webapi';
 
 @Component({ template: '' })
 export abstract class ArtistBaseEntryComponent extends BaseDataEntryComponent<ArtistCrudFacade>
@@ -13,7 +13,7 @@ export abstract class ArtistBaseEntryComponent extends BaseDataEntryComponent<Ar
   public readonly pictureProps = PictureProperties;
   public readonly pictures$: Observable<IPicture[]>;
   public readonly pictureFilter$ = new BehaviorSubject('');
-  public addEditForm: FormGroup<IArtistForm>;
+  public addEditForm: FormGroup<IArtistUpsertRequestForm>;
 
   constructor(facade: ArtistCrudFacade) {
     super(facade);
@@ -33,7 +33,7 @@ export abstract class ArtistBaseEntryComponent extends BaseDataEntryComponent<Ar
   }
 
   public initForm(): void {
-    this.addEditForm = ArtistFormGroupFac();
+    this.addEditForm = ArtistUpsertRequestFormGroupFac();
   }
 
   public cancel(): void {

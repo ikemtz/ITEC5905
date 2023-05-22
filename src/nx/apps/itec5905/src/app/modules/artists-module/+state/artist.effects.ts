@@ -8,7 +8,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { artistsFeature } from './artist.reducer';
 import * as artistActionTypes from './artist.actions';
 import { environment } from '../../../../environments/environment';
-import { ArtistProperties, IArtist, IPicture, PictureProperties } from '../../../../models/artists-odata';
+import { IArtist, IPicture } from '../../../../models/artists-webapi';
 
 import { ArtistApiService } from '../artists-crud';
 
@@ -18,8 +18,8 @@ export class ArtistEffects {
     private readonly actions$: Actions,
     private readonly odataService: ODataService,
     private readonly store: Store,
-    private readonly artistApiService : ArtistApiService,
-  ) {}
+    private readonly artistApiService: ArtistApiService,
+  ) { }
 
   loadArtistsEffect$ = createEffect(() => {
     return this.actions$.pipe(

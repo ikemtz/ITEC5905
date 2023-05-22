@@ -6,7 +6,7 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { createDataEntryMockFacade } from 'imng-kendo-data-entry/testing';
 import { mockConsoleError, mockConsoleGroup, mockConsoleWarn, readFirst } from 'imng-ngrx-utils/testing';
 import { of } from 'rxjs';
-import { IArtist, createTestArtist, createTestPicture } from '../../../../models/artists-odata';
+import { ArtistGenreUpsertRequestFormGroupFac, IArtist, createTestArtist, createTestArtistGenre } from '../../../../models/artists-webapi';
 
 import { ArtistAddComponent } from './add.component';
 import { ArtistCrudFacade } from './crud.facade';
@@ -60,7 +60,9 @@ describe('ArtistAddComponent', () => {
   test('should save', () => {
     component.initForm();
     component.addEditForm?.patchValue(createTestArtist());
-    component.addEditForm.controls.picture?.patchValue(createTestPicture());
+    const genreForm = ArtistGenreUpsertRequestFormGroupFac();
+    genreForm.patchValue(createTestArtistGenre());
+    component.addEditForm.controls.genres?.controls.push(genreForm);
 
     let item: IArtist | undefined;
     facade.saveNewEntity = jest.fn(x => (item = x));
@@ -70,10 +72,7 @@ describe('ArtistAddComponent', () => {
     expect(facade.saveNewEntity).toBeCalledTimes(1);
     expect(facade.updateExistingEntity).toBeCalledTimes(0);
 
-    expect(item).toMatchSnapshot({
-      createdOnUtc: expect.any(Date),
-      updatedOnUtc: expect.any(Date)
-    });
+    expect(item).toMatchSnapshot();
   });
 
   /**

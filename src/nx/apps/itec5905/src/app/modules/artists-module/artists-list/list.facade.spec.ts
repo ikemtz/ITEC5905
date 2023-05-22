@@ -13,7 +13,7 @@ import * as artistActionTypes from '../+state/artist.actions';
 import { artistsFeature } from '../+state/artist.reducer';
 import { ArtistListFacade } from './list.facade';
 import { environment } from '../../../../environments/environment';
-import { createTestArtist } from 'apps/itec5905/src/models/artists-odata';
+import { createTestArtist } from '../../../../models/artists-webapi';
 
 describe('ArtistListFacade', () => {
   let facade: ArtistListFacade;

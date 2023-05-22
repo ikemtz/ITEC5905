@@ -10,6 +10,7 @@ import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 
 export interface IPictureForm {
     id: FormControl<string | null | undefined>;
+    referenceId: FormControl<string | null | undefined>;
     blob: FormControl<string>;
     type: FormControl<string>;
     updateCount: FormControl<number | null | undefined>;

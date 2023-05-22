@@ -10,25 +10,25 @@ using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace ITEC5905.Customers.OData.Controllers.V1
 {
-    [ApiVersion("1.0")]
-  //  [Authorize]
-    [ResponseCache(Location = ResponseCacheLocation.Any, Duration = 600)]
-    public class CustomersController : ODataController
+  [ApiVersion("1.0")]
+  [Authorize]
+  [ResponseCache(Location = ResponseCacheLocation.Any, Duration = 600)]
+  public class CustomersController : ODataController
+  {
+    private readonly DatabaseContext _databaseContext;
+
+    public CustomersController(DatabaseContext databaseContext)
     {
-        private readonly DatabaseContext _databaseContext;
-
-        public CustomersController(DatabaseContext databaseContext)
-        {
-            _databaseContext = databaseContext;
-        }
-
-        [ProducesResponseType(typeof(ODataEnvelope<Customer, Guid>), Status200OK)]
-        [EnableQuery(MaxTop = 100, AllowedQueryOptions = AllowedQueryOptions.All)]
-        [HttpGet]
-        public IQueryable<Customer> Get()
-        {
-            return _databaseContext.Customers
-              .AsNoTracking();
-        }
+      _databaseContext = databaseContext;
     }
+
+    [ProducesResponseType(typeof(ODataEnvelope<Customer, Guid>), Status200OK)]
+    [EnableQuery(MaxTop = 100, AllowedQueryOptions = AllowedQueryOptions.All)]
+    [HttpGet]
+    public IQueryable<Customer> Get()
+    {
+      return _databaseContext.Customers
+        .AsNoTracking();
+    }
+  }
 }

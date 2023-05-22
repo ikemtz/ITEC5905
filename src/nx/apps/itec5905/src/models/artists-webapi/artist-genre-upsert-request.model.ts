@@ -5,18 +5,8 @@
  * For issues or feature request, visit the repo: https://github.com/ikemtz/openapi-ts-generator
  * Do not edit.
  */
-
-import { ICustomer } from './customer.model';
-
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface ICustomerFavoriteGenre {
+export interface IArtistGenreUpsertRequest {
   id?: string | null;
   name?: string;
-  customerId?: string;
-  createdBy?: string;
-  updatedBy?: string | null;
-  createdOnUtc?: Date | null;
-  updatedOnUtc?: Date | null;
-  updateCount?: number | null;
-  customer?: Partial<ICustomer>;
 }

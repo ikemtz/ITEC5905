@@ -1,7 +1,7 @@
 import { createReducer, on, createFeature } from '@ngrx/store';
 import { createKendoODataGridInitialState, getODataPagerSettings, KendoODataGridState } from 'imng-kendo-grid-odata';
 import { imngEffectError, imngEffectErrorReducer } from 'imng-ngrx-utils';
-import { ArtistProperties, IArtist, IPicture, PictureProperties } from '../../../../models/artists-odata';
+import { IArtist, IPicture } from '../../../../models/artists-webapi';
 
 import * as artistActionTypes from './artist.actions';
 export const ARTISTS_FEATURE_KEY = 'artists';
@@ -23,14 +23,15 @@ export const artistsFeature = createFeature({
   reducer: createReducer(
     initialState,
     on(artistActionTypes.loadArtistsRequest,
-      (state, { payload }) : State => ({
+      (state, { payload }): State => ({
         ...state,
         gridODataState: payload,
         loading: true,
-        error: null, })),
+        error: null,
+      })),
     on(artistActionTypes.loadArtistsSuccess,
       artistActionTypes.reloadArtistsSuccess,
-      (state, { payload }) : State => ({
+      (state, { payload }): State => ({
         ...state,
         loading: false,
         gridPagerSettings: getODataPagerSettings({
@@ -38,16 +39,17 @@ export const artistsFeature = createFeature({
           gridODataState: state.gridODataState,
         }),
         gridData: payload,
-        error: null, })),
+        error: null,
+      })),
     on(artistActionTypes.setCurrentArtist,
-      (state, { payload }) : State =>
+      (state, { payload }): State =>
         ({ ...state, currentArtist: payload })),
     on(artistActionTypes.clearCurrentArtist,
-      (state) : State => ({ ...state, currentArtist: undefined })),
+      (state): State => ({ ...state, currentArtist: undefined })),
     on(artistActionTypes.saveArtistRequest,
       artistActionTypes.updateArtistRequest,
       artistActionTypes.deleteArtistRequest,
-      (state) : State => ({
+      (state): State => ({
         ...state,
         loading: true,
       })),

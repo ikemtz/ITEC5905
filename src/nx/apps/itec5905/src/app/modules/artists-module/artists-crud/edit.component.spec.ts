@@ -8,7 +8,7 @@ import { mockConsoleError, mockConsoleGroup, mockConsoleWarn, readFirst } from '
 import { createMockArtistFacade } from './add.component.spec';
 import { ArtistEditComponent } from './edit.component';
 import { ArtistCrudFacade } from './crud.facade';
-import { IArtist, createTestArtist } from '../../../../models/artists-odata';
+import { IArtist, createTestArtist } from '../../../../models/artists-webapi';
 
 describe('ArtistEditComponent', () => {
   let component: ArtistEditComponent;

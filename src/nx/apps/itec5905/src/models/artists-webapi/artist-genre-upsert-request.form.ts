@@ -7,16 +7,8 @@
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
-import { IArtistForm } from './artist.form';
 
-export interface IArtistGenreForm {
+export interface IArtistGenreUpsertRequestForm {
     id: FormControl<string | null | undefined>;
     name: FormControl<string>;
-    artistId: FormControl<string>;
-    createdBy: FormControl<string>;
-    updatedBy: FormControl<string | null | undefined>;
-    createdOnUtc: FormControl<Date | null | undefined>;
-    updatedOnUtc: FormControl<Date | null | undefined>;
-    updateCount: FormControl<number | null | undefined>;
-    artist: FormGroup<IArtistForm>;
 }

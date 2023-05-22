@@ -15,8 +15,8 @@ namespace ITEC5905.Artists.Models.V1
     public virtual ICollection<AlbumSong> Songs { get; set; }
     public int SongCount { get; set; }
 
-    public Guid PictureId { get; set; }
-    public Picture Picture { get; set; }
+    public Guid? PictureId { get; set; }
+    public Picture? Picture { get; set; }
     [Required]
     public string CreatedBy { get; set; }
     public string? UpdatedBy { get; set; }

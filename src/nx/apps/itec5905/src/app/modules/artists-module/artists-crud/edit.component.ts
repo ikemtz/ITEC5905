@@ -4,7 +4,7 @@ import { normalizeRequest } from 'imng-nrsrx-client-utils';
 
 import { ArtistBaseEntryComponent } from './base-entry.component';
 import { ArtistCrudFacade } from './crud.facade';
-import { ArtistProperties, IArtist, PictureProperties } from '../../../../models/artists-odata';
+import { IArtist } from '../../../../models/artists-webapi';
 
 @Component({
   selector: 'itec-artist-edit',

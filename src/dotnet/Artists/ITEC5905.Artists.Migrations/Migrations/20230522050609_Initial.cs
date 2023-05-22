@@ -17,6 +17,7 @@ namespace ITEC5905.Artists.Migrations.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    ReferenceId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     Blob = table.Column<byte[]>(type: "longblob", maxLength: 100000000, nullable: false),
                     Type = table.Column<string>(type: "varchar(5)", maxLength: 5, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -47,7 +48,7 @@ namespace ITEC5905.Artists.Migrations.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     AlbumCount = table.Column<int>(type: "int", nullable: false),
                     SongCount = table.Column<int>(type: "int", nullable: false),
-                    PictureId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    PictureId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci"),
                     CreatedBy = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     UpdatedBy = table.Column<string>(type: "longtext", nullable: true)
@@ -63,8 +64,7 @@ namespace ITEC5905.Artists.Migrations.Migrations
                         name: "FK_Artists_Pictures_PictureId",
                         column: x => x.PictureId,
                         principalTable: "Pictures",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -77,7 +77,7 @@ namespace ITEC5905.Artists.Migrations.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ArtistId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     SongCount = table.Column<int>(type: "int", nullable: false),
-                    PictureId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    PictureId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci"),
                     CreatedBy = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     UpdatedBy = table.Column<string>(type: "longtext", nullable: true)
@@ -99,8 +99,7 @@ namespace ITEC5905.Artists.Migrations.Migrations
                         name: "FK_Albums_Pictures_PictureId",
                         column: x => x.PictureId,
                         principalTable: "Pictures",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -109,8 +108,6 @@ namespace ITEC5905.Artists.Migrations.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Name = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
                     ArtistId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     CreatedBy = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -118,7 +115,9 @@ namespace ITEC5905.Artists.Migrations.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CreatedOnUtc = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
                     UpdatedOnUtc = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: true),
-                    UpdateCount = table.Column<int>(type: "int", nullable: true)
+                    UpdateCount = table.Column<int>(type: "int", nullable: true),
+                    Name = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
@@ -140,7 +139,7 @@ namespace ITEC5905.Artists.Migrations.Migrations
                     Name = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     AlbumId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    PictureId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    PictureId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci"),
                     CreatedBy = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     UpdatedBy = table.Column<string>(type: "longtext", nullable: true)
@@ -162,8 +161,7 @@ namespace ITEC5905.Artists.Migrations.Migrations
                         name: "FK_Songs_Pictures_PictureId",
                         column: x => x.PictureId,
                         principalTable: "Pictures",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 

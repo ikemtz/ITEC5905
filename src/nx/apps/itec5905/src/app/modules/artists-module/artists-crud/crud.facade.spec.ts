@@ -18,7 +18,7 @@ import { artistsFeature } from '../+state/artist.reducer';
 import { ArtistCrudFacade } from './crud.facade';
 import { ArtistApiService } from './api.service';
 import { environment } from '../../../../environments/environment';
-import { createTestArtist } from '../../../../models/artists-odata';
+import { createTestArtist } from '../../../../models/artists-webapi';
 
 describe('ArtistCrudFacade', () => {
   let facade: ArtistCrudFacade;

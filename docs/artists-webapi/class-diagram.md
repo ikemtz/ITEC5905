@@ -13,6 +13,7 @@ classDiagram
   ArtistGenre ..> Artist
   ArtistSong ..> Artist
   ArtistSong ..> Song
+  ArtistUpsertRequest ..> ArtistGenreUpsertRequest
   Song ..> Album
   Song ..> Picture
   Song ..> ArtistSong
@@ -73,6 +74,10 @@ classDiagram
     +number: updateCount
     +Artist: artist;
   }
+  class ArtistGenreUpsertRequest{
+    +uuid: id
+    +string: name
+  }
   class ArtistSong{
     +uuid: id
     +uuid: artistId
@@ -90,10 +95,11 @@ classDiagram
     +string: name
     +string: stageName
     +string: email
-    +string[]: genres
+    +ArtistGenreUpsertRequest[]: genres;
   }
   class Picture{
     +uuid: id
+    +uuid: referenceId
     +string: blob
     +string: type
     +string: createdBy

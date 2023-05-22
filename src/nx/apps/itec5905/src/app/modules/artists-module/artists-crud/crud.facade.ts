@@ -5,17 +5,17 @@ import { ODataState } from 'imng-kendo-odata';
 import { artistsFeature } from '../+state/artist.reducer';
 import { artistQueries } from '../+state/artist.selectors';
 import * as artistActionTypes from '../+state/artist.actions';
-import { ArtistProperties, IArtist, PictureProperties } from '../../../../models/artists-odata';
+import { IArtist, IArtistUpsertRequest } from '../../../../models/artists-webapi';
 
 @Injectable()
-export class ArtistCrudFacade implements IDataEntryFacade<IArtist> {
+export class ArtistCrudFacade implements IDataEntryFacade<IArtistUpsertRequest> {
   loading$ = this.store.select(artistsFeature.selectLoading);
   currentEntity$ = this.store.select(artistQueries.selectCurrentArtist);
   isEditActive$ = this.store.select(artistQueries.selectIsEditArtistActive);
   isNewActive$ = this.store.select(artistQueries.selectIsNewArtistActive);
   pictures$ = this.store.select(artistsFeature.selectPictures);
 
-  constructor(private readonly store: Store) {}
+  constructor(private readonly store: Store) { }
 
   public setCurrentEntity(item: IArtist): void {
     this.store.dispatch(artistActionTypes.setCurrentArtist(item));
@@ -25,11 +25,11 @@ export class ArtistCrudFacade implements IDataEntryFacade<IArtist> {
     this.store.dispatch(artistActionTypes.clearCurrentArtist());
   }
 
-  public saveNewEntity(item: IArtist): void {
+  public saveNewEntity(item: IArtistUpsertRequest): void {
     this.store.dispatch(artistActionTypes.saveArtistRequest(item));
   }
 
-  public updateExistingEntity(item: IArtist): void {
+  public updateExistingEntity(item: IArtistUpsertRequest): void {
     this.store.dispatch(artistActionTypes.updateArtistRequest(item));
   }
 

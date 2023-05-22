@@ -6,6 +6,8 @@ namespace ITEC5905.Artists.Models.V1
   public class Picture : IIdentifiable, IAuditable
   {
     public Guid Id { get; set; }
+
+    public Guid ReferenceId { get; set; }
     /// <summary>
     /// Max length is 1 Megabyte
     /// </summary>

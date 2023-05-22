@@ -11,6 +11,7 @@ import { PictureProperties } from './picture.properties';
 export function createTestPicture() {
     return { 
       [PictureProperties.ID]: 'ID',
+      [PictureProperties.REFERENCE_ID]: 'REFERENCE_ID',
       [PictureProperties.BLOB]: 'BLOB',
       [PictureProperties.TYPE]: 'TYPE',
       [PictureProperties.UPDATE_COUNT]: 0, 

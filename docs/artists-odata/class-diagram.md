@@ -99,6 +99,7 @@ classDiagram
   }
   class Picture{
     +uuid: id
+    +uuid: referenceId
     +string: blob
     +string: type
     +string: createdBy

@@ -20,6 +20,6 @@ namespace ITEC5905.Artists.Models.V1
     [MaxLength(255)]
     public string Email { get; set; }
 
-    public string[] Genres { get; set; }
+    public ICollection<ArtistGenreUpsertRequest>? Genres { get; set; }
   }
 }

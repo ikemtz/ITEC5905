@@ -2,31 +2,11 @@
 
 exports[`ArtistAddComponent should save 1`] = `
 {
-  "albumCount": 0,
-  "albums": null,
-  "artistSongs": null,
-  "createdBy": "CREATED_BY",
-  "createdOnUtc": Any<Date>,
   "email": "artist@email.org",
   "genres": null,
   "id": undefined,
   "name": "NAME",
-  "picture": {
-    "blob": "BLOB",
-    "createdBy": "CREATED_BY",
-    "createdOnUtc": 2023-05-22T02:09:21.659Z,
-    "id": "ID",
-    "type": "TYPE",
-    "updateCount": 0,
-    "updatedBy": "UPDATED_BY",
-    "updatedOnUtc": 2023-05-22T02:09:21.659Z,
-  },
-  "pictureId": "PICTURE_ID",
-  "songCount": 0,
   "stageName": "STAGE_NAME",
-  "updateCount": 0,
-  "updatedBy": "UPDATED_BY",
-  "updatedOnUtc": Any<Date>,
 }
 `;
 
@@ -38,4 +18,14 @@ exports[`ArtistAddComponent should support Picture filters 1`] = `
     "type": "xyz",
   },
 ]
+`;
+
+exports[`ArtistEditComponent should update 1`] = `
+{
+  "email": "artist@email.org",
+  "genres": null,
+  "id": "ID",
+  "name": "NAME",
+  "stageName": "STAGE_NAME",
+}
 `;

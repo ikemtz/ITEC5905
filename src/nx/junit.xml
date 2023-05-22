@@ -1,124 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="33" failures="1" errors="0" time="17.777">
-  <testsuite name="AppComponent" errors="0" failures="0" skipped="0" timestamp="2023-05-22T02:09:07" time="9.138" tests="1">
-    <testcase classname="AppComponent Should match snapshot" name="AppComponent Should match snapshot" time="0.249">
+<testsuites name="jest tests" tests="32" failures="0" errors="0" time="25.039">
+  <testsuite name="ArtistAddComponent" errors="0" failures="0" skipped="0" timestamp="2023-05-22T03:42:52" time="14.441" tests="5">
+    <testcase classname="ArtistAddComponent should create" name="ArtistAddComponent should create" time="0.255">
+    </testcase>
+    <testcase classname="ArtistAddComponent should save" name="ArtistAddComponent should save" time="0.123">
+    </testcase>
+    <testcase classname="ArtistAddComponent should not save" name="ArtistAddComponent should not save" time="0.075">
+    </testcase>
+    <testcase classname="ArtistAddComponent should cancel" name="ArtistAddComponent should cancel" time="0.08">
+    </testcase>
+    <testcase classname="ArtistAddComponent should support Picture filters" name="ArtistAddComponent should support Picture filters" time="0.08">
     </testcase>
   </testsuite>
-  <testsuite name="ArtistCrudFacade" errors="0" failures="0" skipped="0" timestamp="2023-05-22T02:09:07" time="13.877" tests="6">
-    <testcase classname="ArtistCrudFacade used in NgModule clearCurrentEntity() should set currentArtist to null" name="ArtistCrudFacade used in NgModule clearCurrentEntity() should set currentArtist to null" time="0.085">
+  <testsuite name="ArtistAddComponent" errors="0" failures="0" skipped="0" timestamp="2023-05-22T03:42:52" time="14.79" tests="9">
+    <testcase classname="ArtistAddComponent should create" name="ArtistAddComponent should create" time="0.25">
     </testcase>
-    <testcase classname="ArtistCrudFacade used in NgModule New Entity Set And Clear CurrentEntity" name="ArtistCrudFacade used in NgModule New Entity Set And Clear CurrentEntity" time="0.029">
+    <testcase classname="ArtistAddComponent should save" name="ArtistAddComponent should save" time="0.133">
     </testcase>
-    <testcase classname="ArtistCrudFacade used in NgModule Existing Entity Set And Clear CurrentEntity" name="ArtistCrudFacade used in NgModule Existing Entity Set And Clear CurrentEntity" time="0.023">
+    <testcase classname="ArtistAddComponent should not save" name="ArtistAddComponent should not save" time="0.144">
     </testcase>
-    <testcase classname="ArtistCrudFacade used in NgModule Save CurrentEntity" name="ArtistCrudFacade used in NgModule Save CurrentEntity" time="0.017">
+    <testcase classname="ArtistAddComponent should cancel" name="ArtistAddComponent should cancel" time="0.067">
     </testcase>
-    <testcase classname="ArtistCrudFacade used in NgModule Update CurrentEntity" name="ArtistCrudFacade used in NgModule Update CurrentEntity" time="0.024">
+    <testcase classname="ArtistAddComponent should support Picture filters" name="ArtistAddComponent should support Picture filters" time="0.072">
     </testcase>
-    <testcase classname="ArtistCrudFacade used in NgModule should load Pictures" name="ArtistCrudFacade used in NgModule should load Pictures" time="0.014">
+    <testcase classname="ArtistEditComponent should update" name="ArtistEditComponent should update" time="0.068">
     </testcase>
-  </testsuite>
-  <testsuite name="ArtistListFacade" errors="0" failures="0" skipped="0" timestamp="2023-05-22T02:09:07" time="13.881" tests="5">
-    <testcase classname="ArtistListFacade used in NgModule loadEntities() should return a list of (1) with loading == false and httpClient.get is invoked" name="ArtistListFacade used in NgModule loadEntities() should return a list of (1) with loading == false and httpClient.get is invoked" time="0.09">
+    <testcase classname="ArtistEditComponent should not update" name="ArtistEditComponent should not update" time="0.055">
     </testcase>
-    <testcase classname="ArtistListFacade used in NgModule reloadEntities() should return empty list with loaded == true" name="ArtistListFacade used in NgModule reloadEntities() should return empty list with loaded == true" time="0.02">
+    <testcase classname="ArtistEditComponent should cancel" name="ArtistEditComponent should cancel" time="0.049">
     </testcase>
-    <testcase classname="ArtistListFacade used in NgModule it should get the grid state" name="ArtistListFacade used in NgModule it should get the grid state" time="0.02">
-    </testcase>
-    <testcase classname="ArtistListFacade used in NgModule gridData$ should return the loaded list; and loaded flag == true" name="ArtistListFacade used in NgModule gridData$ should return the loaded list; and loaded flag == true" time="0.011">
-    </testcase>
-    <testcase classname="ArtistListFacade used in NgModule it should handle DeleteItem" name="ArtistListFacade used in NgModule it should handle DeleteItem" time="0.013">
+    <testcase classname="ArtistEditComponent should support Picture filters" name="ArtistEditComponent should support Picture filters" time="0.073">
     </testcase>
   </testsuite>
-  <testsuite name="ArtistAddComponent" errors="0" failures="0" skipped="0" timestamp="2023-05-22T02:09:07" time="14.093" tests="5">
-    <testcase classname="ArtistAddComponent should create" name="ArtistAddComponent should create" time="0.207">
+  <testsuite name="ArtistListFacade" errors="0" failures="0" skipped="0" timestamp="2023-05-22T03:42:52" time="20.451" tests="5">
+    <testcase classname="ArtistListFacade used in NgModule loadEntities() should return a list of (1) with loading == false and httpClient.get is invoked" name="ArtistListFacade used in NgModule loadEntities() should return a list of (1) with loading == false and httpClient.get is invoked" time="0.153">
     </testcase>
-    <testcase classname="ArtistAddComponent should save" name="ArtistAddComponent should save" time="0.082">
+    <testcase classname="ArtistListFacade used in NgModule reloadEntities() should return empty list with loaded == true" name="ArtistListFacade used in NgModule reloadEntities() should return empty list with loaded == true" time="0.026">
     </testcase>
-    <testcase classname="ArtistAddComponent should not save" name="ArtistAddComponent should not save" time="0.049">
+    <testcase classname="ArtistListFacade used in NgModule it should get the grid state" name="ArtistListFacade used in NgModule it should get the grid state" time="0.027">
     </testcase>
-    <testcase classname="ArtistAddComponent should cancel" name="ArtistAddComponent should cancel" time="0.049">
+    <testcase classname="ArtistListFacade used in NgModule gridData$ should return the loaded list; and loaded flag == true" name="ArtistListFacade used in NgModule gridData$ should return the loaded list; and loaded flag == true" time="0.009">
     </testcase>
-    <testcase classname="ArtistAddComponent should support Picture filters" name="ArtistAddComponent should support Picture filters" time="0.041">
-    </testcase>
-  </testsuite>
-  <testsuite name="ArtistsModule" errors="0" failures="0" skipped="0" timestamp="2023-05-22T02:09:07" time="14.149" tests="1">
-    <testcase classname="ArtistsModule should create" name="ArtistsModule should create" time="0.078">
+    <testcase classname="ArtistListFacade used in NgModule it should handle DeleteItem" name="ArtistListFacade used in NgModule it should handle DeleteItem" time="0.01">
     </testcase>
   </testsuite>
-  <testsuite name="ArtistAddComponent" errors="0" failures="1" skipped="0" timestamp="2023-05-22T02:09:07" time="14.453" tests="9">
-    <testcase classname="ArtistAddComponent should create" name="ArtistAddComponent should create" time="0.208">
-    </testcase>
-    <testcase classname="ArtistAddComponent should save" name="ArtistAddComponent should save" time="0.06">
-    </testcase>
-    <testcase classname="ArtistAddComponent should not save" name="ArtistAddComponent should not save" time="0.052">
-    </testcase>
-    <testcase classname="ArtistAddComponent should cancel" name="ArtistAddComponent should cancel" time="0.047">
-    </testcase>
-    <testcase classname="ArtistAddComponent should support Picture filters" name="ArtistAddComponent should support Picture filters" time="0.047">
-    </testcase>
-    <testcase classname="ArtistEditComponent should update" name="ArtistEditComponent should update" time="0.052">
-      <failure>Error: expect(received).toStrictEqual(expected) // deep equality
-
-- Expected  -  1
-+ Received  + 20
-
-- Array []
-+ Array [
-+   Object {
-+     &quot;controlName&quot;: &quot;picture.blob&quot;,
-+     &quot;error&quot;: Object {
-+       &quot;required&quot;: true,
-+     },
-+   },
-+   Object {
-+     &quot;controlName&quot;: &quot;picture.type&quot;,
-+     &quot;error&quot;: Object {
-+       &quot;required&quot;: true,
-+     },
-+   },
-+   Object {
-+     &quot;controlName&quot;: &quot;picture.createdBy&quot;,
-+     &quot;error&quot;: Object {
-+       &quot;required&quot;: true,
-+     },
-+   },
-+ ]
-    at C:\repos\ITEC5905\src\nx\apps\itec5905\src\app\modules\artists-module\artists-crud\edit.component.spec.ts:49:39
-    at _ZoneDelegate.Object.&lt;anonymous&gt;._ZoneDelegate.invoke (C:\repos\ITEC5905\src\nx\node_modules\zone.js\bundles\zone-testing-bundle.umd.js:416:30)
-    at ProxyZoneSpec.Object.&lt;anonymous&gt;.ProxyZoneSpec.onInvoke (C:\repos\ITEC5905\src\nx\node_modules\zone.js\bundles\zone-testing-bundle.umd.js:3728:43)
-    at _ZoneDelegate.Object.&lt;anonymous&gt;._ZoneDelegate.invoke (C:\repos\ITEC5905\src\nx\node_modules\zone.js\bundles\zone-testing-bundle.umd.js:415:56)
-    at Zone.Object.&lt;anonymous&gt;.Zone.run (C:\repos\ITEC5905\src\nx\node_modules\zone.js\bundles\zone-testing-bundle.umd.js:173:47)
-    at Object.wrappedFunc (C:\repos\ITEC5905\src\nx\node_modules\zone.js\bundles\zone-testing-bundle.umd.js:4208:34)
-    at Promise.then.completed (C:\repos\ITEC5905\src\nx\node_modules\jest-circus\build\utils.js:293:28)
-    at new Promise (&lt;anonymous&gt;)
-    at callAsyncCircusFn (C:\repos\ITEC5905\src\nx\node_modules\jest-circus\build\utils.js:226:10)
-    at _callCircusTest (C:\repos\ITEC5905\src\nx\node_modules\jest-circus\build\run.js:297:40)
-    at _runTest (C:\repos\ITEC5905\src\nx\node_modules\jest-circus\build\run.js:233:3)
-    at _runTestsForDescribeBlock (C:\repos\ITEC5905\src\nx\node_modules\jest-circus\build\run.js:135:9)
-    at _runTestsForDescribeBlock (C:\repos\ITEC5905\src\nx\node_modules\jest-circus\build\run.js:130:9)
-    at run (C:\repos\ITEC5905\src\nx\node_modules\jest-circus\build\run.js:68:3)
-    at runAndTransformResultsToJestFormat (C:\repos\ITEC5905\src\nx\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)</failure>
-    </testcase>
-    <testcase classname="ArtistEditComponent should not update" name="ArtistEditComponent should not update" time="0.026">
-    </testcase>
-    <testcase classname="ArtistEditComponent should cancel" name="ArtistEditComponent should cancel" time="0.037">
-    </testcase>
-    <testcase classname="ArtistEditComponent should support Picture filters" name="ArtistEditComponent should support Picture filters" time="0.032">
+  <testsuite name="ArtistsModule" errors="0" failures="0" skipped="0" timestamp="2023-05-22T03:42:52" time="20.519" tests="1">
+    <testcase classname="ArtistsModule should create" name="ArtistsModule should create" time="0.09">
     </testcase>
   </testsuite>
-  <testsuite name="ArtistListComponent" errors="0" failures="0" skipped="0" timestamp="2023-05-22T02:09:07" time="14.484" tests="6">
-    <testcase classname="ArtistListComponent it should create" name="ArtistListComponent it should create" time="0.539">
+  <testsuite name="ArtistCrudFacade" errors="0" failures="0" skipped="0" timestamp="2023-05-22T03:42:52" time="20.666" tests="6">
+    <testcase classname="ArtistCrudFacade used in NgModule clearCurrentEntity() should set currentArtist to null" name="ArtistCrudFacade used in NgModule clearCurrentEntity() should set currentArtist to null" time="0.053">
     </testcase>
-    <testcase classname="ArtistListComponent it should handle DetailExpanded" name="ArtistListComponent it should handle DetailExpanded" time="0.037">
+    <testcase classname="ArtistCrudFacade used in NgModule New Entity Set And Clear CurrentEntity" name="ArtistCrudFacade used in NgModule New Entity Set And Clear CurrentEntity" time="0.016">
     </testcase>
-    <testcase classname="ArtistListComponent it should handle reload" name="ArtistListComponent it should handle reload" time="0.03">
+    <testcase classname="ArtistCrudFacade used in NgModule Existing Entity Set And Clear CurrentEntity" name="ArtistCrudFacade used in NgModule Existing Entity Set And Clear CurrentEntity" time="0.011">
     </testcase>
-    <testcase classname="ArtistListComponent it should handle AddItem" name="ArtistListComponent it should handle AddItem" time="0.028">
+    <testcase classname="ArtistCrudFacade used in NgModule Save CurrentEntity" name="ArtistCrudFacade used in NgModule Save CurrentEntity" time="0.012">
     </testcase>
-    <testcase classname="ArtistListComponent it should handle EditItem" name="ArtistListComponent it should handle EditItem" time="0.038">
+    <testcase classname="ArtistCrudFacade used in NgModule Update CurrentEntity" name="ArtistCrudFacade used in NgModule Update CurrentEntity" time="0.012">
     </testcase>
-    <testcase classname="ArtistListComponent it should handle DeleteItem" name="ArtistListComponent it should handle DeleteItem" time="0.025">
+    <testcase classname="ArtistCrudFacade used in NgModule should load Pictures" name="ArtistCrudFacade used in NgModule should load Pictures" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="ArtistListComponent" errors="0" failures="0" skipped="0" timestamp="2023-05-22T03:42:52" time="20.858" tests="6">
+    <testcase classname="ArtistListComponent it should create" name="ArtistListComponent it should create" time="0.461">
+    </testcase>
+    <testcase classname="ArtistListComponent it should handle DetailExpanded" name="ArtistListComponent it should handle DetailExpanded" time="0.031">
+    </testcase>
+    <testcase classname="ArtistListComponent it should handle reload" name="ArtistListComponent it should handle reload" time="0.035">
+    </testcase>
+    <testcase classname="ArtistListComponent it should handle AddItem" name="ArtistListComponent it should handle AddItem" time="0.047">
+    </testcase>
+    <testcase classname="ArtistListComponent it should handle EditItem" name="ArtistListComponent it should handle EditItem" time="0.048">
+    </testcase>
+    <testcase classname="ArtistListComponent it should handle DeleteItem" name="ArtistListComponent it should handle DeleteItem" time="0.029">
     </testcase>
   </testsuite>
 </testsuites>

@@ -27,6 +27,10 @@ spec:
       - image: ikemtz/itec5905-{{ .name }}-webapi:latest
         name: webapi
         env:
+        - name: IdentityProvider
+          value: https://itec5905.us.auth0.com/
+        - name: IdentityAudiences
+          value: ITEC5905
         - name: DbConnectionString
           valueFrom:
             secretKeyRef:
@@ -39,7 +43,7 @@ spec:
               key: redisConnectionString
         ports:
         - name: webapi
-          containerPort: 5000          
+          containerPort: 5000
           protocol: TCP
         livenessProbe:
           exec:

@@ -10,7 +10,7 @@ const modelsDestPath = './apps/itec5905/src/models/';
 await tsGenerator.generateTsModels({
   openApiJsonUrl: `${server}artists-odata${v1SwaggerPage}`,
   outputPath: `${modelsDestPath}artists-odata/`,
-  typeFilterCallBack: (entity) => !entity.name.endsWith('ODataEnvelope'),
+  typeFilterCallBack: (entity) => false,
   genAngularFormGroups: true /* Set this to true if only if you're in an Angular project*/,
   pathUrlFormattingCallBack: (val) => 'artists-odata' + val,
 });
@@ -29,7 +29,7 @@ await tsGenerator.generateTsModels({
 await tsGenerator.generateTsModels({
   openApiJsonUrl: `${server}customers-odata${v1SwaggerPage}`,
   outputPath: `${modelsDestPath}customers-odata/`,
-  typeFilterCallBack: (entity) => !entity.name.endsWith('ODataEnvelope'),
+  typeFilterCallBack: (entity) => false,
   genAngularFormGroups: true /* Set this to true if only if you're in an Angular project*/,
   pathUrlFormattingCallBack: (val) => 'customers-odata' + val,
 });
@@ -84,7 +84,6 @@ await mermaid.run(
   '../../docs/customers-webapi/class-diagram.md',
   '../../docs/customers-webapi/class-diagram.png' // {optional options},
 );
-
 
 fs.renameSync(
   '../../docs/artists-odata/class-diagram-1.png',

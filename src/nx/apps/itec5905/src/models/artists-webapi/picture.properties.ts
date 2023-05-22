@@ -8,6 +8,7 @@
 /* tslint:disable */
 export enum PictureProperties {
   ID = 'id',
+  REFERENCE_ID = 'referenceId',
 /**
  * Max length is 1 Megabyte
  */

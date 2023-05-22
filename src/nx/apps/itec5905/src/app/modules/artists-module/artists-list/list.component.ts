@@ -6,7 +6,7 @@ import { ODataState } from 'imng-kendo-odata';
 
 import { ArtistListFacade } from './list.facade';
 import { ArtistCrudFacade } from '../artists-crud';
-import { ArtistProperties, IArtist, PictureProperties } from '../../../../models/artists-odata';
+import { ArtistProperties, IArtist, PictureProperties } from '../../../../models/artists-webapi';
 
 const initialGridState: ODataState = {
   take: 20,
@@ -25,18 +25,20 @@ const initialGridState: ODataState = {
     { field: ArtistProperties.NAME, dir: 'asc' },
   ],
   expanders: [
-      { table: ArtistProperties.PICTURE,
-        selectors: [
-          PictureProperties.ID,
-          PictureProperties.BLOB,
-          PictureProperties.TYPE,
-          PictureProperties.UPDATE_COUNT,
-        ]},
+    {
+      table: ArtistProperties.PICTURE,
+      selectors: [
+        PictureProperties.ID,
+        PictureProperties.BLOB,
+        PictureProperties.TYPE,
+        PictureProperties.UPDATE_COUNT,
+      ]
+    },
   ]
 };
 
 @Component({
-  selector: 'init-artist-list',
+  selector: 'itec-artist-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

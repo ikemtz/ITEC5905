@@ -13,6 +13,7 @@ import { IPictureForm } from './picture.form';
 export function PictureFormGroupFac(): FormGroup<IPictureForm> {
   return new FormGroup<IPictureForm>({
     id: new FormControl<string | null | undefined>(null),
+    referenceId: new FormControl<string | null | undefined>(null),
     blob: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.maxLength(100000000)]), nonNullable: true }),
     type: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(5)]), nonNullable: true }),
     updateCount: new FormControl<number | null | undefined>(null),
