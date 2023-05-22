@@ -1,28 +1,23 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
+import { OidcFacade, OidcUserFacade } from 'imng-oidc-client';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [AppComponent, NxWelcomeComponent],
+      declarations: [AppComponent],
+      providers: [
+        { provide: OidcFacade, useValue: { loggedIn$: of(true) } },
+        { provide: OidcUserFacade, useValue: { email$: of('test@email.com'), profilePicture$: of('test.png') } }]
     }).compileComponents();
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Welcome itec5905'
-    );
-  });
-
-  it(`should have as title 'itec5905'`, () => {
+  it(`Should match snapshot`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('itec5905');
+    expect(fixture.nativeElement).toMatchSnapshot();
   });
 });

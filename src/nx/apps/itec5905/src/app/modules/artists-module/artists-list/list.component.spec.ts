@@ -7,6 +7,7 @@ import { createODataGridMockFacade } from 'imng-kendo-grid-odata/testing';
 import { ArtistListComponent } from './list.component';
 import { ArtistListFacade } from './list.facade';
 import { ArtistCrudFacade } from '../artists-crud';
+import { createTestArtist } from '../../../../models/artists-odata';
 
 describe('ArtistListComponent', () => {
   let component: ArtistListComponent;

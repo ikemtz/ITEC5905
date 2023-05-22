@@ -6,7 +6,7 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { createDataEntryMockFacade } from 'imng-kendo-data-entry/testing';
 import { mockConsoleError, mockConsoleGroup, mockConsoleWarn, readFirst } from 'imng-ngrx-utils/testing';
 import { of } from 'rxjs';
-import { ArtistProperties, IArtist, PictureProperties, createTestArtist, createTestPicture } from '../../../../models/artists-od';
+import { IArtist, createTestArtist, createTestPicture } from '../../../../models/artists-odata';
 
 import { ArtistAddComponent } from './add.component';
 import { ArtistCrudFacade } from './crud.facade';
@@ -16,8 +16,8 @@ export function createMockArtistFacade() {
   return {
     currentEntity$: of({}),
     pictures$: of([
-      { id: 'abc',blob: 'abc',type: 'abc', },
-      { id: 'xyz',blob: 'xyz',type: 'xyz', },]),
+      { id: 'abc', blob: 'abc', type: 'abc', },
+      { id: 'xyz', blob: 'xyz', type: 'xyz', },]),
     loadPictures: jest.fn(),
   };
 }
@@ -34,7 +34,7 @@ describe('ArtistAddComponent', () => {
     consoleGroupMock = mockConsoleGroup();
     TestBed.configureTestingModule({
       declarations: [ArtistAddComponent],
-      imports: [ReactiveFormsModule, NoopAnimationsModule, DropDownsModule, ],
+      imports: [ReactiveFormsModule, NoopAnimationsModule, DropDownsModule,],
       providers: [{ provide: ArtistCrudFacade, useValue: createDataEntryMockFacade(createMockArtistFacade()) }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
     }).compileComponents();
@@ -70,7 +70,10 @@ describe('ArtistAddComponent', () => {
     expect(facade.saveNewEntity).toBeCalledTimes(1);
     expect(facade.updateExistingEntity).toBeCalledTimes(0);
 
-    expect(item).toMatchSnapshot();
+    expect(item).toMatchSnapshot({
+      createdOnUtc: expect.any(Date),
+      updatedOnUtc: expect.any(Date)
+    });
   });
 
   /**

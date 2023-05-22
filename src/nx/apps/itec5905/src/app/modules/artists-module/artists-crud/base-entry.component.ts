@@ -25,16 +25,11 @@ export abstract class ArtistBaseEntryComponent extends BaseDataEntryComponent<Ar
             (picture.type && picture.type.toLowerCase().indexOf(pictureFilter) >= 0) ||
             (picture.updateCount && picture.updateCount.toString().toLowerCase().indexOf(pictureFilter) >= 0)
           )) : pictures
-    ))));
+        ))));
   }
 
   public ngOnInit(): void {
     this.initForm();
-    this.facade.loadPictures({ selectors: [
-      PictureProperties.ID,
-      PictureProperties.BLOB,
-      PictureProperties.TYPE,
-      PictureProperties.UPDATE_COUNT,] });
   }
 
   public initForm(): void {

@@ -1,7 +1,7 @@
 import { createAction } from '@ngrx/store';
 import { ODataResult, ODataState } from 'imng-kendo-odata';
 import { createPayloadAction } from 'imng-ngrx-utils';
-import { ArtistProperties, IArtist, IPicture, PictureProperties } from '../../../../models/artists-odata';
+import { IArtist, IPicture } from '../../../../models/artists-odata';
 
 export const loadArtistsRequest = createPayloadAction<ODataState>(
     '[Artists] Load Artists Request');

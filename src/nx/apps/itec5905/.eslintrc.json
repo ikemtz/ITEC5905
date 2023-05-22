@@ -9,7 +9,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "init",
+            "prefix": "itec",
             "style": "camelCase"
           }
         ],
@@ -17,7 +17,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "init",
+            "prefix": "itec",
             "style": "kebab-case"
           }
         ]

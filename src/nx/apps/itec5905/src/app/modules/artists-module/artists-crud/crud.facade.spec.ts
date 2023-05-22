@@ -18,6 +18,7 @@ import { artistsFeature } from '../+state/artist.reducer';
 import { ArtistCrudFacade } from './crud.facade';
 import { ArtistApiService } from './api.service';
 import { environment } from '../../../../environments/environment';
+import { createTestArtist } from '../../../../models/artists-odata';
 
 describe('ArtistCrudFacade', () => {
   let facade: ArtistCrudFacade;
@@ -25,7 +26,7 @@ describe('ArtistCrudFacade', () => {
   let httpClient: HttpClient;
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  beforeEach(() => {}); //NOSONAR
+  beforeEach(() => { }); //NOSONAR
 
   describe('used in NgModule', () => {
     beforeEach(() => {
@@ -40,7 +41,7 @@ describe('ArtistCrudFacade', () => {
           { provide: HttpClient, useValue: { get: jest.fn(() => of(createODataPayload([createTestArtist()]))) } },
         ],
       })
-      class CustomFeatureModule {}
+      class CustomFeatureModule { }
 
       @NgModule({
         imports: [
@@ -49,7 +50,7 @@ describe('ArtistCrudFacade', () => {
           CustomFeatureModule,
         ],
       })
-      class RootModule {}
+      class RootModule { }
       TestBed.configureTestingModule({ imports: [RootModule] });
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars

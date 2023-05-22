@@ -13,6 +13,7 @@ import * as artistActionTypes from '../+state/artist.actions';
 import { artistsFeature } from '../+state/artist.reducer';
 import { ArtistListFacade } from './list.facade';
 import { environment } from '../../../../environments/environment';
+import { createTestArtist } from 'apps/itec5905/src/models/artists-odata';
 
 describe('ArtistListFacade', () => {
   let facade: ArtistListFacade;
@@ -20,7 +21,7 @@ describe('ArtistListFacade', () => {
   let httpClient: HttpClient;
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  beforeEach(() => {}); //NOSONAR
+  beforeEach(() => { }); //NOSONAR
 
   describe('used in NgModule', () => {
     beforeEach(() => {
@@ -34,7 +35,7 @@ describe('ArtistListFacade', () => {
           { provide: HttpClient, useValue: { get: jest.fn(() => of(createODataPayload([createTestArtist()]))) } },
         ],
       })
-      class CustomFeatureModule {}
+      class CustomFeatureModule { }
 
       @NgModule({
         imports: [
@@ -43,7 +44,7 @@ describe('ArtistListFacade', () => {
           CustomFeatureModule,
         ],
       })
-      class RootModule {}
+      class RootModule { }
       TestBed.configureTestingModule({ imports: [RootModule] });
 
       store = TestBed.inject(Store);

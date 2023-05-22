@@ -8,6 +8,7 @@ import { mockConsoleError, mockConsoleGroup, mockConsoleWarn, readFirst } from '
 import { createMockArtistFacade } from './add.component.spec';
 import { ArtistEditComponent } from './edit.component';
 import { ArtistCrudFacade } from './crud.facade';
+import { IArtist, createTestArtist } from '../../../../models/artists-odata';
 
 describe('ArtistEditComponent', () => {
   let component: ArtistEditComponent;
@@ -21,7 +22,7 @@ describe('ArtistEditComponent', () => {
     consoleGroupMock = mockConsoleGroup();
     TestBed.configureTestingModule({
       declarations: [ArtistEditComponent],
-      imports: [ReactiveFormsModule, NoopAnimationsModule, DropDownsModule, ],
+      imports: [ReactiveFormsModule, NoopAnimationsModule, DropDownsModule,],
       providers: [{ provide: ArtistCrudFacade, useValue: createDataEntryMockFacade(createMockArtistFacade()) }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
     }).compileComponents();
@@ -75,6 +76,6 @@ describe('ArtistEditComponent', () => {
   test('should support Picture filters', async () => {
     component.handlePictureFilter('xy');
     const result = await readFirst(component.pictures$);
-    expect(result).toStrictEqual([{ id: 'xyz',blob: 'xyz',type: 'xyz', }]);
+    expect(result).toStrictEqual([{ id: 'xyz', blob: 'xyz', type: 'xyz', }]);
   });
 });
