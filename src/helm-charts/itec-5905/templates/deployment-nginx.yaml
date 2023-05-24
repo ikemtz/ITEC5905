@@ -20,42 +20,43 @@ spec:
         app.kubernetes.io/name: nginx
     spec:
       containers:
-      - image: ikemtz/itec5905-nginx:latest 
-        name: nginx
-        env:
-        - name: AUTH_ENDPOINT
-          value: http://google.com
-        - name: ARTISTS_OD_ENDPOINT
-          value: http://artists-odata-svc:5000
-        - name: ARTISTS_WA_ENDPOINT
-          value: http://artists-webapi-svc:5000
-        - name: CUSTOMERS_OD_ENDPOINT
-          value: http://customers-odata-svc:5000
-        - name: CUSTOMERS_WA_ENDPOINT
-          value: http://customers-webapi-svc:5000
-        ports:
-        - name: nginx
-          containerPort: 8080          
-          protocol: TCP
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 8080
-          initialDelaySeconds: 15
-          periodSeconds: 60
-          timeoutSeconds: 1
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 30
-          timeoutSeconds: 1
-        volumeMounts:
-        - name: nginx-volume
-          mountPath: /var/cache/nginx
+        - image: ikemtz/itec5905-nginx:latest
+          name: nginx
+          env:
+            - name: AUTH_ENDPOINT
+              value: http://google.com
+            - name: ARTISTS_OD_ENDPOINT
+              value: http://artists-odata-svc:5000
+            - name: ARTISTS_WA_ENDPOINT
+              value: http://artists-webapi-svc:5000
+            - name: CUSTOMERS_OD_ENDPOINT
+              value: http://customers-odata-svc:5000
+            - name: CUSTOMERS_WA_ENDPOINT
+              value: http://customers-webapi-svc:5000
+          ports:
+            - name: nginx
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 60
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 1
+          volumeMounts:
+            - name: nginx-volume
+              mountPath: /var/log/nginx
       volumes:
-      - name: nginx-volume
-        persistentVolumeClaim:
-          claimName: nginx-volume-claim
+        - name: nginx-volume
+          persistentVolumeClaim:
+            claimName: nginx-volume-claim
 ---
+

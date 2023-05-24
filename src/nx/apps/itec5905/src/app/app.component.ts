@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { OidcFacade, OidcUserFacade } from 'imng-oidc-client';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'itec-root',
@@ -17,7 +17,8 @@ export class AppComponent {
   ) {
     this.email$ = this.oidcUserFacade.email$;
     this.loggedIn$ = this.oidcFacade.loggedIn$;
-    this.profilePicture$ = this.oidcUserFacade.profilePicture$;
+    this.profilePicture$ = this.oidcUserFacade.profilePicture$.pipe(
+      map(url => `profile-pic?address=${url?.replace("https://", "")}`));
   }
 
   public login(): void {
