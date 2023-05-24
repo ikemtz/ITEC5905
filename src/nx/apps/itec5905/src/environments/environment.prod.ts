@@ -13,7 +13,7 @@ export const environment = {
     strictStateSerializability: false,
   },
   oidc_options: {
-    authority: 'https://itec5905.us.auth0.com',
+    authority: '/auth',
     client_id: 'MWV0B0M77HrAU4ljYJgpq2PGBeOyTUBu',
     audience: 'ITEC5905',
     response_type: 'code',

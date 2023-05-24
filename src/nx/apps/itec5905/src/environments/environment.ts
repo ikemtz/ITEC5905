@@ -16,8 +16,8 @@ export const environment = {
     strictStateSerializability: true,
   },
   appInsights: { instrumentationKey: 'e92419ad-e3e7-488a-81d4-794b498de73e' },
-  oidc_options: { 
-    authority: 'https://itec5905.us.auth0.com',
+  oidc_options: {
+    authority: '/auth',
     client_id: 'MWV0B0M77HrAU4ljYJgpq2PGBeOyTUBu',
     audience: 'ITEC5905',
     response_type: 'code',
