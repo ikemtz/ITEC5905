@@ -95,6 +95,8 @@ classDiagram
     +string: name
     +string: stageName
     +string: email
+    +string: picture
+    +string: pictureType
     +ArtistGenreUpsertRequest[]: genres;
   }
   class Picture{

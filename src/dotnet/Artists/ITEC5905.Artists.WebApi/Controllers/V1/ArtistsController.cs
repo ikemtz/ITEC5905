@@ -32,6 +32,8 @@ namespace ITEC5905.Artists.WebApi.Controllers.V1
     public async Task<ActionResult> Get([FromQuery] Guid id)
     {
       var dbArtist = await _databaseContext.Artists
+        .Include(t => t.Picture)
+        .Include(t => t.Genres)
         .AsSplitQuery()
         .AsNoTracking()
         .FirstOrDefaultAsync(t => t.Id == id)
@@ -47,6 +49,10 @@ namespace ITEC5905.Artists.WebApi.Controllers.V1
     public async Task<ActionResult> Post([FromBody] ArtistUpsertRequest request, [FromServices] IPublisher<Artist, CreatedEvent> publisher)
     {
       var value = SimpleMapper<ArtistUpsertRequest, Artist>.Instance.Convert(request);
+      value.Id = (value.Id == Guid.Empty) ? Guid.NewGuid() : value.Id;
+      var dbPicture = _databaseContext.Pictures.Add(new Picture { Blob = request.Picture, Type = request.PictureType, ReferenceId = value.Id });
+      value.Picture = dbPicture.Entity;
+
       var dbArtist = _databaseContext.Artists.Add(value);
       request.Genres?
         .Select(x => SimpleMapper<ArtistGenreUpsertRequest, ArtistGenre>.Instance.Convert(x))

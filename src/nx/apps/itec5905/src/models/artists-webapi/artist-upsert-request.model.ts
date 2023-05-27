@@ -14,5 +14,7 @@ export interface IArtistUpsertRequest {
   name?: string;
   stageName?: string;
   email?: string;
+  picture?: string | null;
+  pictureType?: string | null;
   genres?: Partial<IArtistGenreUpsertRequest[]>;
 }

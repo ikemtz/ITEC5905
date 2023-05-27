@@ -1,4 +1,4 @@
-FROM bitnami/dotnet-sdk:6 AS publish
+FROM bitnami/dotnet-sdk:7 AS publish
 ARG DOMAIN_NAME
 ENV DOMAIN_NAME=${DOMAIN_NAME}
 ARG BUILD_TYPE
