@@ -11,17 +11,18 @@ import { ImngKendoGridModule } from 'imng-kendo-grid';
 import { ImngKendoGridODataModule } from 'imng-kendo-grid-odata';
 import { ImngDataEntryDialogModule } from 'imng-kendo-data-entry';
 import { ImngKendoGridFilteringModule } from 'imng-kendo-grid-filtering';
+import { UploadsModule } from "@progress/kendo-angular-upload";
 
 import { ArtistsRoutingModule } from './artists.routing';
 import { artistsFeature } from './+state/artist.reducer';
 import { ArtistEffects } from './+state/artist.effects';
 
 import { ArtistListComponent, ArtistListFacade } from './artists-list';
-import { ArtistAddComponent, ArtistEditComponent, ArtistApiService, ArtistCrudFacade  } from './artists-crud';
+import { ArtistAddComponent, ArtistEditComponent, ArtistApiService, ArtistCrudFacade } from './artists-crud';
 
 
 @NgModule({
-  declarations: [ArtistListComponent, ArtistAddComponent, ArtistEditComponent ],
+  declarations: [ArtistListComponent, ArtistAddComponent, ArtistEditComponent],
   imports: [
     CommonModule,
     GridModule,
@@ -30,6 +31,7 @@ import { ArtistAddComponent, ArtistEditComponent, ArtistApiService, ArtistCrudFa
     DialogModule,
     DropDownsModule,
     MenusModule,
+    UploadsModule,
     ImngDataEntryDialogModule,
     ImngKendoGridFilteringModule,
     ImngKendoGridModule,
@@ -42,7 +44,7 @@ import { ArtistAddComponent, ArtistEditComponent, ArtistApiService, ArtistCrudFa
   providers: [
     ArtistListFacade,
     ArtistCrudFacade,
-    ArtistApiService, 
+    ArtistApiService,
   ],
 })
 export class ArtistsModule { }

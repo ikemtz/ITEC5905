@@ -6,26 +6,20 @@ exports[`ArtistAddComponent should save 1`] = `
   "genres": null,
   "id": undefined,
   "name": "NAME",
+  "picture": undefined,
+  "pictureType": undefined,
   "stageName": "STAGE_NAME",
 }
 `;
 
-exports[`ArtistAddComponent should support Picture filters 1`] = `
-[
-  {
-    "blob": "xyz",
-    "id": "xyz",
-    "type": "xyz",
-  },
-]
-`;
-
 exports[`ArtistEditComponent should update 1`] = `
 {
-  "email": "artist@email.org",
+  "email": "artist-upsert-request@email.org",
   "genres": null,
   "id": "ID",
   "name": "NAME",
+  "picture": undefined,
+  "pictureType": undefined,
   "stageName": "STAGE_NAME",
 }
 `;

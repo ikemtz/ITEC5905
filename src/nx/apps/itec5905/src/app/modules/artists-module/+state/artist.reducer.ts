@@ -1,20 +1,18 @@
 import { createReducer, on, createFeature } from '@ngrx/store';
 import { createKendoODataGridInitialState, getODataPagerSettings, KendoODataGridState } from 'imng-kendo-grid-odata';
 import { imngEffectError, imngEffectErrorReducer } from 'imng-ngrx-utils';
-import { IArtist, IPicture } from '../../../../models/artists-webapi';
+import { IArtist } from '../../../../models/artists-webapi';
 
 import * as artistActionTypes from './artist.actions';
 export const ARTISTS_FEATURE_KEY = 'artists';
 
 export interface State extends KendoODataGridState<IArtist> {
   currentArtist: IArtist | undefined;
-  pictures: IPicture[];
 }
 
 export const initialState: State = {
   ...createKendoODataGridInitialState(),
   currentArtist: undefined,
-  pictures: [],
   loading: true,
 };
 
@@ -52,11 +50,6 @@ export const artistsFeature = createFeature({
       (state): State => ({
         ...state,
         loading: true,
-      })),
-    on(artistActionTypes.loadPicturesSuccess,
-      (state, { payload }): State => ({
-        ...state,
-        pictures: payload.data
       })),
     on(imngEffectError, imngEffectErrorReducer),
   )

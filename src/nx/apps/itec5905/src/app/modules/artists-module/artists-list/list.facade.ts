@@ -7,11 +7,20 @@ import { ODataState } from 'imng-kendo-odata';
 import { artistsFeature } from '../+state/artist.reducer';
 import * as artistsActionTypes from '../+state/artist.actions';
 import { IArtist } from '../../../../models/artists-webapi';
+import { map } from 'rxjs';
 
 @Injectable()
 export class ArtistListFacade implements IKendoODataGridFacade<IArtist>, IDataDeleteFacade<IArtist> {
   loading$ = this.store.select(artistsFeature.selectLoading);
-  gridData$ = this.store.select(artistsFeature.selectGridData);
+  gridData$ = this.store.select(artistsFeature.selectGridData).pipe(map(x => ({
+    data: x.data.map(m => ({
+      ...m,
+      picture: ({
+        ...m,
+        blob: m.picture?.blob ? `data:image/${m.picture?.type};base64,${m.picture?.blob}` : undefined
+      })
+    })), total: x.total
+  })));
   gridPagerSettings$ = this.store.select(artistsFeature.selectGridPagerSettings);
   gridODataState$ = this.store.select(artistsFeature.selectGridODataState);
 

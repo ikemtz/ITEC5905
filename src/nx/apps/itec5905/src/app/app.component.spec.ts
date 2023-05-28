@@ -17,7 +17,6 @@ describe('AppComponent', () => {
 
   it(`Should match snapshot`, () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
     expect(fixture.nativeElement).toMatchSnapshot();
   });
 });

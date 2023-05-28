@@ -1,31 +1,28 @@
 import { OnInit, Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { BaseDataEntryComponent } from 'imng-kendo-data-entry';
-import { BehaviorSubject, map, Observable, switchMap } from 'rxjs';
+import { normalizeRequest } from 'imng-nrsrx-client-utils';
 
 import { ArtistCrudFacade } from './crud.facade';
-import { ArtistProperties, ArtistUpsertRequestFormGroupFac, IArtistUpsertRequestForm, IPicture, PictureProperties } from '../../../../models/artists-webapi';
+import { ArtistProperties, ArtistUpsertRequestFormGroupFac, IArtistUpsertRequest, IArtistUpsertRequestForm } from '../../../../models/artists-webapi';
+import { FileRestrictions, SelectEvent } from '@progress/kendo-angular-upload';
 
 @Component({ template: '' })
 export abstract class ArtistBaseEntryComponent extends BaseDataEntryComponent<ArtistCrudFacade>
   implements OnInit {
+  private readonly imageTypeRegex = /^data:image\/([a-z]*)/;
+  private readonly imageRegex = /[A-z0-9=/+]*$/;
   public readonly props = ArtistProperties;
-  public readonly pictureProps = PictureProperties;
-  public readonly pictures$: Observable<IPicture[]>;
-  public readonly pictureFilter$ = new BehaviorSubject('');
   public addEditForm: FormGroup<IArtistUpsertRequestForm>;
+  public imageSrc: string;
+  public imageType: string;
+  public restrictions: FileRestrictions = {
+    allowedExtensions: ["jpg", "jpeg", "png"],
+    maxFileSize: 1000000,
+  };
 
   constructor(facade: ArtistCrudFacade) {
     super(facade);
-    this.pictures$ = facade.pictures$.pipe(
-      switchMap(pictures => this.pictureFilter$.pipe(
-        map(pictureFilter => pictureFilter ? pictures
-          .filter(picture => (
-            (picture.blob && picture.blob.toString().toLowerCase().indexOf(pictureFilter) >= 0) ||
-            (picture.type && picture.type.toLowerCase().indexOf(pictureFilter) >= 0) ||
-            (picture.updateCount && picture.updateCount.toString().toLowerCase().indexOf(pictureFilter) >= 0)
-          )) : pictures
-        ))));
   }
 
   public ngOnInit(): void {
@@ -40,7 +37,24 @@ export abstract class ArtistBaseEntryComponent extends BaseDataEntryComponent<Ar
     this.facade.clearCurrentEntity();
   }
 
-  public handlePictureFilter(value: string) {
-    this.pictureFilter$.next(value.toLowerCase());
+  public selectPicture(e: SelectEvent): void {
+    e.files.forEach((file) => {
+      if (file && !file.validationErrors) {
+        const reader = new FileReader();
+        reader.onload = fileReadProgress => {
+          const result = fileReadProgress.target?.result as string;
+          this.imageSrc = this.imageRegex.exec(result)?.[0] as string;
+          this.imageType = this.imageTypeRegex.exec(result)?.[1] as string;
+        };
+        reader.readAsDataURL(file.rawFile as Blob);
+      }
+    });
   }
+
+  public formatRequest(request: IArtistUpsertRequest): IArtistUpsertRequest {
+    request.picture = this.imageSrc;
+    request.pictureType = this.imageType;
+    return normalizeRequest(request);
+  }
+
 }

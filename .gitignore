@@ -2,3 +2,4 @@ src/dotnet/.vs/
 **/bin/
 **/Debug/
 **/obj/
+src/nx/apps/itec5905/junit.xml

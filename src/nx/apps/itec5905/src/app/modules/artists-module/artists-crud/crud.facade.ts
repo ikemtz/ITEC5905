@@ -8,12 +8,11 @@ import * as artistActionTypes from '../+state/artist.actions';
 import { IArtist, IArtistUpsertRequest } from '../../../../models/artists-webapi';
 
 @Injectable()
-export class ArtistCrudFacade implements IDataEntryFacade<IArtistUpsertRequest> {
+export class ArtistCrudFacade implements IDataEntryFacade<IArtist | IArtistUpsertRequest> {
   loading$ = this.store.select(artistsFeature.selectLoading);
   currentEntity$ = this.store.select(artistQueries.selectCurrentArtist);
   isEditActive$ = this.store.select(artistQueries.selectIsEditArtistActive);
   isNewActive$ = this.store.select(artistQueries.selectIsNewArtistActive);
-  pictures$ = this.store.select(artistsFeature.selectPictures);
 
   constructor(private readonly store: Store) { }
 

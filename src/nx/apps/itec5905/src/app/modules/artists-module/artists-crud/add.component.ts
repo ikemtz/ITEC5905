@@ -1,9 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
-import { normalizeRequest } from 'imng-nrsrx-client-utils';
 
 import { ArtistCrudFacade } from './crud.facade';
 import { ArtistBaseEntryComponent } from './base-entry.component';
-import { IArtist } from '../../../../models/artists-webapi';
 
 @Component({
   selector: 'itec-artist-add',
@@ -24,7 +22,7 @@ export class ArtistAddComponent extends ArtistBaseEntryComponent implements OnIn
   }
 
   public save(): void {
-    const val = normalizeRequest<IArtist>(this.addEditForm.value);
+    const val = this.formatRequest(this.addEditForm.value);
     val.id = undefined;
     this.facade.saveNewEntity(val);
   }

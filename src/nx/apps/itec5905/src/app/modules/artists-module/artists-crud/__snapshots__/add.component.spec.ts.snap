@@ -6,16 +6,8 @@ exports[`ArtistAddComponent should save 1`] = `
   "genres": null,
   "id": undefined,
   "name": "NAME",
+  "picture": undefined,
+  "pictureType": undefined,
   "stageName": "STAGE_NAME",
 }
-`;
-
-exports[`ArtistAddComponent should support Picture filters 1`] = `
-[
-  {
-    "blob": "xyz",
-    "id": "xyz",
-    "type": "xyz",
-  },
-]
 `;

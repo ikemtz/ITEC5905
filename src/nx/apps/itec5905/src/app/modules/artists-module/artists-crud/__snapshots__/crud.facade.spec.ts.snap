@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArtistCrudFacade used in NgModule clearCurrentEntity() should set currentArtist to null 1`] = `
+{
+  "artists": {
+    "currentArtist": undefined,
+    "error": undefined,
+    "gridData": {
+      "data": [],
+      "total": 0,
+    },
+    "gridODataState": {},
+    "gridPagerSettings": false,
+    "loading": true,
+  },
+}
+`;

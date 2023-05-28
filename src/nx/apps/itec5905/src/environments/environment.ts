@@ -11,7 +11,7 @@ export const environment = {
   runtimeChecks: {
     strictActionImmutability: true,
     strictStateImmutability: true,
-    strictActionSerializability: true,
+    strictActionSerializability: false,
     strictActionTypeUniqueness: true,
     strictStateSerializability: true,
   },

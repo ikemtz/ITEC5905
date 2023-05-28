@@ -67,6 +67,7 @@ describe('ArtistCrudFacade', () => {
       isNewActive = await readFirst(facade.isNewActive$);
 
       expect(isNewActive).toBeFalsy();
+      expect(await readFirst(store)).toMatchSnapshot();
     });
 
     test('New Entity Set And Clear CurrentEntity', async () =>
@@ -77,12 +78,5 @@ describe('ArtistCrudFacade', () => {
       testSaveCurrentEntity<ArtistCrudFacade>(facade, httpClient));
     test('Update CurrentEntity', async () =>
       testUpdateCurrentEntity<ArtistCrudFacade>(facade, httpClient));
-
-    test('should load Pictures', async () => {
-      facade.loadPictures({});
-      expect(httpClient.get).toBeCalledTimes(1);
-      const result = await readFirst(facade.pictures$);
-      expect(result.length).toBe(1);
-    });
   });
 });

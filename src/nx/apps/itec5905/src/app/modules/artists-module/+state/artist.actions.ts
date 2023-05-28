@@ -16,7 +16,7 @@ export const clearCurrentArtist = createAction('[Artists] Clear Current Artist')
 export const setCurrentArtist = createPayloadAction<IArtist>('[Artists] Set Current Artist');
 export const saveArtistRequest = createPayloadAction<IArtistUpsertRequest>('[Artists] Save Artist Request');
 export const updateArtistRequest = createPayloadAction<IArtistUpsertRequest>('[Artists] Update Artist Request');
-export const deleteArtistRequest = createPayloadAction<IArtistUpsertRequest>('[Artists] Delete Artist Request');
+export const deleteArtistRequest = createPayloadAction<IArtist>('[Artists] Delete Artist Request');
 
 export const loadPicturesRequest = createPayloadAction<ODataState>(
     '[Artists] Load Pictures Request');

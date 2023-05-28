@@ -4,11 +4,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { createDataEntryMockFacade } from 'imng-kendo-data-entry/testing';
-import { mockConsoleError, mockConsoleGroup, mockConsoleWarn, readFirst } from 'imng-ngrx-utils/testing';
+import { mockConsoleError, mockConsoleGroup, mockConsoleWarn } from 'imng-ngrx-utils/testing';
 import { createMockArtistFacade } from './add.component.spec';
 import { ArtistEditComponent } from './edit.component';
 import { ArtistCrudFacade } from './crud.facade';
-import { IArtist, createTestArtist } from '../../../../models/artists-webapi';
+import { IArtistUpsertRequest, createTestArtistUpsertRequest } from '../../../../models/artists-webapi';
 
 describe('ArtistEditComponent', () => {
   let component: ArtistEditComponent;
@@ -43,8 +43,8 @@ describe('ArtistEditComponent', () => {
 
   test('should update', () => {
     component.initForm();
-    component.addEditForm.patchValue(createTestArtist());
-    let item: IArtist | undefined;
+    component.addEditForm.patchValue(createTestArtistUpsertRequest());
+    let item: IArtistUpsertRequest | undefined;
     facade.updateExistingEntity = jest.fn(x => (item = x));
     expect(component.getFormErrors()).toStrictEqual([]);
     component.onSubmit();
@@ -71,11 +71,5 @@ describe('ArtistEditComponent', () => {
   test('should cancel', () => {
     component.cancel();
     expect(facade.clearCurrentEntity).toBeCalledTimes(1);
-  });
-
-  test('should support Picture filters', async () => {
-    component.handlePictureFilter('xy');
-    const result = await readFirst(component.pictures$);
-    expect(result).toStrictEqual([{ id: 'xyz', blob: 'xyz', type: 'xyz', }]);
   });
 });

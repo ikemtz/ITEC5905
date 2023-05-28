@@ -1,10 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
 import { formGroupPatcher } from 'imng-kendo-data-entry';
-import { normalizeRequest } from 'imng-nrsrx-client-utils';
-
 import { ArtistBaseEntryComponent } from './base-entry.component';
 import { ArtistCrudFacade } from './crud.facade';
-import { IArtist } from '../../../../models/artists-webapi';
 
 @Component({
   selector: 'itec-artist-edit',
@@ -27,7 +24,7 @@ export class ArtistEditComponent extends ArtistBaseEntryComponent implements OnI
   }
 
   public save(): void {
-    const val = normalizeRequest<IArtist>(this.addEditForm.value);
+    const val = this.formatRequest(this.addEditForm.value);
     this.facade.updateExistingEntity(val);
   }
 }

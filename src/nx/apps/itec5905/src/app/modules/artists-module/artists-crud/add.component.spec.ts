@@ -4,9 +4,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { createDataEntryMockFacade } from 'imng-kendo-data-entry/testing';
-import { mockConsoleError, mockConsoleGroup, mockConsoleWarn, readFirst } from 'imng-ngrx-utils/testing';
+import { mockConsoleError, mockConsoleGroup, mockConsoleWarn } from 'imng-ngrx-utils/testing';
 import { of } from 'rxjs';
-import { ArtistGenreUpsertRequestFormGroupFac, IArtist, createTestArtist, createTestArtistGenre } from '../../../../models/artists-webapi';
+import { ArtistGenreUpsertRequestFormGroupFac, IArtist, IArtistUpsertRequest, createTestArtist, createTestArtistGenre } from '../../../../models/artists-webapi';
 
 import { ArtistAddComponent } from './add.component';
 import { ArtistCrudFacade } from './crud.facade';
@@ -64,7 +64,7 @@ describe('ArtistAddComponent', () => {
     genreForm.patchValue(createTestArtistGenre());
     component.addEditForm.controls.genres?.controls.push(genreForm);
 
-    let item: IArtist | undefined;
+    let item: IArtist | IArtistUpsertRequest | undefined;
     facade.saveNewEntity = jest.fn(x => (item = x));
     facade.updateExistingEntity = jest.fn();
     expect(component.getFormErrors()).toStrictEqual([]);
@@ -92,11 +92,5 @@ describe('ArtistAddComponent', () => {
     facade.clearCurrentEntity = jest.fn();
     component.cancel();
     expect(facade.clearCurrentEntity).toBeCalledTimes(1);
-  });
-
-  test('should support Picture filters', async () => {
-    component.handlePictureFilter('xy');
-    const result = await readFirst(component.pictures$);
-    expect(result).toMatchSnapshot();
   });
 });

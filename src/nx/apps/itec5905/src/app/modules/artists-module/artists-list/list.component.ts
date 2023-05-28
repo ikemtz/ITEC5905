@@ -19,7 +19,6 @@ const initialGridState: ODataState = {
     ArtistProperties.ALBUM_COUNT,
     ArtistProperties.SONG_COUNT,
     ArtistProperties.PICTURE_ID,
-    ArtistProperties.UPDATE_COUNT,
   ],
   sort: [
     { field: ArtistProperties.NAME, dir: 'asc' },
@@ -31,7 +30,6 @@ const initialGridState: ODataState = {
         PictureProperties.ID,
         PictureProperties.BLOB,
         PictureProperties.TYPE,
-        PictureProperties.UPDATE_COUNT,
       ]
     },
   ]
