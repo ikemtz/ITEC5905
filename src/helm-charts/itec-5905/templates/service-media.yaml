@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: media-webapi-svc
+spec:
+  selector:
+    app.kubernetes.io/name: media-webapi
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: nestjs
+---
+

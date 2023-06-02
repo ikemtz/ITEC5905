@@ -1,0 +1,166 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/api/media": {
+      "get": {
+        "operationId": "MediaController_getFiles",
+        "parameters": [
+          {
+            "name": "ipfsHash",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MediaDataResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Media"
+        ]
+      },
+      "post": {
+        "operationId": "MediaController_uploadFile",
+        "summary": "",
+        "description": "Uploads a file to IPFS and returns an IPFS hash (CID) of the uploaded file",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MediaUploadRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadFileResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Media"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "ITEC 5905 JAKI Media Microservice",
+    "description": "Media services for ITEC5905 JAKI Project using IPFS",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "MediaDataResponse": {
+        "type": "object",
+        "properties": {
+          "ipfsHash": {
+            "type": "string"
+          },
+          "fileSize": {
+            "type": "number"
+          },
+          "createdOnUtc": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "fileName": {
+            "type": "string"
+          },
+          "referenceId": {
+            "type": "string"
+          },
+          "referenceName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ipfsHash",
+          "fileSize",
+          "createdOnUtc",
+          "fileName",
+          "referenceId",
+          "referenceName"
+        ]
+      },
+      "MediaUploadRequest": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "This should be base64 encoded string",
+            "maximum": 1000000,
+            "format": "byte"
+          },
+          "fileName": {
+            "type": "string",
+            "maximum": 150
+          },
+          "referenceName": {
+            "type": "string",
+            "maximum": 150
+          },
+          "referenceId": {
+            "type": "string",
+            "maximum": 150
+          }
+        },
+        "required": [
+          "content",
+          "fileName",
+          "referenceName",
+          "referenceId"
+        ]
+      },
+      "UploadFileResponse": {
+        "type": "object",
+        "properties": {
+          "ipfsHash": {
+            "type": "string"
+          },
+          "fileSize": {
+            "type": "number"
+          },
+          "createdOnUtc": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ipfsHash",
+          "fileSize",
+          "createdOnUtc"
+        ]
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "",
+    "url": "./swagger/v1/swagger.json"
+  }
+}

@@ -2,4 +2,5 @@ src/dotnet/.vs/
 **/bin/
 **/Debug/
 **/obj/
-src/nx/apps/itec5905/junit.xml
+.env
+src/nx/apps/media/swagger.json

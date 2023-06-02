@@ -3,3 +3,8 @@
 This should should only be installed once.  This chart uses the randAlph helm function.  Upgrading instances of this chart will wipe out any previous values.  In the case of this project, it will wipe out any previous secrets and make the MySQL databases unusable.
 
 If you absolutely have to upgrade a deployment of this chart, backup all your persistent data prior to doing so.  In the case of MySQL you will have to execute the restore process after the update.
+
+After installation you have to manually update the following credentials:
+
+1. pinata-creds
+   

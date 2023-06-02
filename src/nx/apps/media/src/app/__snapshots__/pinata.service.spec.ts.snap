@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PinataService should get a file" 1`] = `
+[
+  {
+    "date_pinned": "2023-06-01T21:42:26.942Z",
+    "date_unpinned": "2023-06-02T02:05:02.252Z",
+    "id": "6afa92e1-3275-4731-8330-a0225188e1ea",
+    "ipfs_pin_hash": "Qmb5ZrrEbtj3chk3u7S8VdkJRpqyiePFvarUjUcdQ9buye",
+    "metadata": {
+      "keyvalues": {},
+      "name": "swagger.json",
+    },
+    "regions": [
+      {
+        "currentReplicationCount": 1,
+        "desiredReplicationCount": 1,
+        "regionId": "EU-CENTRAL-1",
+      },
+    ],
+    "size": 1622,
+    "user_id": "0529d2ad-98a8-4cb4-b6a7-aae2641e9b21",
+  },
+]
+`;
+
+exports[`PinataService should upload a file" 1`] = `
+{
+  "IpfsHash": "Qmb5ZrrEbtj3chk3u7S8VdkJRpqyiePFvarUjUcdQ9buye",
+  "PinSize": 1622,
+  "Timestamp": "2023-06-02T03:14:28.717Z",
+}
+`;

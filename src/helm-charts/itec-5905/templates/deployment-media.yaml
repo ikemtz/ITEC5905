@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: media-webapi
+  labels:
+    app: itec5905
+spec:
+  selector:
+    matchLabels:
+      app: itec5905
+      tier: webapi
+      app.kubernetes.io/name: media-webapi
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: itec5905
+        tier: webapi
+        app.kubernetes.io/name: media-webapi
+    spec:
+      containers:
+        - image: ikemtz/itec5905-media:latest
+          name: media-webapi
+          env:
+            - name: pinataApiKey
+              valueFrom:
+                secretKeyRef:
+                  name: pinata-creds
+                  key: pinataApiKey
+            - name: pinataSecretApiKey
+              valueFrom:
+                secretKeyRef:
+                  name: pinata-creds
+                  key: pinataSecretApiKey
+          ports:
+            - name: nestjs
+              containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 60
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 1
+---
+

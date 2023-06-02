@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MediaController should Get Files 1`] = `
+{
+  "createdOnUtc": Any<Date>,
+  "fileName": "asdf.json",
+  "fileSize": 1001,
+  "ipfsHash": "😎😎",
+  "referenceId": "1234-dabe",
+  "referenceName": "Modern Bronze Car",
+}
+`;
+
+exports[`MediaController should Upload Files 1`] = `
+{
+  "createdOnUtc": Any<Date>,
+  "fileSize": undefined,
+  "ipfsHash": "😎😎",
+}
+`;

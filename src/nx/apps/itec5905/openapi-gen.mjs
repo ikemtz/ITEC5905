@@ -37,12 +37,19 @@ await tsGenerator.generateTsModels({
 await tsGenerator.generateTsModels({
   openApiJsonUrl: `${server}customers-webapi${v1SwaggerPage}`,
   outputPath: `${modelsDestPath}customers-webapi/`,
-  typeFilterCallBack: (entity) => !entity.name.endsWith('ODataEnvelope'),
   genAngularFormGroups: true /* Set this to true if only if you're in an Angular project*/,
   valuePropertyTypeFilterCallBack: (val, i, arr) =>
     !val.name.startsWith('created') && !val.name.startsWith('updated'),
   pathUrlFormattingCallBack: (val) =>
     'customers-webapi' + val.replace('.{format}', '.json'),
+});
+
+await tsGenerator.generateTsModels({
+  openApiJsonUrl: `${server}media-webapi${v1SwaggerPage}`,
+  outputPath: `${modelsDestPath}media-webapi/`,
+  genAngularFormGroups: false /* Set this to true if only if you're in an Angular project*/,
+  valuePropertyTypeFilterCallBack: (val, i, arr) =>
+    !val.name.startsWith('created') && !val.name.startsWith('updated'),
 });
 
 diagramGenerator.generateDiagrams({

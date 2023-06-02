@@ -42,6 +42,13 @@ const PROXY_CONFIG = {
       '^/customers-webapi': '',
     },
   },
+  '/media-webapi': {
+    ...defaultRouteOptions,
+    target: `${server}/media-webapi`,
+    pathRewrite: {
+      '^/media-webapi': '',
+    },
+  },
 };
 
 module.exports = PROXY_CONFIG;
