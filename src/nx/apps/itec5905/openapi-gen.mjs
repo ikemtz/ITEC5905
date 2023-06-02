@@ -30,14 +30,14 @@ await tsGenerator.generateTsModels({
   openApiJsonUrl: `${server}customers-odata${v1SwaggerPage}`,
   outputPath: `${modelsDestPath}customers-odata/`,
   typeFilterCallBack: (entity) => false,
-  genAngularFormGroups: true /* Set this to true if only if you're in an Angular project*/,
+  genAngularFormGroups: false /* Set this to true if only if you're in an Angular project*/,
   pathUrlFormattingCallBack: (val) => 'customers-odata' + val,
 });
 
 await tsGenerator.generateTsModels({
   openApiJsonUrl: `${server}customers-webapi${v1SwaggerPage}`,
   outputPath: `${modelsDestPath}customers-webapi/`,
-  genAngularFormGroups: true /* Set this to true if only if you're in an Angular project*/,
+  genAngularFormGroups: false /* Set this to true if only if you're in an Angular project*/,
   valuePropertyTypeFilterCallBack: (val, i, arr) =>
     !val.name.startsWith('created') && !val.name.startsWith('updated'),
   pathUrlFormattingCallBack: (val) =>
@@ -72,6 +72,11 @@ diagramGenerator.generateDiagrams({
   outputPath: '../../docs/customers-webapi/',
 });
 
+diagramGenerator.generateDiagrams({
+  openApiJsonUrl: `${server}media-webapi${v1SwaggerPage}`,
+  outputPath: '../../docs/media-webapi/',
+});
+
 await mermaid.run(
   '../../docs/artists-odata/class-diagram.md',
   '../../docs/artists-odata/class-diagram.png' // {optional options},
@@ -92,6 +97,11 @@ await mermaid.run(
   '../../docs/customers-webapi/class-diagram.png' // {optional options},
 );
 
+await mermaid.run(
+  '../../docs/media-webapi/class-diagram.md',
+  '../../docs/media-webapi/class-diagram.png' // {optional options},
+);
+
 fs.renameSync(
   '../../docs/artists-odata/class-diagram-1.png',
   '../../docs/artists-odata/class-diagram.png'
@@ -107,4 +117,8 @@ fs.renameSync(
 fs.renameSync(
   '../../docs/customers-webapi/class-diagram-1.png',
   '../../docs/customers-webapi/class-diagram.png'
+);
+fs.renameSync(
+  '../../docs/media-webapi/class-diagram-1.png',
+  '../../docs/media-webapi/class-diagram.png'
 );
