@@ -33,6 +33,8 @@ spec:
                 secretKeyRef:
                   name: pinata-creds
                   key: pinataSecretApiKey
+            - name: NODE_ENV
+              value: production
           ports:
             - name: nestjs
               containerPort: 3000

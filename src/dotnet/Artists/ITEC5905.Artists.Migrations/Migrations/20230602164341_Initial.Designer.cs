@@ -11,14 +11,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ITEC5905.Artists.Migrations.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230522050609_Initial")]
+    [Migration("20230602164341_Initial")]
     partial class Initial
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.16")
+                .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("ITEC5905.Artists.Models.V1.Album", b =>
@@ -42,8 +43,8 @@ namespace ITEC5905.Artists.Migrations.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.Property<Guid?>("PictureId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("PictureIpfsHash")
+                        .HasColumnType("longtext");
 
                     b.Property<int>("SongCount")
                         .HasColumnType("int");
@@ -60,8 +61,6 @@ namespace ITEC5905.Artists.Migrations.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ArtistId");
-
-                    b.HasIndex("PictureId");
 
                     b.ToTable("Albums");
                 });
@@ -129,8 +128,8 @@ namespace ITEC5905.Artists.Migrations.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.Property<Guid?>("PictureId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("PictureIpfsHash")
+                        .HasColumnType("longtext");
 
                     b.Property<int>("SongCount")
                         .HasColumnType("int");
@@ -150,8 +149,6 @@ namespace ITEC5905.Artists.Migrations.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PictureId");
 
                     b.ToTable("Artists");
                 });
@@ -230,46 +227,6 @@ namespace ITEC5905.Artists.Migrations.Migrations
                     b.ToTable("ArtistSongs");
                 });
 
-            modelBuilder.Entity("ITEC5905.Artists.Models.V1.Picture", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<byte[]>("Blob")
-                        .IsRequired()
-                        .HasMaxLength(100000000)
-                        .HasColumnType("longblob");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTimeOffset>("CreatedOnUtc")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<Guid>("ReferenceId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasMaxLength(5)
-                        .HasColumnType("varchar(5)");
-
-                    b.Property<int?>("UpdateCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTimeOffset?>("UpdatedOnUtc")
-                        .HasColumnType("datetime(6)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Pictures");
-                });
-
             modelBuilder.Entity("ITEC5905.Artists.Models.V1.Song", b =>
                 {
                     b.Property<Guid>("Id")
@@ -286,13 +243,17 @@ namespace ITEC5905.Artists.Migrations.Migrations
                     b.Property<DateTimeOffset>("CreatedOnUtc")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("IpfsHash")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.Property<Guid?>("PictureId")
-                        .HasColumnType("char(36)");
+                    b.Property<string>("PictureIpfsHash")
+                        .HasColumnType("longtext");
 
                     b.Property<int?>("UpdateCount")
                         .HasColumnType("int");
@@ -307,8 +268,6 @@ namespace ITEC5905.Artists.Migrations.Migrations
 
                     b.HasIndex("AlbumId");
 
-                    b.HasIndex("PictureId");
-
                     b.ToTable("Songs");
                 });
 
@@ -320,13 +279,7 @@ namespace ITEC5905.Artists.Migrations.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ITEC5905.Artists.Models.V1.Picture", "Picture")
-                        .WithMany()
-                        .HasForeignKey("PictureId");
-
                     b.Navigation("Artist");
-
-                    b.Navigation("Picture");
                 });
 
             modelBuilder.Entity("ITEC5905.Artists.Models.V1.AlbumSong", b =>
@@ -346,15 +299,6 @@ namespace ITEC5905.Artists.Migrations.Migrations
                     b.Navigation("Album");
 
                     b.Navigation("Song");
-                });
-
-            modelBuilder.Entity("ITEC5905.Artists.Models.V1.Artist", b =>
-                {
-                    b.HasOne("ITEC5905.Artists.Models.V1.Picture", "Picture")
-                        .WithMany()
-                        .HasForeignKey("PictureId");
-
-                    b.Navigation("Picture");
                 });
 
             modelBuilder.Entity("ITEC5905.Artists.Models.V1.ArtistGenre", b =>
@@ -395,13 +339,7 @@ namespace ITEC5905.Artists.Migrations.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ITEC5905.Artists.Models.V1.Picture", "Picture")
-                        .WithMany()
-                        .HasForeignKey("PictureId");
-
                     b.Navigation("Album");
-
-                    b.Navigation("Picture");
                 });
 
             modelBuilder.Entity("ITEC5905.Artists.Models.V1.Album", b =>

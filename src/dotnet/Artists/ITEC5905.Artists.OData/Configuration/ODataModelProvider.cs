@@ -15,7 +15,6 @@ namespace ITEC5905.Artists.OData.Configuration
         _ = builder.EntitySet<V1.Artist>($"{nameof(V1.ArtistGenre)}s");
         _ = builder.EntitySet<V1.Artist>($"{nameof(V1.Artist)}s");
         _ = builder.EntitySet<V1.Artist>($"{nameof(V1.ArtistSong)}s");
-        _ = builder.EntitySet<V1.Artist>($"{nameof(V1.Picture)}s");
         _ = builder.EntitySet<V1.Artist>($"{nameof(V1.Song)}s");
       });
 

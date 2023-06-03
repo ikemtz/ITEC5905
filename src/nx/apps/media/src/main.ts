@@ -33,7 +33,9 @@ async function bootstrap() {
   );
   const port = process.env.PORT || 3000;
   const document = SwaggerModule.createDocument(app, config);
-  writeFileSync('./swagger.json', JSON.stringify(document, undefined, 2));
+  if (process.env.NODE_ENV !== 'production') {
+    writeFileSync('./swagger.json', JSON.stringify(document, undefined, 2));
+  }
   SwaggerModule.setup('', app, document);
 
   await app.listen(port);
