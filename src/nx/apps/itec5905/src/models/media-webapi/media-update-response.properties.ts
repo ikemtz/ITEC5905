@@ -6,7 +6,8 @@
  * Do not edit.
  */
 /* tslint:disable */
-export enum UploadFileResponseProperties {
+export enum MediaUpdateResponseProperties {
   IPFS_HASH = 'ipfsHash',
-  FILE_SIZE = 'fileSize',
+  REFERENCE_NAME = 'referenceName',
+  REFERENCE_TYPE = 'referenceType',
 }

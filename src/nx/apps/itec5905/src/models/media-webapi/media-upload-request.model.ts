@@ -12,6 +12,7 @@ export interface IMediaUploadRequest {
  */
   content?: string;
   fileName?: string;
+  fileType?: string;
   referenceName?: string;
-  referenceId?: string;
+  referenceType?: string;
 }

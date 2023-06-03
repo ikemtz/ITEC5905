@@ -45,6 +45,7 @@ const PROXY_CONFIG = {
   '/media-webapi': {
     ...defaultRouteOptions,
     target: `${server}/media-webapi`,
+    // target: `http://localhost:3000`,
     pathRewrite: {
       '^/media-webapi': '',
     },

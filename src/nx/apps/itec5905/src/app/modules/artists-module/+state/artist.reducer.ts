@@ -1,6 +1,6 @@
 import { createReducer, on, createFeature } from '@ngrx/store';
 import { createKendoODataGridInitialState, getODataPagerSettings, KendoODataGridState } from 'imng-kendo-grid-odata';
-import { imngEffectError, imngEffectErrorReducer } from 'imng-ngrx-utils';
+import { imngEffectError, imngEffectErrorReducer, findAndModify } from 'imng-ngrx-utils';
 import { IArtist } from '../../../../models/artists-webapi';
 
 import * as artistActionTypes from './artist.actions';
@@ -51,6 +51,10 @@ export const artistsFeature = createFeature({
         ...state,
         loading: true,
       })),
+    on(artistActionTypes.loadArtistImageSuccess, (state, { payload }): State => ({
+      ...state,
+      gridData: { total: state.gridData.total, data: findAndModify(state.gridData.data, payload.id?.toString(), artist => artist.pictureIpfsHash = payload.pictureIpfsHash) }
+    })),
     on(imngEffectError, imngEffectErrorReducer),
   )
 });

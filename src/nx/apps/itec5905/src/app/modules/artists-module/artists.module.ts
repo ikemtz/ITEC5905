@@ -19,6 +19,7 @@ import { ArtistEffects } from './+state/artist.effects';
 
 import { ArtistListComponent, ArtistListFacade } from './artists-list';
 import { ArtistAddComponent, ArtistEditComponent, ArtistApiService, ArtistCrudFacade } from './artists-crud';
+import { MediaModule } from '../media-module';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { ArtistAddComponent, ArtistEditComponent, ArtistApiService, ArtistCrudFa
     ArtistsRoutingModule,
     StoreModule.forFeature(artistsFeature),
     EffectsModule.forFeature([ArtistEffects]),
+    MediaModule,
   ],
   providers: [
     ArtistListFacade,

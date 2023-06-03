@@ -7,8 +7,10 @@
  */
 /* tslint:disable */
 export enum Endpoints {
-  media = '/api/media',
+  images = 'media-webapi/api/image',
+  media = 'media-webapi/api/media',
 }
 export interface IEndpoints {
+  readonly images: string;
   readonly media: string;
 }

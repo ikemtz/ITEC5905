@@ -48,6 +48,7 @@ classDiagram
     +string: email
     +number: albumCount
     +number: songCount
+    +string: pictureType
     +string: pictureIpfsHash
     +string: createdBy
     +string: updatedBy
@@ -90,6 +91,8 @@ classDiagram
     +string: name
     +string: stageName
     +string: email
+    +string: pictureIpfsHash
+    +string: pictureType
     +ArtistGenreUpsertRequest[]: genres;
   }
   class ProblemDetails{

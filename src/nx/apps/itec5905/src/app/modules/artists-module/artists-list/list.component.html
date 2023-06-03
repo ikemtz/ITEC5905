@@ -1,9 +1,4 @@
-<kendo-grid
-  (detailExpand)="detailExpanded($event)"
-  [height]="800"
-  kendoGridFocusable
-  [imngODataGrid]="this"
->
+<kendo-grid [height]="800" kendoGridFocusable [imngODataGrid]="this">
   <ng-template kendoGridToolbarTemplate>
     <div class="w-100 d-flex justify-content-between">
       <h3>Artists</h3>
@@ -17,9 +12,9 @@
       </imng-kendo-odata-grid-header>
     </div>
   </ng-template>
-  <kendo-grid-column [width]="75">
+  <kendo-grid-column [width]="30">
     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-      <kendo-menu title="Actions">
+      <kendo-menu title="Actions" class="p-0">
         <kendo-menu-item icon="menu">
           <kendo-menu-item>
             <ng-template kendoMenuItemLinkTemplate>
@@ -103,6 +98,23 @@
   >
     <ng-template class="header" kendoGridHeaderTemplate let-column>
       <span class="h6" title="Email">Email</span>
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column
+    [field]="props.PICTURE_IPFS_HASH"
+    [width]="100"
+    title="Picture"
+    [filterable]="false"
+  >
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <img
+        class="pic"
+        [alt]="dataItem[props.STAGE_NAME] + ' picture'"
+        [src]="dataItem[props.PICTURE_IPFS_HASH]"
+      />
+    </ng-template>
+    <ng-template class="header" kendoGridHeaderTemplate let-column>
+      <span class="h6" title="Picture">Picture</span>
     </ng-template>
   </kendo-grid-column>
   <kendo-grid-column

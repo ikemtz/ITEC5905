@@ -13,7 +13,9 @@ export function createTestArtistUpsertRequest() {
       [ArtistUpsertRequestProperties.ID]: 'ID',
       [ArtistUpsertRequestProperties.NAME]: 'NAME',
       [ArtistUpsertRequestProperties.STAGE_NAME]: 'STAGE_NAME',
-      [ArtistUpsertRequestProperties.EMAIL]: 'artist-upsert-request@email.org', 
+      [ArtistUpsertRequestProperties.EMAIL]: 'artist-upsert-request@email.org',
+      [ArtistUpsertRequestProperties.PICTURE_IPFS_HASH]: 'PICTURE_IPFS_HASH',
+      [ArtistUpsertRequestProperties.PICTURE_TYPE]: 'PICTURE_TYPE', 
       [ArtistUpsertRequestProperties.GENRES]: [],
     };
 }

@@ -17,6 +17,8 @@ export function ArtistUpsertRequestFormGroupFac(): FormGroup<IArtistUpsertReques
     name: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(255)]), nonNullable: true }),
     stageName: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(255)]), nonNullable: true }),
     email: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.email, Validators.minLength(2), Validators.maxLength(255)]), nonNullable: true }),
+    pictureIpfsHash: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(255) } ),
+    pictureType: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(50) } ),
     genres: new FormArray<FormGroup<IArtistGenreUpsertRequestForm>>([]),
   });
 }

@@ -6,7 +6,7 @@
  * Do not edit.
  */
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface IUploadFileResponse {
+export interface IMediaUploadResponse {
   ipfsHash?: string;
   fileSize?: number;
 }

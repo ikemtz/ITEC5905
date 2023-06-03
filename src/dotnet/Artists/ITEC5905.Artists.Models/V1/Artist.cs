@@ -25,6 +25,9 @@ namespace ITEC5905.Artists.Models.V1
 
     public int AlbumCount { get; set; }
     public int SongCount { get; set; }
+    [MaxLength(50)]
+    public string? PictureType { get; set; }
+    [MaxLength(255)]
     public string? PictureIpfsHash { get; set; }
 
     [Required]

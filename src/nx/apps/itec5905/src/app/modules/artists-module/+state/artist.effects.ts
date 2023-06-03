@@ -3,14 +3,14 @@ import { Store } from '@ngrx/store';
 import { createEffect, Actions, ofType, concatLatestFrom } from '@ngrx/effects';
 import { ODataService } from 'imng-kendo-odata';
 import { handleEffectError } from 'imng-ngrx-utils';
-import { map, switchMap } from 'rxjs/operators';
-
+import { concatAll, map, switchMap } from 'rxjs/operators';
 import { artistsFeature } from './artist.reducer';
 import * as artistActionTypes from './artist.actions';
 import { environment } from '../../../../environments/environment';
 import { IArtist, } from '../../../../models/artists-webapi';
-
 import { ArtistApiService } from '../artists-crud';
+import { ImageApiService, MediaApiService } from '../../media-module';
+import { of } from 'rxjs';
 
 @Injectable()
 export class ArtistEffects {
@@ -19,6 +19,8 @@ export class ArtistEffects {
     private readonly odataService: ODataService,
     private readonly store: Store,
     private readonly artistApiService: ArtistApiService,
+    private readonly mediaService: MediaApiService,
+    private readonly imageApiService: ImageApiService,
   ) { }
 
   loadArtistsEffect$ = createEffect(() => {
@@ -40,8 +42,38 @@ export class ArtistEffects {
           bustCache: true,
         })
         .pipe(
-          map(t => artistActionTypes.reloadArtistsSuccess(t)),
+          map(t => artistActionTypes.loadArtistsSuccess(t)),
           handleEffectError(action))));
+  });
+
+
+  loadArtistsSuccessEffect$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(artistActionTypes.loadArtistsSuccess),
+      switchMap((action: ReturnType<typeof artistActionTypes.loadArtistsSuccess>) =>
+        of(...action.payload.data.map(artist =>
+          this.imageApiService.get(artist.pictureIpfsHash, artist.pictureType)
+            .pipe(map(image => ({ id: artist.id, pictureIpfsHash: `${artist.pictureType},${image}` })))
+        ))
+          .pipe(
+            concatAll(),
+            map(t => artistActionTypes.loadArtistImageSuccess(t)),
+            handleEffectError(action))));
+  });
+
+  saveArtistAndMediaEffect$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(artistActionTypes.saveArtistAndMediaRequest),
+      switchMap((action: ReturnType<typeof artistActionTypes.saveArtistAndMediaRequest>) => this.mediaService.post({
+        ...action.payload.picture,
+        referenceName: action.payload.artist.name,
+      }).pipe(
+        map((mediaResponse) => artistActionTypes.saveArtistRequest({
+          ...action.payload.artist,
+          pictureType: action.payload.picture?.fileType,
+          pictureIpfsHash: mediaResponse.ipfsHash
+        })),
+        handleEffectError(action))));
   });
 
   saveArtistEffect$ = createEffect(() => {
@@ -55,7 +87,7 @@ export class ArtistEffects {
   updateArtistEffect$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(artistActionTypes.updateArtistRequest),
-      switchMap((action: ReturnType<typeof artistActionTypes.updateArtistRequest>) => this.artistApiService.put(action.payload).pipe(
+      switchMap((action: ReturnType<typeof artistActionTypes.updateArtistRequest>) => this.artistApiService.put(action.payload.artist).pipe(
         map(() => artistActionTypes.reloadArtistsRequest()),
         handleEffectError(action))));
   });

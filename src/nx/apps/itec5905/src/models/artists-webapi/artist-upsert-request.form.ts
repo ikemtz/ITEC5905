@@ -14,5 +14,7 @@ export interface IArtistUpsertRequestForm {
     name: FormControl<string>;
     stageName: FormControl<string>;
     email: FormControl<string>;
+    pictureIpfsHash: FormControl<string | null | undefined>;
+    pictureType: FormControl<string | null | undefined>;
     genres: FormArray<FormGroup<IArtistGenreUpsertRequestForm>>;
 }

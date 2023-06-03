@@ -12,6 +12,7 @@ export enum MediaUploadRequestProperties {
  */
   CONTENT = 'content',
   FILE_NAME = 'fileName',
+  FILE_TYPE = 'fileType',
   REFERENCE_NAME = 'referenceName',
-  REFERENCE_ID = 'referenceId',
+  REFERENCE_TYPE = 'referenceType',
 }

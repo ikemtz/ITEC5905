@@ -54,6 +54,7 @@ classDiagram
     +string: email
     +number: albumCount
     +number: songCount
+    +string: pictureType
     +string: pictureIpfsHash
     +string: createdBy
     +string: updatedBy

@@ -17,19 +17,31 @@ classDiagram
     +number: fileSize
     +date: createdOnUtc
     +string: fileName
-    +string: referenceId
+    +string: fileType
+    +string: referenceType
     +string: referenceName
   }
   class MediaUploadRequest{
     +string: content
     +string: fileName
+    +string: fileType
     +string: referenceName
-    +string: referenceId
+    +string: referenceType
   }
-  class UploadFileResponse{
+  class MediaUploadResponse{
     +string: ipfsHash
     +number: fileSize
     +date: createdOnUtc
+  }
+  class MediaUpdateRequest{
+    +string: ipfsHash
+    +string: referenceName
+    +string: referenceType
+  }
+  class MediaUpdateResponse{
+    +string: ipfsHash
+    +string: referenceName
+    +string: referenceType
   }
       </div>
     </pre>

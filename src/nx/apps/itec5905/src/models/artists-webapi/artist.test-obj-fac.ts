@@ -16,6 +16,7 @@ export function createTestArtist() {
       [ArtistProperties.EMAIL]: 'artist@email.org',
       [ArtistProperties.ALBUM_COUNT]: 0,
       [ArtistProperties.SONG_COUNT]: 0,
+      [ArtistProperties.PICTURE_TYPE]: 'PICTURE_TYPE',
       [ArtistProperties.PICTURE_IPFS_HASH]: 'PICTURE_IPFS_HASH',
       [ArtistProperties.UPDATE_COUNT]: 0, 
       [ArtistProperties.GENRES]: [],

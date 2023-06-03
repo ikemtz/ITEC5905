@@ -12,7 +12,8 @@ export function createTestMediaUploadRequest() {
     return { 
       [MediaUploadRequestProperties.CONTENT]: 'CONTENT',
       [MediaUploadRequestProperties.FILE_NAME]: 'FILE_NAME',
+      [MediaUploadRequestProperties.FILE_TYPE]: 'FILE_TYPE',
       [MediaUploadRequestProperties.REFERENCE_NAME]: 'REFERENCE_NAME',
-      [MediaUploadRequestProperties.REFERENCE_ID]: 'REFERENCE_ID', 
+      [MediaUploadRequestProperties.REFERENCE_TYPE]: 'REFERENCE_TYPE', 
     };
 }

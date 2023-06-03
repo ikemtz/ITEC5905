@@ -18,6 +18,7 @@ export interface IArtistForm {
     email: FormControl<string>;
     albumCount: FormControl<number | null | undefined>;
     songCount: FormControl<number | null | undefined>;
+    pictureType: FormControl<string | null | undefined>;
     pictureIpfsHash: FormControl<string | null | undefined>;
     updateCount: FormControl<number | null | undefined>;
     genres: FormArray<FormGroup<IArtistGenreForm>>;

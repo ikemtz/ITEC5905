@@ -13,7 +13,8 @@ export function createTestMediaDataResponse() {
       [MediaDataResponseProperties.IPFS_HASH]: 'IPFS_HASH',
       [MediaDataResponseProperties.FILE_SIZE]: 0,
       [MediaDataResponseProperties.FILE_NAME]: 'FILE_NAME',
-      [MediaDataResponseProperties.REFERENCE_ID]: 'REFERENCE_ID',
+      [MediaDataResponseProperties.FILE_TYPE]: 'FILE_TYPE',
+      [MediaDataResponseProperties.REFERENCE_TYPE]: 'REFERENCE_TYPE',
       [MediaDataResponseProperties.REFERENCE_NAME]: 'REFERENCE_NAME', 
     };
 }

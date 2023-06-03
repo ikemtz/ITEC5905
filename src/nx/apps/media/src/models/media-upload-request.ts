@@ -17,6 +17,12 @@ export class MediaUploadRequest {
   fileName: string;
 
   @ApiProperty({
+    maximum: 50,
+    required: true
+  })
+  fileType: string;
+
+  @ApiProperty({
     maximum: 150,
     required: true
   })
@@ -26,5 +32,5 @@ export class MediaUploadRequest {
     maximum: 150,
     required: true
   })
-  referenceId: string;
+  referenceType: string;
 }

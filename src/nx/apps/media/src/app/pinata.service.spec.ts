@@ -23,7 +23,7 @@ describe('PinataService', () => {
     const fileContents = btoa(readFileSync('./swagger.json', { encoding: 'utf-8' }));
     const resp = await service.uploadFile({
       fileName: `${faker.person.firstName()}.json`,
-      referenceId: faker.commerce.productName(),
+      referenceType: faker.commerce.productName(),
       referenceName: faker.commerce.productDescription(),
       content: fileContents,
     });

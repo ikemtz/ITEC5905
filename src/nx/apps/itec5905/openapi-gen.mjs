@@ -50,6 +50,7 @@ await tsGenerator.generateTsModels({
   genAngularFormGroups: false /* Set this to true if only if you're in an Angular project*/,
   valuePropertyTypeFilterCallBack: (val, i, arr) =>
     !val.name.startsWith('created') && !val.name.startsWith('updated'),
+  pathUrlFormattingCallBack: (val) => 'media-webapi' + val,
 });
 
 diagramGenerator.generateDiagrams({

@@ -1,11 +1,14 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { UploadFileResponse } from "./upload-file-response";
+import { MediaUploadResponse } from "./media-upload-response";
 
-export class MediaDataResponse extends UploadFileResponse {
+export class MediaDataResponse extends MediaUploadResponse {
   @ApiProperty()
   fileName: string;
+
   @ApiProperty()
-  referenceId: string;
+  fileType: string;
+  @ApiProperty()
+  referenceType: string;
   @ApiProperty()
   referenceName: string;
 }

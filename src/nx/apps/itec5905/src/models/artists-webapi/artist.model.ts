@@ -18,6 +18,7 @@ export interface IArtist {
   email?: string;
   albumCount?: number | null;
   songCount?: number | null;
+  pictureType?: string | null;
   pictureIpfsHash?: string | null;
   updateCount?: number | null;
   genres?: Partial<IArtistGenre[]>;

@@ -19,7 +19,7 @@ describe('MediaController', () => {
             size: 1001,
             date_pinned: '1/1/2023',
             metadata: {
-              refId: `1234-dabe`,
+              refType: `1234-dabe`,
               refName: `Modern Bronze Car`,
               name: `asdf.json`,
             }
@@ -43,10 +43,10 @@ describe('MediaController', () => {
   it('should Upload Files', async () => {
     const appController = app.get<MediaController>(MediaController);
     const pinataService = app.get<PinataService>(PinataService);
-    const result = await appController.uploadFile({
+    const result = await appController.uploadMedia({
       fileName: 'goodTimes.exe',
       content: '😒',
-      referenceId: faker.commerce.productName(),
+      referenceType: faker.commerce.productName(),
       referenceName: faker.commerce.productDescription(),
     });
     expect(result).toMatchSnapshot({

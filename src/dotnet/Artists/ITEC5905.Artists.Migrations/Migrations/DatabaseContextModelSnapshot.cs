@@ -126,7 +126,12 @@ namespace ITEC5905.Artists.Migrations.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("PictureIpfsHash")
-                        .HasColumnType("longtext");
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("PictureType")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
 
                     b.Property<int>("SongCount")
                         .HasColumnType("int");

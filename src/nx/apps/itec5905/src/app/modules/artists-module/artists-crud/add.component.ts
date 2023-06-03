@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
-
+import { normalizeRequest } from 'imng-nrsrx-client-utils'
 import { ArtistCrudFacade } from './crud.facade';
 import { ArtistBaseEntryComponent } from './base-entry.component';
 
@@ -22,6 +22,6 @@ export class ArtistAddComponent extends ArtistBaseEntryComponent implements OnIn
   }
 
   public save(): void {
-    this.facade.saveNewEntity(this.addEditForm.value);
+    this.facade.saveNewEntity(normalizeRequest(this.addEditForm.value), this.artistPicture);
   }
 }

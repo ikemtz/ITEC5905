@@ -10,6 +10,7 @@ export interface IMediaDataResponse {
   ipfsHash?: string;
   fileSize?: number;
   fileName?: string;
-  referenceId?: string;
+  fileType?: string;
+  referenceType?: string;
   referenceName?: string;
 }

@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class UploadFileResponse {
+export class MediaUploadResponse {
 
   @ApiProperty()
   ipfsHash: string;

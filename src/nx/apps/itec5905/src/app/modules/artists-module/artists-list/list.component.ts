@@ -1,12 +1,11 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Router } from '@angular/router';
-import { DetailExpandEvent } from '@progress/kendo-angular-grid';
 import { KendoODataBasedComponent } from 'imng-kendo-grid-odata';
 import { ODataState } from 'imng-kendo-odata';
 
 import { ArtistListFacade } from './list.facade';
 import { ArtistCrudFacade } from '../artists-crud';
 import { ArtistProperties, IArtist } from '../../../../models/artists-webapi';
+import { HttpClient } from '@angular/common/http';
 
 const initialGridState: ODataState = {
   take: 20,
@@ -19,6 +18,7 @@ const initialGridState: ODataState = {
     ArtistProperties.ALBUM_COUNT,
     ArtistProperties.SONG_COUNT,
     ArtistProperties.PICTURE_IPFS_HASH,
+    ArtistProperties.PICTURE_TYPE,
   ],
   sort: [
     { field: ArtistProperties.NAME, dir: 'asc' },
@@ -37,8 +37,8 @@ export class ArtistListComponent extends KendoODataBasedComponent<IArtist, Artis
 
   constructor(facade: ArtistListFacade,
     public readonly crudFacade: ArtistCrudFacade,
-    router: Router) {
-    super(facade, initialGridState, router);
+    public readonly httpClient: HttpClient) {
+    super(facade, initialGridState);
   }
 
   public addItem(): void {
@@ -51,9 +51,5 @@ export class ArtistListComponent extends KendoODataBasedComponent<IArtist, Artis
 
   public deleteItem(item: IArtist): void {
     this.facade.deleteExistingEntity(item);
-  }
-
-  public detailExpanded(evt: DetailExpandEvent): void {
-    this.currentItem = evt.dataItem;
   }
 }

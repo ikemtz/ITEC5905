@@ -6,6 +6,7 @@ import { artistsFeature } from '../+state/artist.reducer';
 import { artistQueries } from '../+state/artist.selectors';
 import * as artistActionTypes from '../+state/artist.actions';
 import { IArtist, IArtistUpsertRequest } from '../../../../models/artists-webapi';
+import { IMediaUploadRequest } from '../../../../models/media-webapi';
 
 @Injectable()
 export class ArtistCrudFacade implements IDataEntryFacade<IArtist | IArtistUpsertRequest> {
@@ -24,12 +25,18 @@ export class ArtistCrudFacade implements IDataEntryFacade<IArtist | IArtistUpser
     this.store.dispatch(artistActionTypes.clearCurrentArtist());
   }
 
-  public saveNewEntity(item: IArtistUpsertRequest): void {
-    this.store.dispatch(artistActionTypes.saveArtistRequest(item));
+  public saveNewEntity(item: IArtistUpsertRequest, picture?: IMediaUploadRequest): void {
+    this.store.dispatch(artistActionTypes.saveArtistAndMediaRequest({
+      artist: item,
+      picture: picture,
+    }));
   }
 
-  public updateExistingEntity(item: IArtistUpsertRequest): void {
-    this.store.dispatch(artistActionTypes.updateArtistRequest(item));
+  public updateExistingEntity(item: IArtistUpsertRequest, picture?: IMediaUploadRequest): void {
+    this.store.dispatch(artistActionTypes.updateArtistRequest({
+      artist: item,
+      picture: picture,
+    }));
   }
 
   public loadPictures(state: ODataState): void {

@@ -7,7 +7,6 @@ import { ODataState } from 'imng-kendo-odata';
 import { artistsFeature } from '../+state/artist.reducer';
 import * as artistsActionTypes from '../+state/artist.actions';
 import { IArtist } from '../../../../models/artists-webapi';
-import { map } from 'rxjs';
 
 @Injectable()
 export class ArtistListFacade implements IKendoODataGridFacade<IArtist>, IDataDeleteFacade<IArtist> {

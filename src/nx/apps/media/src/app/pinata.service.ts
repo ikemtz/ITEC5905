@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import PinataClient, { PinataPin, PinataPinListFilterOptions, PinataPinResponse } from '@pinata/sdk';
 import { Readable } from 'stream';
 import { MediaUploadRequest } from '../models/media-upload-request';
+import { MediaUpdateRequest } from '../models/media-update-request';
 
 @Injectable()
 export class PinataService {
@@ -18,24 +19,32 @@ export class PinataService {
     Logger.log(JSON.stringify(result))
   }
 
-  public async getFiles(ipfsHash: string | undefined): Promise<PinataPin[]> {
+  public async getFiles(): Promise<PinataPin[]> {
     const options: PinataPinListFilterOptions = {};
-    if (ipfsHash) {
-      options.hashContains = ipfsHash;
-    }
     const resp = await this.pinataClient.pinList(options);
     return resp.rows;
   }
 
   public async uploadFile(request: MediaUploadRequest): Promise<PinataPinResponse> {
-    const buffer = Buffer.from(request.content, 'base64').toString('binary');
-    const readableStream = Readable.from(buffer);
+    const readableStream = Readable.from(request.content);
     return await this.pinataClient.pinFileToIPFS(readableStream, {
       pinataMetadata: {
-        refId: request.referenceId,
+        refType: request.referenceType,
         refName: request.referenceName,
         name: request.fileName,
+        fileType: request.fileType
       }
     });
+  }
+
+  public async updateMetaData(request: MediaUpdateRequest): Promise<PinataPinResponse> {
+    return await this.pinataClient.hashMetadata(request.ipfsHash, {
+      refType: request.referenceType,
+      refName: request.referenceName,
+    });
+  }
+
+  public async deleteMedia(ipfsHash: string): Promise<unknown> {
+    return await this.pinataClient.unpin(ipfsHash);
   }
 }

@@ -10,6 +10,7 @@ export enum MediaDataResponseProperties {
   IPFS_HASH = 'ipfsHash',
   FILE_SIZE = 'fileSize',
   FILE_NAME = 'fileName',
-  REFERENCE_ID = 'referenceId',
+  FILE_TYPE = 'fileType',
+  REFERENCE_TYPE = 'referenceType',
   REFERENCE_NAME = 'referenceName',
 }

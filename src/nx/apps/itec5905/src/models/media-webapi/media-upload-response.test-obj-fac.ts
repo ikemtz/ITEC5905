@@ -6,11 +6,11 @@
  * Do not edit.
  */
 
-import { UploadFileResponseProperties } from './upload-file-response.properties';
+import { MediaUploadResponseProperties } from './media-upload-response.properties';
 
-export function createTestUploadFileResponse() {
+export function createTestMediaUploadResponse() {
     return { 
-      [UploadFileResponseProperties.IPFS_HASH]: 'IPFS_HASH',
-      [UploadFileResponseProperties.FILE_SIZE]: 0, 
+      [MediaUploadResponseProperties.IPFS_HASH]: 'IPFS_HASH',
+      [MediaUploadResponseProperties.FILE_SIZE]: 0, 
     };
 }

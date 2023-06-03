@@ -11,5 +11,7 @@ export enum ArtistUpsertRequestProperties {
   NAME = 'name',
   STAGE_NAME = 'stageName',
   EMAIL = 'email',
+  PICTURE_IPFS_HASH = 'pictureIpfsHash',
+  PICTURE_TYPE = 'pictureType',
   GENRES = 'genres',
 }
