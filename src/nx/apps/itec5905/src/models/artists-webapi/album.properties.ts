@@ -11,9 +11,8 @@ export enum AlbumProperties {
   NAME = 'name',
   ARTIST_ID = 'artistId',
   SONG_COUNT = 'songCount',
-  PICTURE_ID = 'pictureId',
+  PICTURE_IPFS_HASH = 'pictureIpfsHash',
   UPDATE_COUNT = 'updateCount',
   ARTIST = 'artist',
   SONGS = 'songs',
-  PICTURE = 'picture',
 }

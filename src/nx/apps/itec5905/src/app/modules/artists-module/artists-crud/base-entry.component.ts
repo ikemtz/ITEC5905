@@ -51,10 +51,4 @@ export abstract class ArtistBaseEntryComponent extends BaseDataEntryComponent<Ar
     });
   }
 
-  public formatRequest(request: IArtistUpsertRequest): IArtistUpsertRequest {
-    request.picture = this.imageSrc;
-    request.pictureType = this.imageType;
-    return normalizeRequest(request);
-  }
-
 }

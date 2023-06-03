@@ -3,19 +3,16 @@ classDiagram
 
   Album ..> Artist
   Album ..> AlbumSong
-  Album ..> Picture
   AlbumSong ..> Album
   AlbumSong ..> Song
   Artist ..> ArtistGenre
   Artist ..> Album
   Artist ..> ArtistSong
-  Artist ..> Picture
   ArtistGenre ..> Artist
   ArtistSong ..> Artist
   ArtistSong ..> Song
   ArtistUpsertRequest ..> ArtistGenreUpsertRequest
   Song ..> Album
-  Song ..> Picture
   Song ..> ArtistSong
 
   class Album{
@@ -23,7 +20,7 @@ classDiagram
     +string: name
     +uuid: artistId
     +number: songCount
-    +uuid: pictureId
+    +string: pictureIpfsHash
     +string: createdBy
     +string: updatedBy
     +date: createdOnUtc
@@ -31,7 +28,6 @@ classDiagram
     +number: updateCount
     +Artist: artist;
     +AlbumSong[]: songs;
-    +Picture: picture;
   }
   class AlbumSong{
     +uuid: id
@@ -52,7 +48,7 @@ classDiagram
     +string: email
     +number: albumCount
     +number: songCount
-    +uuid: pictureId
+    +string: pictureIpfsHash
     +string: createdBy
     +string: updatedBy
     +date: createdOnUtc
@@ -61,7 +57,6 @@ classDiagram
     +ArtistGenre[]: genres;
     +Album[]: albums;
     +ArtistSong[]: artistSongs;
-    +Picture: picture;
   }
   class ArtistGenre{
     +uuid: id
@@ -95,20 +90,7 @@ classDiagram
     +string: name
     +string: stageName
     +string: email
-    +string: picture
-    +string: pictureType
     +ArtistGenreUpsertRequest[]: genres;
-  }
-  class Picture{
-    +uuid: id
-    +uuid: referenceId
-    +string: blob
-    +string: type
-    +string: createdBy
-    +string: updatedBy
-    +date: createdOnUtc
-    +date: updatedOnUtc
-    +number: updateCount
   }
   class ProblemDetails{
     +string: type
@@ -121,14 +103,14 @@ classDiagram
     +uuid: id
     +string: name
     +uuid: albumId
-    +uuid: pictureId
+    +string: ipfsHash
+    +string: pictureIpfsHash
     +string: createdBy
     +string: updatedBy
     +date: createdOnUtc
     +date: updatedOnUtc
     +number: updateCount
     +Album: album;
-    +Picture: picture;
     +ArtistSong[]: artistSongs;
   }
 ```

@@ -24,7 +24,6 @@ export class ArtistEditComponent extends ArtistBaseEntryComponent implements OnI
   }
 
   public save(): void {
-    const val = this.formatRequest(this.addEditForm.value);
-    this.facade.updateExistingEntity(val);
+    this.facade.updateExistingEntity(this.addEditForm.value);
   }
 }

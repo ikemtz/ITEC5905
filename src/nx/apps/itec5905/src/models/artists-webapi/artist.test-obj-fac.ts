@@ -16,11 +16,10 @@ export function createTestArtist() {
       [ArtistProperties.EMAIL]: 'artist@email.org',
       [ArtistProperties.ALBUM_COUNT]: 0,
       [ArtistProperties.SONG_COUNT]: 0,
-      [ArtistProperties.PICTURE_ID]: 'PICTURE_ID',
+      [ArtistProperties.PICTURE_IPFS_HASH]: 'PICTURE_IPFS_HASH',
       [ArtistProperties.UPDATE_COUNT]: 0, 
       [ArtistProperties.GENRES]: [],
       [ArtistProperties.ALBUMS]: [],
       [ArtistProperties.ARTIST_SONGS]: [],
-      [ArtistProperties.PICTURE]: undefined,
     };
 }

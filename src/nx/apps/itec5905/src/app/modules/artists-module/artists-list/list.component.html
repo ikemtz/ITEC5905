@@ -125,22 +125,6 @@
       <span class="h6" title="Song Count">Song Count</span>
     </ng-template>
   </kendo-grid-column>
-  <kendo-grid-column
-    [field]="getRelatedField(props.PICTURE, pictureProps.BLOB)"
-    [width]="100"
-    title="Picture"
-  >
-    <ng-template class="header" kendoGridHeaderTemplate let-column>
-      <span class="h6" title="Picture">Picture</span>
-    </ng-template>
-    <ng-template kendoGridCellTemplate let-dataItem>
-      <img
-        *ngIf="dataItem.picture?.blob"
-        [alt]="dataItem.stageName + ' picture'"
-        [src]="dataItem.picture.blob"
-      />
-    </ng-template>
-  </kendo-grid-column>
   <kendo-grid-pdf [fileName]="getExportFileName('Artists')" [allPages]="false">
     <kendo-grid-pdf-margin
       top="1cm"

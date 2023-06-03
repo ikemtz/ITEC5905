@@ -7,7 +7,6 @@
  */
 
 import { IAlbum } from './album.model';
-import { IPicture } from './picture.model';
 import { IArtistSong } from './artist-song.model';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -15,9 +14,9 @@ export interface ISong {
   id?: string | null;
   name?: string;
   albumId?: string;
-  pictureId?: string | null;
+  ipfsHash?: string | null;
+  pictureIpfsHash?: string | null;
   updateCount?: number | null;
   album?: Partial<IAlbum>;
-  picture?: Partial<IPicture>;
   artistSongs?: Partial<IArtistSong[]>;
 }

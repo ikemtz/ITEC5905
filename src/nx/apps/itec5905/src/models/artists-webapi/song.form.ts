@@ -8,16 +8,15 @@
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 import { IAlbumForm } from './album.form';
-import { IPictureForm } from './picture.form';
 import { IArtistSongForm } from './artist-song.form';
 
 export interface ISongForm {
     id: FormControl<string | null | undefined>;
     name: FormControl<string>;
     albumId: FormControl<string>;
-    pictureId: FormControl<string | null | undefined>;
+    ipfsHash: FormControl<string | null | undefined>;
+    pictureIpfsHash: FormControl<string | null | undefined>;
     updateCount: FormControl<number | null | undefined>;
     album: FormGroup<IAlbumForm>;
-    picture: FormGroup<IPictureForm>;
     artistSongs: FormArray<FormGroup<IArtistSongForm>>;
 }

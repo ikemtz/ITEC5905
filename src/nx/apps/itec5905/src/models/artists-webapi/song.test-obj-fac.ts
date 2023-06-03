@@ -13,10 +13,10 @@ export function createTestSong() {
       [SongProperties.ID]: 'ID',
       [SongProperties.NAME]: 'NAME',
       [SongProperties.ALBUM_ID]: 'ALBUM_ID',
-      [SongProperties.PICTURE_ID]: 'PICTURE_ID',
+      [SongProperties.IPFS_HASH]: 'IPFS_HASH',
+      [SongProperties.PICTURE_IPFS_HASH]: 'PICTURE_IPFS_HASH',
       [SongProperties.UPDATE_COUNT]: 0, 
       [SongProperties.ALBUM]: undefined,
-      [SongProperties.PICTURE]: undefined,
       [SongProperties.ARTIST_SONGS]: [],
     };
 }

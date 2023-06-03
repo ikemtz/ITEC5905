@@ -3,21 +3,17 @@ classDiagram
 
   Album ..> Artist
   Album ..> AlbumSong
-  Album ..> Picture
   AlbumGuidODataEnvelope ..> Album
   AlbumSong ..> Album
   AlbumSong ..> Song
   Artist ..> ArtistGenre
   Artist ..> Album
   Artist ..> ArtistSong
-  Artist ..> Picture
   ArtistGenre ..> Artist
   ArtistGuidODataEnvelope ..> Artist
   ArtistSong ..> Artist
   ArtistSong ..> Song
-  PictureGuidODataEnvelope ..> Picture
   Song ..> Album
-  Song ..> Picture
   Song ..> ArtistSong
   SongGuidODataEnvelope ..> Song
 
@@ -26,7 +22,7 @@ classDiagram
     +string: name
     +uuid: artistId
     +number: songCount
-    +uuid: pictureId
+    +string: pictureIpfsHash
     +string: createdBy
     +string: updatedBy
     +date: createdOnUtc
@@ -34,7 +30,6 @@ classDiagram
     +number: updateCount
     +Artist: artist;
     +AlbumSong[]: songs;
-    +Picture: picture;
   }
   class AlbumGuidODataEnvelope{
     +number: count
@@ -59,7 +54,7 @@ classDiagram
     +string: email
     +number: albumCount
     +number: songCount
-    +uuid: pictureId
+    +string: pictureIpfsHash
     +string: createdBy
     +string: updatedBy
     +date: createdOnUtc
@@ -68,7 +63,6 @@ classDiagram
     +ArtistGenre[]: genres;
     +Album[]: albums;
     +ArtistSong[]: artistSongs;
-    +Picture: picture;
   }
   class ArtistGenre{
     +uuid: id
@@ -97,33 +91,18 @@ classDiagram
     +Artist: artist;
     +Song: song;
   }
-  class Picture{
-    +uuid: id
-    +uuid: referenceId
-    +string: blob
-    +string: type
-    +string: createdBy
-    +string: updatedBy
-    +date: createdOnUtc
-    +date: updatedOnUtc
-    +number: updateCount
-  }
-  class PictureGuidODataEnvelope{
-    +number: count
-    +Picture[]: value;
-  }
   class Song{
     +uuid: id
     +string: name
     +uuid: albumId
-    +uuid: pictureId
+    +string: ipfsHash
+    +string: pictureIpfsHash
     +string: createdBy
     +string: updatedBy
     +date: createdOnUtc
     +date: updatedOnUtc
     +number: updateCount
     +Album: album;
-    +Picture: picture;
     +ArtistSong[]: artistSongs;
   }
   class SongGuidODataEnvelope{

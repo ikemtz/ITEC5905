@@ -10,9 +10,9 @@ export enum SongProperties {
   ID = 'id',
   NAME = 'name',
   ALBUM_ID = 'albumId',
-  PICTURE_ID = 'pictureId',
+  IPFS_HASH = 'ipfsHash',
+  PICTURE_IPFS_HASH = 'pictureIpfsHash',
   UPDATE_COUNT = 'updateCount',
   ALBUM = 'album',
-  PICTURE = 'picture',
   ARTIST_SONGS = 'artistSongs',
 }

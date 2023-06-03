@@ -6,7 +6,7 @@ import { ODataState } from 'imng-kendo-odata';
 
 import { ArtistListFacade } from './list.facade';
 import { ArtistCrudFacade } from '../artists-crud';
-import { ArtistProperties, IArtist, PictureProperties } from '../../../../models/artists-webapi';
+import { ArtistProperties, IArtist } from '../../../../models/artists-webapi';
 
 const initialGridState: ODataState = {
   take: 20,
@@ -18,21 +18,11 @@ const initialGridState: ODataState = {
     ArtistProperties.EMAIL,
     ArtistProperties.ALBUM_COUNT,
     ArtistProperties.SONG_COUNT,
-    ArtistProperties.PICTURE_ID,
+    ArtistProperties.PICTURE_IPFS_HASH,
   ],
   sort: [
     { field: ArtistProperties.NAME, dir: 'asc' },
   ],
-  expanders: [
-    {
-      table: ArtistProperties.PICTURE,
-      selectors: [
-        PictureProperties.ID,
-        PictureProperties.BLOB,
-        PictureProperties.TYPE,
-      ]
-    },
-  ]
 };
 
 @Component({
@@ -43,7 +33,6 @@ const initialGridState: ODataState = {
 })
 export class ArtistListComponent extends KendoODataBasedComponent<IArtist, ArtistListFacade> {
   public readonly props = ArtistProperties;
-  public readonly pictureProps = PictureProperties;
   public currentItem: IArtist | undefined;
 
   constructor(facade: ArtistListFacade,

@@ -14,10 +14,9 @@ export function createTestAlbum() {
       [AlbumProperties.NAME]: 'NAME',
       [AlbumProperties.ARTIST_ID]: 'ARTIST_ID',
       [AlbumProperties.SONG_COUNT]: 0,
-      [AlbumProperties.PICTURE_ID]: 'PICTURE_ID',
+      [AlbumProperties.PICTURE_IPFS_HASH]: 'PICTURE_IPFS_HASH',
       [AlbumProperties.UPDATE_COUNT]: 0, 
       [AlbumProperties.ARTIST]: undefined,
       [AlbumProperties.SONGS]: [],
-      [AlbumProperties.PICTURE]: undefined,
     };
 }

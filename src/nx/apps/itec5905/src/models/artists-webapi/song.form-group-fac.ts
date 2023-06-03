@@ -11,8 +11,6 @@ import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; 
 import { ISongForm } from './song.form';
 import { IAlbumForm } from './album.form';
 import { AlbumFormGroupFac } from './album.form-group-fac';
-import { IPictureForm } from './picture.form';
-import { PictureFormGroupFac } from './picture.form-group-fac';
 import { IArtistSongForm } from './artist-song.form';
 
 export function SongFormGroupFac(): FormGroup<ISongForm> {
@@ -20,10 +18,10 @@ export function SongFormGroupFac(): FormGroup<ISongForm> {
     id: new FormControl<string | null | undefined>(null),
     name: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(255)]), nonNullable: true }),
     albumId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
-    pictureId: new FormControl<string | null | undefined>(null),
+    ipfsHash: new FormControl<string | null | undefined>(null),
+    pictureIpfsHash: new FormControl<string | null | undefined>(null),
     updateCount: new FormControl<number | null | undefined>(null),
     album: new FormGroup<IAlbumForm>(AlbumFormGroupFac().controls),
-    picture: new FormGroup<IPictureForm>(PictureFormGroupFac().controls),
     artistSongs: new FormArray<FormGroup<IArtistSongForm>>([]),
   });
 }

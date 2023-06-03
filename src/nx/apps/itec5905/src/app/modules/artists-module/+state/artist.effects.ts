@@ -8,7 +8,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { artistsFeature } from './artist.reducer';
 import * as artistActionTypes from './artist.actions';
 import { environment } from '../../../../environments/environment';
-import { IArtist, IPicture } from '../../../../models/artists-webapi';
+import { IArtist, } from '../../../../models/artists-webapi';
 
 import { ArtistApiService } from '../artists-crud';
 
@@ -68,12 +68,4 @@ export class ArtistEffects {
         handleEffectError(action))));
   });
 
-  loadPicturesEffect$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(artistActionTypes.loadPicturesRequest),
-      switchMap((action: ReturnType<typeof artistActionTypes.loadPicturesRequest>) => this.odataService
-        .fetch<IPicture>(environment.endpoints.artistsODataEnpoints.pictures, action.payload)
-        .pipe(map(t => artistActionTypes.loadPicturesSuccess(t)),
-          handleEffectError(action))));
-  });
 }

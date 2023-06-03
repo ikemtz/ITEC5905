@@ -12,8 +12,6 @@ import { IArtistForm } from './artist.form';
 import { IArtistGenreForm } from './artist-genre.form';
 import { IAlbumForm } from './album.form';
 import { IArtistSongForm } from './artist-song.form';
-import { IPictureForm } from './picture.form';
-import { PictureFormGroupFac } from './picture.form-group-fac';
 
 export function ArtistFormGroupFac(): FormGroup<IArtistForm> {
   return new FormGroup<IArtistForm>({
@@ -23,11 +21,10 @@ export function ArtistFormGroupFac(): FormGroup<IArtistForm> {
     email: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.email, Validators.minLength(2), Validators.maxLength(255)]), nonNullable: true }),
     albumCount: new FormControl<number | null | undefined>(null),
     songCount: new FormControl<number | null | undefined>(null),
-    pictureId: new FormControl<string | null | undefined>(null),
+    pictureIpfsHash: new FormControl<string | null | undefined>(null),
     updateCount: new FormControl<number | null | undefined>(null),
     genres: new FormArray<FormGroup<IArtistGenreForm>>([]),
     albums: new FormArray<FormGroup<IAlbumForm>>([]),
     artistSongs: new FormArray<FormGroup<IArtistSongForm>>([]),
-    picture: new FormGroup<IPictureForm>(PictureFormGroupFac().controls),
   });
 }

@@ -13,10 +13,9 @@ export enum ArtistProperties {
   EMAIL = 'email',
   ALBUM_COUNT = 'albumCount',
   SONG_COUNT = 'songCount',
-  PICTURE_ID = 'pictureId',
+  PICTURE_IPFS_HASH = 'pictureIpfsHash',
   UPDATE_COUNT = 'updateCount',
   GENRES = 'genres',
   ALBUMS = 'albums',
   ARTIST_SONGS = 'artistSongs',
-  PICTURE = 'picture',
 }

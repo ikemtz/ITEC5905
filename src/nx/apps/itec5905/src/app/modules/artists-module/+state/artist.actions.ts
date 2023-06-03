@@ -1,7 +1,7 @@
 import { createAction } from '@ngrx/store';
 import { ODataResult, ODataState } from 'imng-kendo-odata';
 import { createPayloadAction } from 'imng-ngrx-utils';
-import { IArtist, IArtistUpsertRequest, IPicture } from '../../../../models/artists-webapi';
+import { IArtist, IArtistUpsertRequest } from '../../../../models/artists-webapi';
 
 export const loadArtistsRequest = createPayloadAction<ODataState>(
     '[Artists] Load Artists Request');
@@ -20,5 +20,3 @@ export const deleteArtistRequest = createPayloadAction<IArtist>('[Artists] Delet
 
 export const loadPicturesRequest = createPayloadAction<ODataState>(
     '[Artists] Load Pictures Request');
-export const loadPicturesSuccess = createPayloadAction<ODataResult<IPicture>>(
-    '[Artists] Load Pictures Success');

@@ -22,8 +22,6 @@ export class ArtistAddComponent extends ArtistBaseEntryComponent implements OnIn
   }
 
   public save(): void {
-    const val = this.formatRequest(this.addEditForm.value);
-    val.id = undefined;
-    this.facade.saveNewEntity(val);
+    this.facade.saveNewEntity(this.addEditForm.value);
   }
 }

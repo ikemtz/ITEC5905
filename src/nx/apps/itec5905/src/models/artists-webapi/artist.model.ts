@@ -9,7 +9,6 @@
 import { IArtistGenre } from './artist-genre.model';
 import { IAlbum } from './album.model';
 import { IArtistSong } from './artist-song.model';
-import { IPicture } from './picture.model';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IArtist {
@@ -19,10 +18,9 @@ export interface IArtist {
   email?: string;
   albumCount?: number | null;
   songCount?: number | null;
-  pictureId?: string | null;
+  pictureIpfsHash?: string | null;
   updateCount?: number | null;
   genres?: Partial<IArtistGenre[]>;
   albums?: Partial<IAlbum[]>;
   artistSongs?: Partial<IArtistSong[]>;
-  picture?: Partial<IPicture>;
 }
