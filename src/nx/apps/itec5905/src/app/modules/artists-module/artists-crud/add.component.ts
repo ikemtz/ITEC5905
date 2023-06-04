@@ -10,6 +10,7 @@ import { ArtistBaseEntryComponent } from './base-entry.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArtistAddComponent extends ArtistBaseEntryComponent implements OnInit, OnDestroy {
+
   public dialogTitle = 'Add Artist';
   public active$ = this.facade.isNewActive$;
 
@@ -22,6 +23,8 @@ export class ArtistAddComponent extends ArtistBaseEntryComponent implements OnIn
   }
 
   public save(): void {
-    this.facade.saveNewEntity(normalizeRequest(this.addEditForm.value), this.artistPicture);
+    const value = normalizeRequest(this.addEditForm.value);
+    value.genres = this.selectedGeneres;
+    this.facade.saveNewEntity(value, this.artistPicture);
   }
 }

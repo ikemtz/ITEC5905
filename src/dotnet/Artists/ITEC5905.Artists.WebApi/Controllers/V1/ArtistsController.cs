@@ -7,6 +7,7 @@ using ITEC5905.Artists.Models.V1;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace ITEC5905.Artists.WebApi.Controllers.V1
@@ -31,7 +32,7 @@ namespace ITEC5905.Artists.WebApi.Controllers.V1
     [ProducesResponseType(Status404NotFound)]
     public async Task<ActionResult> Get([FromQuery] Guid id)
     {
-      var dbArtist = await _databaseContext.Artists 
+      var dbArtist = await _databaseContext.Artists
         .Include(t => t.Genres)
         .AsSplitQuery()
         .AsNoTracking()
@@ -48,12 +49,10 @@ namespace ITEC5905.Artists.WebApi.Controllers.V1
     public async Task<ActionResult> Post([FromBody] ArtistUpsertRequest request, [FromServices] IPublisher<Artist, CreatedEvent> publisher)
     {
       var value = SimpleMapper<ArtistUpsertRequest, Artist>.Instance.Convert(request);
-      value.Id = (value.Id == Guid.Empty) ? Guid.NewGuid() : value.Id;  
+      value.Id = (value.Id == Guid.Empty) ? Guid.NewGuid() : value.Id;
       var dbArtist = _databaseContext.Artists.Add(value);
-      request.Genres?
-        .Select(x => SimpleMapper<ArtistGenreUpsertRequest, ArtistGenre>.Instance.Convert(x))
-        .ToList()
-        .ForEach(value.Genres.Add);
+
+      await SyncGenresAsync(request, value);
       var recordCount = await _databaseContext.SaveChangesAsync()
           .ConfigureAwait(false);
       if (recordCount > 0)
@@ -62,6 +61,23 @@ namespace ITEC5905.Artists.WebApi.Controllers.V1
           .ConfigureAwait(false);
       }
       return Ok(dbArtist.Entity);
+    }
+
+    private async Task SyncGenresAsync(ArtistUpsertRequest request, Artist dbValue)
+    {
+      dbValue.Genres?.Clear();
+      if (request.Genres != null && request.Genres.Any())
+      {
+        var generes = await _databaseContext.Genres.Where(t => request.Genres.Contains(t.Id)).ToListAsync();
+        request.Genres.ToList().ForEach(t =>
+        {
+          if (!generes.Any(a => a.Id.ToLower() == t.ToLower()))
+          {
+            _databaseContext.Genres.Add(new Genre { Id = t });
+          }
+          dbValue.Genres.Add(new ArtistGenre { Artist = dbValue, GenreId = t });
+        });
+      }
     }
 
     // Put api/Artists
@@ -87,7 +103,7 @@ namespace ITEC5905.Artists.WebApi.Controllers.V1
         return NotFound($"{nameof(Artist)} with Id: {id} was not found.");
       }
       SimpleMapper<ArtistUpsertRequest, Artist>.Instance.ApplyChanges(request, dbArtist);
-      _databaseContext.SyncGuidCollections(request.Genres, dbArtist.Genres);
+      await SyncGenresAsync(request, dbArtist);
       var recordCount = await _databaseContext.SaveChangesAsync()
           .ConfigureAwait(false);
       if (recordCount > 0)

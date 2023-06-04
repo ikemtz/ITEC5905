@@ -14,6 +14,7 @@ export interface IArtistSongForm {
     id: FormControl<string | null | undefined>;
     artistId: FormControl<string>;
     songId: FormControl<string>;
+    index: FormControl<number | null | undefined>;
     updateCount: FormControl<number | null | undefined>;
     artist: FormGroup<IArtistForm>;
     song: FormGroup<ISongForm>;

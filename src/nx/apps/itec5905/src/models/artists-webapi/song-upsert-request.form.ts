@@ -8,7 +8,13 @@
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
 
-export interface IArtistGenreUpsertRequestForm {
+export interface ISongUpsertRequestForm {
     id: FormControl<string | null | undefined>;
     name: FormControl<string>;
+    albumIds: FormArray<FormControl<string>>;
+    artistIds: FormArray<FormControl<string>>;
+    genreId: FormControl<string>;
+    ipfsHash: FormControl<string | null | undefined>;
+    pictureIpfsHash: FormControl<string | null | undefined>;
+    pictureType: FormControl<string | null | undefined>;
 }

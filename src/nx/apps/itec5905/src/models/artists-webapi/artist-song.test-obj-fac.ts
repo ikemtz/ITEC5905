@@ -13,6 +13,7 @@ export function createTestArtistSong() {
       [ArtistSongProperties.ID]: 'ID',
       [ArtistSongProperties.ARTIST_ID]: 'ARTIST_ID',
       [ArtistSongProperties.SONG_ID]: 'SONG_ID',
+      [ArtistSongProperties.INDEX]: 0,
       [ArtistSongProperties.UPDATE_COUNT]: 0, 
       [ArtistSongProperties.ARTIST]: undefined,
       [ArtistSongProperties.SONG]: undefined,

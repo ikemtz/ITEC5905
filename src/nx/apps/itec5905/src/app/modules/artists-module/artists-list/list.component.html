@@ -117,24 +117,34 @@
       <span class="h6" title="Picture">Picture</span>
     </ng-template>
   </kendo-grid-column>
+  <kendo-grid-column title="Genres" [filterable]="false" [width]="100">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <div *ngFor="let genre of dataItem[props.GENRES]">
+        {{ genre.genreId }}
+      </div>
+    </ng-template>
+    <ng-template class="header" kendoGridHeaderTemplate let-column>
+      <span class="h6" title="Genres">Genres</span>
+    </ng-template>
+  </kendo-grid-column>
   <kendo-grid-column
     [field]="props.ALBUM_COUNT"
-    [width]="100"
+    [width]="50"
     title="Album Count"
     filter="numeric"
   >
     <ng-template class="header" kendoGridHeaderTemplate let-column>
-      <span class="h6" title="Album Count">Album Count</span>
+      <span class="h6" title="Album Count">Album<br />Count</span>
     </ng-template>
   </kendo-grid-column>
   <kendo-grid-column
     [field]="props.SONG_COUNT"
-    [width]="100"
+    [width]="50"
     title="Song Count"
     filter="numeric"
   >
     <ng-template class="header" kendoGridHeaderTemplate let-column>
-      <span class="h6" title="Song Count">Song Count</span>
+      <span class="h6" title="Song Count">Song<br />Count</span>
     </ng-template>
   </kendo-grid-column>
   <kendo-grid-pdf [fileName]="getExportFileName('Artists')" [allPages]="false">

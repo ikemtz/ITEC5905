@@ -6,7 +6,13 @@
  * Do not edit.
  */
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface IArtistGenreUpsertRequest {
+export interface ISongUpsertRequest {
   id?: string | null;
   name?: string;
+  albumIds?: string[] | null;
+  artistIds?: string[];
+  genreId?: string;
+  ipfsHash?: string | null;
+  pictureIpfsHash?: string | null;
+  pictureType?: string | null;
 }

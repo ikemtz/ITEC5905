@@ -14,10 +14,14 @@ namespace ITEC5905.Artists.Models.V1
     public Artist Artist { get; set; }
     public virtual ICollection<AlbumSong> Songs { get; set; }
     public int SongCount { get; set; }
-
+    [MaxLength(255)]
     public string? PictureIpfsHash { get; set; }
+    [MaxLength(50)]
+    public string? PictureType { get; set; }
     [Required]
+    [MaxLength(255)]
     public string CreatedBy { get; set; }
+    [MaxLength(255)]
     public string? UpdatedBy { get; set; }
     public DateTimeOffset CreatedOnUtc { get; set; }
     public DateTimeOffset? UpdatedOnUtc { get; set; }

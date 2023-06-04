@@ -9,7 +9,8 @@ namespace ITEC5905.Artists.Data
     public virtual DbSet<V1.AlbumSong> AlbumSongs { get; set; }
     public virtual DbSet<V1.ArtistGenre> ArtistGenres { get; set; }
     public virtual DbSet<V1.Artist> Artists { get; set; }
-    public virtual DbSet<V1.ArtistSong> ArtistSongs { get; set; } 
+    public virtual DbSet<V1.ArtistSong> ArtistSongs { get; set; }
+    public virtual DbSet<V1.Genre> Genres { get; set; }
     public virtual DbSet<V1.Song> Songs { get; set; }
   }
 }

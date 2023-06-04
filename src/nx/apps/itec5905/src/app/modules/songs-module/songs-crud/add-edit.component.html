@@ -1,0 +1,59 @@
+<imng-data-entry-dialog [width]="700" [height]="550" [parentComponent]="this" autoFocusedElement="#name">
+  <form id="imng-form" novalidate [formGroup]="addEditForm" autocomplete="false" class="row needs-validation">
+    <div class="col-md-6">
+      <label for="id" class="control-label">Id:</label>
+      <input id="id" type="text" class="form-control" [formControlName]="props.ID" />
+    </div>
+    <div class="col-md-6">
+      <label for="name" class="control-label">Name:</label>
+      <input id="name" type="text" class="form-control" [formControlName]="props.NAME" />
+      <div *ngIf="(submitted$ | async) && formControlErrors(props.NAME)" class="invalid-feedback d-block">
+        <div *ngIf="formControlErrors(props.NAME)?.[RequiredError]">Song name is required</div>
+        <div *ngIf="formControlErrors(props.NAME)?.[MinLengthError]">
+          Song name requires a min length of
+          {{formMinLengthError(props.NAME)?.requiredLength}}, currently only
+          {{formMinLengthError(props.NAME)?.actualLength}}.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="album_id" class="control-label">Album Id:</label>
+      <input id="album_id" type="text" class="form-control" [formControlName]="props.ALBUM_ID" />
+      <div *ngIf="(submitted$ | async) && formControlErrors(props.ALBUM_ID)" class="invalid-feedback d-block">
+        <div *ngIf="formControlErrors(props.ALBUM_ID)?.[RequiredError]">Song album id is required</div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="album" class="control-label">Album:</label>
+      <kendo-multicolumncombobox
+        id="album"
+        placeholder="Select a album..."
+        [formControlName]="props.ALBUM_ID"
+        [data]="albums$ | async"
+        [textField]="albumProps.NAME"
+        [valueField]="albumProps.ID"
+        [valuePrimitive]="true"
+        [filterable]="true"
+        (filterChange)="handleAlbumFilter($event)">
+          <kendo-combobox-column field="name" title="Name" [width]="100"></kendo-combobox-column>
+          <kendo-combobox-column field="artistId" title="Artist Id" [width]="100"></kendo-combobox-column>
+          <kendo-combobox-column field="artist" title="Artist" [width]="100"></kendo-combobox-column>
+          <kendo-combobox-column field="songCount" title="Song Count" [width]="100"></kendo-combobox-column>
+          <kendo-combobox-column field="pictureIpfsHash" title="Picture Ipfs Hash" [width]="100"></kendo-combobox-column>
+          <kendo-combobox-column field="updateCount" title="Update Count" [width]="100"></kendo-combobox-column>
+      </kendo-multicolumncombobox>
+    </div>
+    <div class="col-md-6">
+      <label for="ipfs_hash" class="control-label">Ipfs Hash:</label>
+      <input id="ipfs_hash" type="text" class="form-control" [formControlName]="props.IPFS_HASH" />
+    </div>
+    <div class="col-md-6">
+      <label for="picture_ipfs_hash" class="control-label">Picture Ipfs Hash:</label>
+      <input id="picture_ipfs_hash" type="text" class="form-control" [formControlName]="props.PICTURE_IPFS_HASH" />
+    </div>
+    <div class="col-md-6">
+      <label for="update_count" class="control-label">Update Count:</label>
+      <input id="update_count" type="number" class="form-control" [formControlName]="props.UPDATE_COUNT" />
+    </div>
+  </form>
+</imng-data-entry-dialog>

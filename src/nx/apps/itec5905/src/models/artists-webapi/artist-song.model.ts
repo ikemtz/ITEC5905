@@ -14,6 +14,7 @@ export interface IArtistSong {
   id?: string | null;
   artistId?: string;
   songId?: string;
+  index?: number | null;
   updateCount?: number | null;
   artist?: Partial<IArtist>;
   song?: Partial<ISong>;

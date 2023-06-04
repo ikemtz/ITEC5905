@@ -14,6 +14,7 @@ export class ArtistCrudFacade implements IDataEntryFacade<IArtist | IArtistUpser
   currentEntity$ = this.store.select(artistQueries.selectCurrentArtist);
   isEditActive$ = this.store.select(artistQueries.selectIsEditArtistActive);
   isNewActive$ = this.store.select(artistQueries.selectIsNewArtistActive);
+  genres$ = this.store.select(artistsFeature.selectGenres);
 
   constructor(private readonly store: Store) { }
 
@@ -41,5 +42,8 @@ export class ArtistCrudFacade implements IDataEntryFacade<IArtist | IArtistUpser
 
   public loadPictures(state: ODataState): void {
     this.store.dispatch(artistActionTypes.loadPicturesRequest(state));
+  }
+  public loadGenres(state: ODataState): void {
+    this.store.dispatch(artistActionTypes.loadGenresRequest(state));
   }
 }

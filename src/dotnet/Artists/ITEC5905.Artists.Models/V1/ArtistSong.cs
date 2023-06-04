@@ -12,8 +12,11 @@ namespace ITEC5905.Artists.Models.V1
     [Required]
     public Guid SongId { get; set; }
     public Song Song { get; set; }
+    public int Index { get; set; }
     [Required]
+    [MaxLength(255)]
     public string CreatedBy { get; set; }
+    [MaxLength(255)]
     public string? UpdatedBy { get; set; }
     public DateTimeOffset CreatedOnUtc { get; set; }
     public DateTimeOffset? UpdatedOnUtc { get; set; }

@@ -16,6 +16,7 @@ export interface IAlbum {
   artistId?: string;
   songCount?: number | null;
   pictureIpfsHash?: string | null;
+  pictureType?: string | null;
   updateCount?: number | null;
   artist?: Partial<IArtist>;
   songs?: Partial<IAlbumSong[]>;

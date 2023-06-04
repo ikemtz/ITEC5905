@@ -5,6 +5,11 @@ namespace ITEC5905.Artists.Models.V1
 {
   public partial class Artist : IIdentifiable, IAuditable, ICalculateable
   {
+    public Artist()
+    {
+      Genres = new List<ArtistGenre>();
+    }
+
     public Guid Id { get; set; }
     [Required]
     [MinLength(2)]
@@ -29,9 +34,10 @@ namespace ITEC5905.Artists.Models.V1
     public string? PictureType { get; set; }
     [MaxLength(255)]
     public string? PictureIpfsHash { get; set; }
-
     [Required]
+    [MaxLength(255)]
     public string CreatedBy { get; set; }
+    [MaxLength(255)]
     public string? UpdatedBy { get; set; }
     public DateTimeOffset CreatedOnUtc { get; set; }
     public DateTimeOffset? UpdatedOnUtc { get; set; }

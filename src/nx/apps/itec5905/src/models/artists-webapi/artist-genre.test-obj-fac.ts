@@ -11,9 +11,10 @@ import { ArtistGenreProperties } from './artist-genre.properties';
 export function createTestArtistGenre() {
     return { 
       [ArtistGenreProperties.ID]: 'ID',
-      [ArtistGenreProperties.NAME]: 'NAME',
+      [ArtistGenreProperties.GENRE_ID]: 'GENRE_ID',
       [ArtistGenreProperties.ARTIST_ID]: 'ARTIST_ID',
       [ArtistGenreProperties.UPDATE_COUNT]: 0, 
+      [ArtistGenreProperties.GENRE]: undefined,
       [ArtistGenreProperties.ARTIST]: undefined,
     };
 }

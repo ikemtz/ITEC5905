@@ -6,13 +6,15 @@
  * Do not edit.
  */
 
+import { IGenre } from './genre.model';
 import { IArtist } from './artist.model';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface IArtistGenre {
   id?: string | null;
-  name?: string;
+  genreId?: string;
   artistId?: string;
   updateCount?: number | null;
+  genre?: Partial<IGenre>;
   artist?: Partial<IArtist>;
 }

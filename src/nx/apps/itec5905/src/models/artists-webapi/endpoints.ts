@@ -8,7 +8,9 @@
 /* tslint:disable */
 export enum Endpoints {
   artists = 'artists-webapi/api/v1/Artists.json',
+  songs = 'artists-webapi/api/v1/Songs.json',
 }
 export interface IEndpoints {
   readonly artists: string;
+  readonly songs: string;
 }

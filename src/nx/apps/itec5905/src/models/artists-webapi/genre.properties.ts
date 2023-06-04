@@ -6,7 +6,7 @@
  * Do not edit.
  */
 /* tslint:disable */
-export enum ArtistGenreUpsertRequestProperties {
+export enum GenreProperties {
   ID = 'id',
-  NAME = 'name',
+  UPDATE_COUNT = 'updateCount',
 }

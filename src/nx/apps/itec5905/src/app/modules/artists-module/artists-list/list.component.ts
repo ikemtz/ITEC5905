@@ -4,7 +4,11 @@ import { ODataState } from 'imng-kendo-odata';
 
 import { ArtistListFacade } from './list.facade';
 import { ArtistCrudFacade } from '../artists-crud';
-import { ArtistProperties, IArtist } from '../../../../models/artists-webapi';
+import {
+  ArtistGenreProperties,
+  ArtistProperties,
+  IArtist,
+} from '../../../../models/artists-webapi';
 import { HttpClient } from '@angular/common/http';
 
 const initialGridState: ODataState = {
@@ -20,8 +24,12 @@ const initialGridState: ODataState = {
     ArtistProperties.PICTURE_IPFS_HASH,
     ArtistProperties.PICTURE_TYPE,
   ],
-  sort: [
-    { field: ArtistProperties.NAME, dir: 'asc' },
+  sort: [{ field: ArtistProperties.NAME, dir: 'asc' }],
+  expanders: [
+    {
+      table: ArtistProperties.GENRES,
+      selectors: [ArtistGenreProperties.GENRE_ID],
+    },
   ],
 };
 
@@ -31,13 +39,18 @@ const initialGridState: ODataState = {
   styleUrls: ['./list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ArtistListComponent extends KendoODataBasedComponent<IArtist, ArtistListFacade> {
+export class ArtistListComponent extends KendoODataBasedComponent<
+  IArtist,
+  ArtistListFacade
+> {
   public readonly props = ArtistProperties;
   public currentItem: IArtist | undefined;
 
-  constructor(facade: ArtistListFacade,
+  constructor(
+    facade: ArtistListFacade,
     public readonly crudFacade: ArtistCrudFacade,
-    public readonly httpClient: HttpClient) {
+    public readonly httpClient: HttpClient
+  ) {
     super(facade, initialGridState);
   }
 

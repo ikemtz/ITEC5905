@@ -9,11 +9,14 @@ classDiagram
   Artist ..> ArtistGenre
   Artist ..> Album
   Artist ..> ArtistSong
+  ArtistGenre ..> Genre
   ArtistGenre ..> Artist
   ArtistGuidODataEnvelope ..> Artist
   ArtistSong ..> Artist
   ArtistSong ..> Song
+  GenreStringODataEnvelope ..> Genre
   Song ..> Album
+  Song ..> Genre
   Song ..> ArtistSong
   SongGuidODataEnvelope ..> Song
 
@@ -23,6 +26,7 @@ classDiagram
     +uuid: artistId
     +number: songCount
     +string: pictureIpfsHash
+    +string: pictureType
     +string: createdBy
     +string: updatedBy
     +date: createdOnUtc
@@ -67,13 +71,14 @@ classDiagram
   }
   class ArtistGenre{
     +uuid: id
-    +string: name
+    +string: genreId
     +uuid: artistId
     +string: createdBy
     +string: updatedBy
     +date: createdOnUtc
     +date: updatedOnUtc
     +number: updateCount
+    +Genre: genre;
     +Artist: artist;
   }
   class ArtistGuidODataEnvelope{
@@ -84,6 +89,7 @@ classDiagram
     +uuid: id
     +uuid: artistId
     +uuid: songId
+    +number: index
     +string: createdBy
     +string: updatedBy
     +date: createdOnUtc
@@ -92,18 +98,33 @@ classDiagram
     +Artist: artist;
     +Song: song;
   }
+  class Genre{
+    +string: id
+    +string: createdBy
+    +string: updatedBy
+    +date: createdOnUtc
+    +date: updatedOnUtc
+    +number: updateCount
+  }
+  class GenreStringODataEnvelope{
+    +number: count
+    +Genre[]: value;
+  }
   class Song{
     +uuid: id
     +string: name
     +uuid: albumId
     +string: ipfsHash
     +string: pictureIpfsHash
+    +string: pictureType
+    +string: genreId
     +string: createdBy
     +string: updatedBy
     +date: createdOnUtc
     +date: updatedOnUtc
     +number: updateCount
     +Album: album;
+    +Genre: genre;
     +ArtistSong[]: artistSongs;
   }
   class SongGuidODataEnvelope{

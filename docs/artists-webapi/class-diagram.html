@@ -18,11 +18,12 @@ classDiagram
   Artist ..> ArtistGenre
   Artist ..> Album
   Artist ..> ArtistSong
+  ArtistGenre ..> Genre
   ArtistGenre ..> Artist
   ArtistSong ..> Artist
   ArtistSong ..> Song
-  ArtistUpsertRequest ..> ArtistGenreUpsertRequest
   Song ..> Album
+  Song ..> Genre
   Song ..> ArtistSong
 
   class Album{
@@ -31,6 +32,7 @@ classDiagram
     +uuid: artistId
     +number: songCount
     +string: pictureIpfsHash
+    +string: pictureType
     +string: createdBy
     +string: updatedBy
     +date: createdOnUtc
@@ -71,23 +73,21 @@ classDiagram
   }
   class ArtistGenre{
     +uuid: id
-    +string: name
+    +string: genreId
     +uuid: artistId
     +string: createdBy
     +string: updatedBy
     +date: createdOnUtc
     +date: updatedOnUtc
     +number: updateCount
+    +Genre: genre;
     +Artist: artist;
-  }
-  class ArtistGenreUpsertRequest{
-    +uuid: id
-    +string: name
   }
   class ArtistSong{
     +uuid: id
     +uuid: artistId
     +uuid: songId
+    +number: index
     +string: createdBy
     +string: updatedBy
     +date: createdOnUtc
@@ -101,9 +101,17 @@ classDiagram
     +string: name
     +string: stageName
     +string: email
+    +string[]: genres
     +string: pictureIpfsHash
     +string: pictureType
-    +ArtistGenreUpsertRequest[]: genres;
+  }
+  class Genre{
+    +string: id
+    +string: createdBy
+    +string: updatedBy
+    +date: createdOnUtc
+    +date: updatedOnUtc
+    +number: updateCount
   }
   class ProblemDetails{
     +string: type
@@ -118,13 +126,26 @@ classDiagram
     +uuid: albumId
     +string: ipfsHash
     +string: pictureIpfsHash
+    +string: pictureType
+    +string: genreId
     +string: createdBy
     +string: updatedBy
     +date: createdOnUtc
     +date: updatedOnUtc
     +number: updateCount
     +Album: album;
+    +Genre: genre;
     +ArtistSong[]: artistSongs;
+  }
+  class SongUpsertRequest{
+    +uuid: id
+    +string: name
+    +string[]: albumIds
+    +string[]: artistIds
+    +string: genreId
+    +string: ipfsHash
+    +string: pictureIpfsHash
+    +string: pictureType
   }
       </div>
     </pre>

@@ -7,12 +7,14 @@
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
+import { IGenreForm } from './genre.form';
 import { IArtistForm } from './artist.form';
 
 export interface IArtistGenreForm {
     id: FormControl<string | null | undefined>;
-    name: FormControl<string>;
+    genreId: FormControl<string>;
     artistId: FormControl<string>;
     updateCount: FormControl<number | null | undefined>;
+    genre: FormGroup<IGenreForm>;
     artist: FormGroup<IArtistForm>;
 }

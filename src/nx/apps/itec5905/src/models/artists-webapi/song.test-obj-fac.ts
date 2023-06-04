@@ -15,8 +15,11 @@ export function createTestSong() {
       [SongProperties.ALBUM_ID]: 'ALBUM_ID',
       [SongProperties.IPFS_HASH]: 'IPFS_HASH',
       [SongProperties.PICTURE_IPFS_HASH]: 'PICTURE_IPFS_HASH',
+      [SongProperties.PICTURE_TYPE]: 'PICTURE_TYPE',
+      [SongProperties.GENRE_ID]: 'GENRE_ID',
       [SongProperties.UPDATE_COUNT]: 0, 
       [SongProperties.ALBUM]: undefined,
+      [SongProperties.GENRE]: undefined,
       [SongProperties.ARTIST_SONGS]: [],
     };
 }

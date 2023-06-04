@@ -9,10 +9,12 @@
 export enum Endpoints {
   albums = 'artists-odata/odata/v1/Albums',
   artists = 'artists-odata/odata/v1/Artists',
+  genres = 'artists-odata/odata/v1/Genres',
   songs = 'artists-odata/odata/v1/Songs',
 }
 export interface IEndpoints {
   readonly albums: string;
   readonly artists: string;
+  readonly genres: string;
   readonly songs: string;
 }

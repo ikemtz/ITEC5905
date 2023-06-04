@@ -7,7 +7,7 @@ import { concatAll, map, switchMap } from 'rxjs/operators';
 import { artistsFeature } from './artist.reducer';
 import * as artistActionTypes from './artist.actions';
 import { environment } from '../../../../environments/environment';
-import { IArtist, } from '../../../../models/artists-webapi';
+import { IArtist, IGenre, } from '../../../../models/artists-webapi';
 import { ArtistApiService } from '../artists-crud';
 import { ImageApiService, MediaApiService } from '../../media-module';
 import { of } from 'rxjs';
@@ -53,7 +53,7 @@ export class ArtistEffects {
       switchMap((action: ReturnType<typeof artistActionTypes.loadArtistsSuccess>) =>
         of(...action.payload.data.map(artist =>
           this.imageApiService.get(artist.pictureIpfsHash, artist.pictureType)
-            .pipe(map(image => ({ id: artist.id, pictureIpfsHash: `${artist.pictureType},${image}` })))
+            .pipe(map(image => ({ id: artist.id, pictureIpfsHash: image })))
         ))
           .pipe(
             concatAll(),
@@ -99,5 +99,13 @@ export class ArtistEffects {
         map(() => artistActionTypes.reloadArtistsRequest()),
         handleEffectError(action))));
   });
-
+  loadGenresEffect$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(artistActionTypes.loadGenresRequest),
+      switchMap((action: ReturnType<typeof artistActionTypes.loadGenresRequest>) => this.odataService
+        .fetch<IGenre>(environment.endpoints.artistsODataEnpoints.genres, action.payload)
+        .pipe(
+          map(t => artistActionTypes.loadGenresSuccess(t)),
+          handleEffectError(action))));
+  });
 }

@@ -15,6 +15,7 @@ export function createTestAlbum() {
       [AlbumProperties.ARTIST_ID]: 'ARTIST_ID',
       [AlbumProperties.SONG_COUNT]: 0,
       [AlbumProperties.PICTURE_IPFS_HASH]: 'PICTURE_IPFS_HASH',
+      [AlbumProperties.PICTURE_TYPE]: 'PICTURE_TYPE',
       [AlbumProperties.UPDATE_COUNT]: 0, 
       [AlbumProperties.ARTIST]: undefined,
       [AlbumProperties.SONGS]: [],

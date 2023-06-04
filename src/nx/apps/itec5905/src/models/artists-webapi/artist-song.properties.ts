@@ -10,6 +10,7 @@ export enum ArtistSongProperties {
   ID = 'id',
   ARTIST_ID = 'artistId',
   SONG_ID = 'songId',
+  INDEX = 'index',
   UPDATE_COUNT = 'updateCount',
   ARTIST = 'artist',
   SONG = 'song',

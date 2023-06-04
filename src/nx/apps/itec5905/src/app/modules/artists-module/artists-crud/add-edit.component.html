@@ -77,6 +77,30 @@
         </div>
       </div>
     </div>
+    <div class="col-md-12">
+      <label for="email" class="control-label">Genres:</label>
+      <kendo-multiselect
+        [data]="(genres$ | async) || []"
+        [value]="selectedGeneres"
+        [allowCustom]="true"
+        [valuePrimitive]="true"
+        (valueChange)="onGenreChange($event)"
+      >
+      </kendo-multiselect>
+      <div
+        *ngIf="(submitted$ | async) && formControlErrors(props.EMAIL)"
+        class="invalid-feedback d-block"
+      >
+        <div *ngIf="formControlErrors(props.EMAIL)?.[RequiredError]">
+          Artist email is required
+        </div>
+        <div *ngIf="formControlErrors(props.EMAIL)?.[MinLengthError]">
+          Artist email requires a min length of
+          {{ formMinLengthError(props.EMAIL)?.requiredLength }}, currently only
+          {{ formMinLengthError(props.EMAIL)?.actualLength }}.
+        </div>
+      </div>
+    </div>
     <div class="col-md-12 mx-">
       <label for="name" class="control-label">Photo:</label>
       <kendo-fileselect
@@ -85,7 +109,6 @@
         [multiple]="false"
         (select)="selectPicture($event)"
       >
-        <ng-template kendoFileSelectFileInfoTemplate let-files> </ng-template>
       </kendo-fileselect>
     </div>
   </form>

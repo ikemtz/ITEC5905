@@ -8,15 +8,25 @@ namespace ITEC5905.Artists.Models.V1
     public Guid Id { get; set; }
     [Required]
     [MaxLength(255)]
-    public string Name { get; set; }
-    [Required]
-    public Guid AlbumId { get; set; }
+    public string Name { get; set; } 
+    public Guid? AlbumId { get; set; }
     public Album Album { get; set; }
+    [MaxLength(255)]
     public string IpfsHash { get; set; }
+    [MaxLength(255)]
     public string? PictureIpfsHash { get; set; }
+    [MaxLength(50)]
+    public string? PictureType { get; set; }
+    [Required]
+    [MaxLength(255)]
+    public string GenreId { get; set; }
+    [Required]
+    public Genre Genre { get; set; }
     public virtual ICollection<ArtistSong> ArtistSongs { get; set; }
     [Required]
+    [MaxLength(255)]
     public string CreatedBy { get; set; }
+    [MaxLength(255)]
     public string? UpdatedBy { get; set; }
     public DateTimeOffset CreatedOnUtc { get; set; }
     public DateTimeOffset? UpdatedOnUtc { get; set; }

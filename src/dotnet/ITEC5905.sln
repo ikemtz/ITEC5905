@@ -42,6 +42,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ITEC5905.Artists.Db", "ITEC
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ITEC5905.Customers.Db", "ITEC5905.Customers.Db", "{7A0A8297-43F0-4309-B7FA-C1D1DC2755FC}"
+	ProjectSection(SolutionItems) = preProject
+		Customers\ITEC5905.Customers.Db\migration.sql = Customers\ITEC5905.Customers.Db\migration.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

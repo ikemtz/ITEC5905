@@ -9,15 +9,18 @@
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 import { IArtistGenreForm } from './artist-genre.form';
+import { IGenreForm } from './genre.form';
+import { GenreFormGroupFac } from './genre.form-group-fac';
 import { IArtistForm } from './artist.form';
 import { ArtistFormGroupFac } from './artist.form-group-fac';
 
 export function ArtistGenreFormGroupFac(): FormGroup<IArtistGenreForm> {
   return new FormGroup<IArtistGenreForm>({
     id: new FormControl<string | null | undefined>(null),
-    name: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(255)]), nonNullable: true }),
+    genreId: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(255)]), nonNullable: true }),
     artistId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     updateCount: new FormControl<number | null | undefined>(null),
+    genre: new FormGroup<IGenreForm>(GenreFormGroupFac().controls, { validators: Validators.required } ),
     artist: new FormGroup<IArtistForm>(ArtistFormGroupFac().controls),
   });
 }

@@ -7,14 +7,13 @@
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
-import { IArtistGenreUpsertRequestForm } from './artist-genre-upsert-request.form';
 
 export interface IArtistUpsertRequestForm {
     id: FormControl<string | null | undefined>;
     name: FormControl<string>;
     stageName: FormControl<string>;
     email: FormControl<string>;
+    genres: FormArray<FormControl<string>>;
     pictureIpfsHash: FormControl<string | null | undefined>;
     pictureType: FormControl<string | null | undefined>;
-    genres: FormArray<FormGroup<IArtistGenreUpsertRequestForm>>;
 }

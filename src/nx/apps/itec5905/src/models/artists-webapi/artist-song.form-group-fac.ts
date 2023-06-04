@@ -19,6 +19,7 @@ export function ArtistSongFormGroupFac(): FormGroup<IArtistSongForm> {
     id: new FormControl<string | null | undefined>(null),
     artistId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
     songId: new FormControl<string>('', { validators: Validators.required, nonNullable: true } ),
+    index: new FormControl<number | null | undefined>(null),
     updateCount: new FormControl<number | null | undefined>(null),
     artist: new FormGroup<IArtistForm>(ArtistFormGroupFac().controls),
     song: new FormGroup<ISongForm>(SongFormGroupFac().controls),

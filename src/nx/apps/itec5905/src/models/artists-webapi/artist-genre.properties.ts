@@ -8,8 +8,9 @@
 /* tslint:disable */
 export enum ArtistGenreProperties {
   ID = 'id',
-  NAME = 'name',
+  GENRE_ID = 'genreId',
   ARTIST_ID = 'artistId',
   UPDATE_COUNT = 'updateCount',
+  GENRE = 'genre',
   ARTIST = 'artist',
 }

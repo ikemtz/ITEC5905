@@ -1,8 +1,14 @@
-import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
-import { normalizeRequest } from 'imng-nrsrx-client-utils'
+import {
+  Component,
+  ChangeDetectionStrategy,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
+import { normalizeRequest } from 'imng-nrsrx-client-utils';
 import { formGroupPatcher } from 'imng-kendo-data-entry';
 import { ArtistBaseEntryComponent } from './base-entry.component';
 import { ArtistCrudFacade } from './crud.facade';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'itec-artist-edit',
@@ -10,7 +16,9 @@ import { ArtistCrudFacade } from './crud.facade';
   styleUrls: ['./add-edit.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ArtistEditComponent extends ArtistBaseEntryComponent implements OnInit, OnDestroy {
+export class ArtistEditComponent
+  extends ArtistBaseEntryComponent
+  implements OnInit, OnDestroy {
   public dialogTitle = 'Edit Artist';
   public active$ = this.facade.isEditActive$;
 
@@ -20,11 +28,24 @@ export class ArtistEditComponent extends ArtistBaseEntryComponent implements OnI
   public override initForm(): void {
     super.initForm();
     if (this.addEditForm) {
-      this.allSubscriptions.push(this.facade.currentEntity$.pipe(formGroupPatcher(this.addEditForm)).subscribe());
+      this.allSubscriptions.push(
+        this.facade.currentEntity$
+          .pipe(
+            formGroupPatcher(this.addEditForm),
+            tap(
+              (x) =>
+              (this.selectedGeneres =
+                x?.genres?.map((m) => m?.id || '') || [])
+            )
+          )
+          .subscribe()
+      );
     }
   }
 
   public save(): void {
-    this.facade.updateExistingEntity(normalizeRequest(this.addEditForm.value), this.artistPicture);
+    const value = normalizeRequest(this.addEditForm.value);
+    value.genres = this.selectedGeneres;
+    this.facade.updateExistingEntity(value, this.artistPicture);
   }
 }
