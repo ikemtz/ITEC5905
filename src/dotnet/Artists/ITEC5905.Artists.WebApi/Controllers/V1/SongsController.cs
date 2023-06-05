@@ -34,7 +34,8 @@ namespace ITEC5905.Artists.WebApi.Controllers.V1
       var dbSong = await _databaseContext.Songs
         .Include(t => t.ArtistSongs)
         .ThenInclude(t => t.Artist)
-        .Include(t => t.Album)
+        .Include(t => t.AlbumSongs)
+        .ThenInclude(t => t.Album)
         .Include(t => t.Genre)
         .AsSplitQuery()
         .AsNoTracking()

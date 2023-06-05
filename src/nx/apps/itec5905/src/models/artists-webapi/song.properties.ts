@@ -9,13 +9,12 @@
 export enum SongProperties {
   ID = 'id',
   NAME = 'name',
-  ALBUM_ID = 'albumId',
   IPFS_HASH = 'ipfsHash',
   PICTURE_IPFS_HASH = 'pictureIpfsHash',
   PICTURE_TYPE = 'pictureType',
   GENRE_ID = 'genreId',
   UPDATE_COUNT = 'updateCount',
-  ALBUM = 'album',
   GENRE = 'genre',
   ARTIST_SONGS = 'artistSongs',
+  ALBUM_SONGS = 'albumSongs',
 }

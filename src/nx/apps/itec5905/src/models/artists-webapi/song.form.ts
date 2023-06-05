@@ -7,20 +7,19 @@
  * Do not edit.
  */
 import { FormControl, FormArray, FormGroup } from '@angular/forms'; //NOSONAR
-import { IAlbumForm } from './album.form';
 import { IGenreForm } from './genre.form';
 import { IArtistSongForm } from './artist-song.form';
+import { IAlbumSongForm } from './album-song.form';
 
 export interface ISongForm {
     id: FormControl<string | null | undefined>;
     name: FormControl<string>;
-    albumId: FormControl<string | null | undefined>;
     ipfsHash: FormControl<string | null | undefined>;
     pictureIpfsHash: FormControl<string | null | undefined>;
     pictureType: FormControl<string | null | undefined>;
     genreId: FormControl<string>;
     updateCount: FormControl<number | null | undefined>;
-    album: FormGroup<IAlbumForm>;
     genre: FormGroup<IGenreForm>;
     artistSongs: FormArray<FormGroup<IArtistSongForm>>;
+    albumSongs: FormArray<FormGroup<IAlbumSongForm>>;
 }

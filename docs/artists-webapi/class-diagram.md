@@ -12,9 +12,9 @@ classDiagram
   ArtistGenre ..> Artist
   ArtistSong ..> Artist
   ArtistSong ..> Song
-  Song ..> Album
   Song ..> Genre
   Song ..> ArtistSong
+  Song ..> AlbumSong
 
   class Album{
     +uuid: id
@@ -113,7 +113,6 @@ classDiagram
   class Song{
     +uuid: id
     +string: name
-    +uuid: albumId
     +string: ipfsHash
     +string: pictureIpfsHash
     +string: pictureType
@@ -123,9 +122,9 @@ classDiagram
     +date: createdOnUtc
     +date: updatedOnUtc
     +number: updateCount
-    +Album: album;
     +Genre: genre;
     +ArtistSong[]: artistSongs;
+    +AlbumSong[]: albumSongs;
   }
   class SongUpsertRequest{
     +uuid: id

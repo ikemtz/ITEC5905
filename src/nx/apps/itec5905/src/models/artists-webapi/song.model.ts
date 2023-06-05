@@ -6,21 +6,20 @@
  * Do not edit.
  */
 
-import { IAlbum } from './album.model';
 import { IGenre } from './genre.model';
 import { IArtistSong } from './artist-song.model';
+import { IAlbumSong } from './album-song.model';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ISong {
   id?: string | null;
   name?: string;
-  albumId?: string | null;
   ipfsHash?: string | null;
   pictureIpfsHash?: string | null;
   pictureType?: string | null;
   genreId?: string;
   updateCount?: number | null;
-  album?: Partial<IAlbum>;
   genre?: Partial<IGenre>;
   artistSongs?: Partial<IArtistSong[]>;
+  albumSongs?: Partial<IAlbumSong[]>;
 }

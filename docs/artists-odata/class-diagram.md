@@ -15,9 +15,9 @@ classDiagram
   ArtistSong ..> Artist
   ArtistSong ..> Song
   GenreStringODataEnvelope ..> Genre
-  Song ..> Album
   Song ..> Genre
   Song ..> ArtistSong
+  Song ..> AlbumSong
   SongGuidODataEnvelope ..> Song
 
   class Album{
@@ -113,7 +113,6 @@ classDiagram
   class Song{
     +uuid: id
     +string: name
-    +uuid: albumId
     +string: ipfsHash
     +string: pictureIpfsHash
     +string: pictureType
@@ -123,9 +122,9 @@ classDiagram
     +date: createdOnUtc
     +date: updatedOnUtc
     +number: updateCount
-    +Album: album;
     +Genre: genre;
     +ArtistSong[]: artistSongs;
+    +AlbumSong[]: albumSongs;
   }
   class SongGuidODataEnvelope{
     +number: count

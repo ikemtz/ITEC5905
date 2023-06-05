@@ -9,24 +9,22 @@
  */
 import { FormControl, FormArray, FormGroup, Validators } from '@angular/forms'; //NOSONAR
 import { ISongForm } from './song.form';
-import { IAlbumForm } from './album.form';
-import { AlbumFormGroupFac } from './album.form-group-fac';
 import { IGenreForm } from './genre.form';
 import { GenreFormGroupFac } from './genre.form-group-fac';
 import { IArtistSongForm } from './artist-song.form';
+import { IAlbumSongForm } from './album-song.form';
 
 export function SongFormGroupFac(): FormGroup<ISongForm> {
   return new FormGroup<ISongForm>({
     id: new FormControl<string | null | undefined>(null),
     name: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(255)]), nonNullable: true }),
-    albumId: new FormControl<string | null | undefined>(null),
     ipfsHash: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(255) } ),
     pictureIpfsHash: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(255) } ),
     pictureType: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(50) } ),
     genreId: new FormControl<string>('', { validators: Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(255)]), nonNullable: true }),
     updateCount: new FormControl<number | null | undefined>(null),
-    album: new FormGroup<IAlbumForm>(AlbumFormGroupFac().controls),
     genre: new FormGroup<IGenreForm>(GenreFormGroupFac().controls, { validators: Validators.required } ),
     artistSongs: new FormArray<FormGroup<IArtistSongForm>>([]),
+    albumSongs: new FormArray<FormGroup<IAlbumSongForm>>([]),
   });
 }
