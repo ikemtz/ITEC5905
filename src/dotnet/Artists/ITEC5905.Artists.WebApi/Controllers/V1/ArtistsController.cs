@@ -122,7 +122,7 @@ namespace ITEC5905.Artists.WebApi.Controllers.V1
     {
       var dbArtist = await _databaseContext.Artists
         .Include(t => t.Genres)
-        .AsSingleQuery()
+        .AsSplitQuery()
         .FirstOrDefaultAsync(t => t.Id == id)
         .ConfigureAwait(false);
       if (dbArtist == null)
