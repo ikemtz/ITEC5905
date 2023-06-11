@@ -18,6 +18,6 @@ export function createTestAlbum() {
       [AlbumProperties.PICTURE_TYPE]: 'PICTURE_TYPE',
       [AlbumProperties.UPDATE_COUNT]: 0, 
       [AlbumProperties.ARTIST]: undefined,
-      [AlbumProperties.SONGS]: [],
+      [AlbumProperties.ALBUM_SONGS]: [],
     };
 }

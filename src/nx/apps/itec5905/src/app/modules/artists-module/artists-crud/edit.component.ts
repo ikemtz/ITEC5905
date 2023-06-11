@@ -46,6 +46,6 @@ export class ArtistEditComponent
   public save(): void {
     const value = normalizeRequest(this.addEditForm.value);
     value.genres = this.selectedGeneres;
-    this.facade.updateExistingEntity(value, this.artistPicture);
+    this.facade.updateExistingEntity(value, this.picture);
   }
 }

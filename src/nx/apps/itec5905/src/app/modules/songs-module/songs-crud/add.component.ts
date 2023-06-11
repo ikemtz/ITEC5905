@@ -1,9 +1,14 @@
-import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
 import { normalizeRequest } from 'imng-nrsrx-client-utils';
-
+import { formGroupPatcher } from 'imng-kendo-data-entry';
 import { SongCrudFacade } from './crud.facade';
 import { SongBaseEntryComponent } from './base-entry.component';
-import { AlbumProperties, IAlbum, ISong, ISongForm, SongFormGroupFac, SongProperties } from '../../../../models/artists-webapi';
+import { ISongUpsertRequest } from '../../../../models/artists-webapi';
 
 @Component({
   selector: 'itec-song-add',
@@ -11,7 +16,9 @@ import { AlbumProperties, IAlbum, ISong, ISongForm, SongFormGroupFac, SongProper
   styleUrls: ['./add-edit.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SongAddComponent extends SongBaseEntryComponent implements OnInit, OnDestroy {
+export class SongAddComponent
+  extends SongBaseEntryComponent
+  implements OnInit, OnDestroy {
   public dialogTitle = 'Add Song';
   public active$ = this.facade.isNewActive$;
 
@@ -20,12 +27,18 @@ export class SongAddComponent extends SongBaseEntryComponent implements OnInit, 
   }
   public override initForm(): void {
     super.initForm();
-    this.addEditForm.patchValue({});
+    if (this.addEditForm) {
+      this.allSubscriptions.push(
+        this.facade.currentEntity$
+          .pipe(formGroupPatcher(this.addEditForm))
+          .subscribe()
+      );
+    }
   }
 
   public save(): void {
-    const val = normalizeRequest<ISong>(this.addEditForm.value);
+    const val = normalizeRequest<ISongUpsertRequest>(this.addEditForm.value);
     val.id = undefined;
-    this.facade.saveNewEntity(val);
+    this.facade.saveNewEntity(val, this.audio, this.picture);
   }
 }

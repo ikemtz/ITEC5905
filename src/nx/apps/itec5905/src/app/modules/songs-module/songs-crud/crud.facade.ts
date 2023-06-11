@@ -5,7 +5,8 @@ import { ODataState } from 'imng-kendo-odata';
 import { songsFeature } from '../+state/song.reducer';
 import { songQueries } from '../+state/song.selectors';
 import * as songActionTypes from '../+state/song.actions';
-import { AlbumProperties, ISong, SongProperties } from '../../../../models/artists-webapi';
+import { ISong } from '../../../../models/artists-webapi';
+import { IMediaUploadRequest } from 'apps/itec5905/src/models/media-webapi';
 
 @Injectable()
 export class SongCrudFacade implements IDataEntryFacade<ISong> {
@@ -14,6 +15,8 @@ export class SongCrudFacade implements IDataEntryFacade<ISong> {
   isEditActive$ = this.store.select(songQueries.selectIsEditSongActive);
   isNewActive$ = this.store.select(songQueries.selectIsNewSongActive);
   albums$ = this.store.select(songsFeature.selectAlbums);
+  artists$ = this.store.select(songsFeature.selectArtists);
+  genres$ = this.store.select(songsFeature.selectGenres);
 
   constructor(private readonly store: Store) { }
 
@@ -25,8 +28,12 @@ export class SongCrudFacade implements IDataEntryFacade<ISong> {
     this.store.dispatch(songActionTypes.clearCurrentSong());
   }
 
-  public saveNewEntity(item: ISong): void {
-    this.store.dispatch(songActionTypes.saveSongRequest(item));
+  public saveNewEntity(item: ISong, audio?: IMediaUploadRequest, picture?: IMediaUploadRequest): void {
+    this.store.dispatch(songActionTypes.saveSongAndMediaRequest({
+      song: item,
+      audio: audio,
+      picture: picture,
+    }));
   }
 
   public updateExistingEntity(item: ISong): void {
@@ -35,5 +42,11 @@ export class SongCrudFacade implements IDataEntryFacade<ISong> {
 
   public loadAlbums(state: ODataState): void {
     this.store.dispatch(songActionTypes.loadAlbumsRequest(state));
+  }
+  public loadArtists(state: ODataState): void {
+    this.store.dispatch(songActionTypes.loadArtistsRequest(state));
+  }
+  public loadGenres(state: ODataState): void {
+    this.store.dispatch(songActionTypes.loadGenresRequest(state));
   }
 }

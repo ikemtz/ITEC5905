@@ -33,7 +33,7 @@ classDiagram
     +date: updatedOnUtc
     +number: updateCount
     +Artist: artist;
-    +AlbumSong[]: songs;
+    +AlbumSong[]: albumSongs;
   }
   class AlbumGuidODataEnvelope{
     +number: count

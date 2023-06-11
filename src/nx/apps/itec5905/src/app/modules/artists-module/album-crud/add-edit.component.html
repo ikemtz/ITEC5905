@@ -1,0 +1,47 @@
+<imng-data-entry-dialog
+  [width]="700"
+  [height]="550"
+  [parentComponent]="this"
+  autoFocusedElement="#name"
+>
+  <form
+    id="imng-form"
+    novalidate
+    [formGroup]="addEditForm"
+    autocomplete="false"
+    class="row needs-validation"
+  >
+    <div class="col-md-12">
+      <label for="name" class="control-label">Album Name:</label>
+      <input
+        id="name"
+        type="text"
+        class="form-control"
+        [formControlName]="props.NAME"
+      />
+      <div
+        *ngIf="(submitted$ | async) && formControlErrors(props.NAME)"
+        class="invalid-feedback d-block"
+      >
+        <div *ngIf="formControlErrors(props.NAME)?.[RequiredError]">
+          Album_upsert_request name is required
+        </div>
+        <div *ngIf="formControlErrors(props.NAME)?.[MinLengthError]">
+          Album_upsert_request name requires a min length of
+          {{ formMinLengthError(props.NAME)?.requiredLength }}, currently only
+          {{ formMinLengthError(props.NAME)?.actualLength }}.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 mx-">
+      <label for="name" class="control-label">Photo:</label>
+      <kendo-fileselect
+        #avatar
+        [restrictions]="photoRestrictions"
+        [multiple]="false"
+        (select)="selectPicture($event)"
+      >
+      </kendo-fileselect>
+    </div>
+  </form>
+</imng-data-entry-dialog>

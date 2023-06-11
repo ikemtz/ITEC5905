@@ -131,7 +131,7 @@ CREATE PROCEDURE MigrationsScript()
 BEGIN
     IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230604032126_Initial') THEN
 
-    CREATE TABLE `Songs` (
+    CREATE TABLE `AlbumSongs` (
         `Id` char(36) COLLATE ascii_general_ci NOT NULL,
         `Name` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
         `AlbumId` char(36) COLLATE ascii_general_ci NULL,
@@ -172,7 +172,7 @@ BEGIN
         `UpdateCount` int NULL,
         CONSTRAINT `PK_AlbumSongs` PRIMARY KEY (`Id`),
         CONSTRAINT `FK_AlbumSongs_Albums_AlbumId` FOREIGN KEY (`AlbumId`) REFERENCES `Albums` (`Id`) ON DELETE CASCADE,
-        CONSTRAINT `FK_AlbumSongs_Songs_SongId` FOREIGN KEY (`SongId`) REFERENCES `Songs` (`Id`) ON DELETE CASCADE
+        CONSTRAINT `FK_AlbumSongs_Songs_SongId` FOREIGN KEY (`SongId`) REFERENCES `AlbumSongs` (`Id`) ON DELETE CASCADE
     ) CHARACTER SET=utf8mb4;
 
     END IF;
@@ -199,7 +199,7 @@ BEGIN
         `UpdateCount` int NULL,
         CONSTRAINT `PK_ArtistSongs` PRIMARY KEY (`Id`),
         CONSTRAINT `FK_ArtistSongs_Artists_ArtistId` FOREIGN KEY (`ArtistId`) REFERENCES `Artists` (`Id`) ON DELETE CASCADE,
-        CONSTRAINT `FK_ArtistSongs_Songs_SongId` FOREIGN KEY (`SongId`) REFERENCES `Songs` (`Id`) ON DELETE CASCADE
+        CONSTRAINT `FK_ArtistSongs_Songs_SongId` FOREIGN KEY (`SongId`) REFERENCES `AlbumSongs` (`Id`) ON DELETE CASCADE
     ) CHARACTER SET=utf8mb4;
 
     END IF;
@@ -312,7 +312,7 @@ CREATE PROCEDURE MigrationsScript()
 BEGIN
     IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230604032126_Initial') THEN
 
-    CREATE INDEX `IX_Songs_AlbumId` ON `Songs` (`AlbumId`);
+    CREATE INDEX `IX_Songs_AlbumId` ON `AlbumSongs` (`AlbumId`);
 
     END IF;
 END //
@@ -326,7 +326,7 @@ CREATE PROCEDURE MigrationsScript()
 BEGIN
     IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230604032126_Initial') THEN
 
-    CREATE INDEX `IX_Songs_GenreId` ON `Songs` (`GenreId`);
+    CREATE INDEX `IX_Songs_GenreId` ON `AlbumSongs` (`GenreId`);
 
     END IF;
 END //
@@ -359,7 +359,7 @@ CREATE PROCEDURE MigrationsScript()
 BEGIN
     IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230605055517_DropSong_Album') THEN
 
-    ALTER TABLE `Songs` DROP FOREIGN KEY `FK_Songs_Albums_AlbumId`;
+    ALTER TABLE `AlbumSongs` DROP FOREIGN KEY `FK_Songs_Albums_AlbumId`;
 
     END IF;
 END //
@@ -373,7 +373,7 @@ CREATE PROCEDURE MigrationsScript()
 BEGIN
     IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230605055517_DropSong_Album') THEN
 
-    ALTER TABLE `Songs` DROP INDEX `IX_Songs_AlbumId`;
+    ALTER TABLE `AlbumSongs` DROP INDEX `IX_Songs_AlbumId`;
 
     END IF;
 END //
@@ -387,7 +387,7 @@ CREATE PROCEDURE MigrationsScript()
 BEGIN
     IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20230605055517_DropSong_Album') THEN
 
-    ALTER TABLE `Songs` DROP COLUMN `AlbumId`;
+    ALTER TABLE `AlbumSongs` DROP COLUMN `AlbumId`;
 
     END IF;
 END //

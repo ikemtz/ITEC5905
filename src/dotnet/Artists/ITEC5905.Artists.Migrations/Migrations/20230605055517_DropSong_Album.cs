@@ -13,15 +13,15 @@ namespace ITEC5905.Artists.Migrations.Migrations
         {
             migrationBuilder.DropForeignKey(
                 name: "FK_Songs_Albums_AlbumId",
-                table: "Songs");
+                table: "AlbumSongs");
 
             migrationBuilder.DropIndex(
                 name: "IX_Songs_AlbumId",
-                table: "Songs");
+                table: "AlbumSongs");
 
             migrationBuilder.DropColumn(
                 name: "AlbumId",
-                table: "Songs");
+                table: "AlbumSongs");
         }
 
         /// <inheritdoc />
@@ -29,19 +29,19 @@ namespace ITEC5905.Artists.Migrations.Migrations
         {
             migrationBuilder.AddColumn<Guid>(
                 name: "AlbumId",
-                table: "Songs",
+                table: "AlbumSongs",
                 type: "char(36)",
                 nullable: true,
                 collation: "ascii_general_ci");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Songs_AlbumId",
-                table: "Songs",
+                table: "AlbumSongs",
                 column: "AlbumId");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Songs_Albums_AlbumId",
-                table: "Songs",
+                table: "AlbumSongs",
                 column: "AlbumId",
                 principalTable: "Albums",
                 principalColumn: "Id");

@@ -19,5 +19,5 @@ export interface IAlbumForm {
     pictureType: FormControl<string | null | undefined>;
     updateCount: FormControl<number | null | undefined>;
     artist: FormGroup<IArtistForm>;
-    songs: FormArray<FormGroup<IAlbumSongForm>>;
+    albumSongs: FormArray<FormGroup<IAlbumSongForm>>;
 }

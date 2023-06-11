@@ -332,7 +332,7 @@ namespace ITEC5905.Artists.Migrations.Migrations
 
                     b.HasIndex("GenreId");
 
-                    b.ToTable("Songs");
+                    b.ToTable("AlbumSongs");
                 });
 
             modelBuilder.Entity("ITEC5905.Artists.Models.V1.Album", b =>
@@ -349,7 +349,7 @@ namespace ITEC5905.Artists.Migrations.Migrations
             modelBuilder.Entity("ITEC5905.Artists.Models.V1.AlbumSong", b =>
                 {
                     b.HasOne("ITEC5905.Artists.Models.V1.Album", "Album")
-                        .WithMany("Songs")
+                        .WithMany("AlbumSongs")
                         .HasForeignKey("AlbumId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -416,7 +416,7 @@ namespace ITEC5905.Artists.Migrations.Migrations
 
             modelBuilder.Entity("ITEC5905.Artists.Models.V1.Album", b =>
                 {
-                    b.Navigation("Songs");
+                    b.Navigation("AlbumSongs");
                 });
 
             modelBuilder.Entity("ITEC5905.Artists.Models.V1.Artist", b =>

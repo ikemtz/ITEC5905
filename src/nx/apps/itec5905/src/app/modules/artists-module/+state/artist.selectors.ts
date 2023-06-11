@@ -9,7 +9,6 @@ const selectIsNewArtistActive = createSelector(
   artistsFeature.selectCurrentArtist,
   (entity) => isTruthy(entity) && !isTruthy(entity?.id));
 export const dataEntryArtistQueries = {
-  selectCurrentArtist: artistsFeature.selectCurrentArtist,
   selectIsEditArtistActive,
   selectIsNewArtistActive,
 };

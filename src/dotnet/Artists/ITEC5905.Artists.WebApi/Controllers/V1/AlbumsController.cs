@@ -42,7 +42,7 @@ namespace ITEC5905.Artists.WebApi.Controllers.V1
     {
       var dbAlbum = await _databaseContext.Albums
         .Include(t => t.Artist)
-        .Include(t => t.Songs)
+        .Include(t => t.AlbumSongs)
         .AsSplitQuery()
         .AsNoTracking()
         .FirstOrDefaultAsync(t => t.Id == id)
@@ -60,8 +60,10 @@ namespace ITEC5905.Artists.WebApi.Controllers.V1
     {
       var value = SimpleMapper<AlbumUpsertRequest, Album>.Instance.Convert(request);
       value.Id = (value.Id == Guid.Empty) ? Guid.NewGuid() : value.Id;
+      var dbArtist = await _databaseContext.Artists.Include(t=> t.Albums).FirstAsync(t => t.Id == value.ArtistId);
       var dbAlbum = _databaseContext.Albums.Add(value);
-
+      dbAlbum.Entity.Artist = dbArtist;
+      dbArtist.AlbumCount = dbArtist.Albums.Count();
       var recordCount = await _databaseContext.SaveChangesAsync()
           .ConfigureAwait(false);
       if (recordCount > 0)
@@ -93,6 +95,8 @@ namespace ITEC5905.Artists.WebApi.Controllers.V1
       SimpleMapper<AlbumUpsertRequest, Album>.Instance.ApplyChanges(request, dbAlbum);
       var recordCount = await _databaseContext.SaveChangesAsync()
           .ConfigureAwait(false);
+      var dbArtist = await _databaseContext.Artists.Include(t => t.Albums).FirstAsync(t => t.Id == request.ArtistId);
+      dbArtist.AlbumCount = dbArtist.Albums.Count();
       if (recordCount > 0)
       {
         await publisher.PublishAsync(dbAlbum)

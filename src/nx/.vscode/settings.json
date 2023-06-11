@@ -2,5 +2,6 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
-  "prettier.quoteProps": "consistent"
+  "prettier.quoteProps": "consistent",
+  "prettier.documentSelectors": ["*.ts", "*.html", "*.scss"]
 }

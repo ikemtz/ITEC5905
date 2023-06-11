@@ -1,0 +1,17 @@
+{{- if .Values.environment.createVolumes }}
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: nginx-volume
+spec:
+  storageClassName: {{$.Values.environment.storageClass}}
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - {{ $.Values.environment.storageAccessMode }}
+  claimRef:
+    name: nginx-volume-claim
+  hostPath:
+    path: /c/tmp/nginx-volume
+---
+{{- end -}}

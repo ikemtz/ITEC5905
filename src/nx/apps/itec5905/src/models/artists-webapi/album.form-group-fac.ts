@@ -23,6 +23,6 @@ export function AlbumFormGroupFac(): FormGroup<IAlbumForm> {
     pictureType: new FormControl<string | null | undefined>(null, { validators: Validators.maxLength(50) } ),
     updateCount: new FormControl<number | null | undefined>(null),
     artist: new FormGroup<IArtistForm>(ArtistFormGroupFac().controls),
-    songs: new FormArray<FormGroup<IAlbumSongForm>>([]),
+    albumSongs: new FormArray<FormGroup<IAlbumSongForm>>([]),
   });
 }

@@ -133,7 +133,7 @@ namespace ITEC5905.Artists.Migrations.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Songs",
+                name: "AlbumSongs",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -200,7 +200,7 @@ namespace ITEC5905.Artists.Migrations.Migrations
                     table.ForeignKey(
                         name: "FK_AlbumSongs_Songs_SongId",
                         column: x => x.SongId,
-                        principalTable: "Songs",
+                        principalTable: "AlbumSongs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -234,7 +234,7 @@ namespace ITEC5905.Artists.Migrations.Migrations
                     table.ForeignKey(
                         name: "FK_ArtistSongs_Songs_SongId",
                         column: x => x.SongId,
-                        principalTable: "Songs",
+                        principalTable: "AlbumSongs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -277,12 +277,12 @@ namespace ITEC5905.Artists.Migrations.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Songs_AlbumId",
-                table: "Songs",
+                table: "AlbumSongs",
                 column: "AlbumId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Songs_GenreId",
-                table: "Songs",
+                table: "AlbumSongs",
                 column: "GenreId");
         }
 
@@ -299,7 +299,7 @@ namespace ITEC5905.Artists.Migrations.Migrations
                 name: "ArtistSongs");
 
             migrationBuilder.DropTable(
-                name: "Songs");
+                name: "AlbumSongs");
 
             migrationBuilder.DropTable(
                 name: "Albums");

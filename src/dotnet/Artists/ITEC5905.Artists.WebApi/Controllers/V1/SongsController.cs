@@ -25,7 +25,7 @@ namespace ITEC5905.Artists.WebApi.Controllers.V1
       _logger = logger;
     }
 
-    // Get api/Songs
+    // Get api/AlbumSongs
     [HttpGet]
     [ProducesResponseType(Status200OK, Type = typeof(Song))]
     [ProducesResponseType(Status404NotFound)]
@@ -45,7 +45,7 @@ namespace ITEC5905.Artists.WebApi.Controllers.V1
       return dbSong == null ? NotFound() : Ok(dbSong);
     }
 
-    // Post api/Songs
+    // Post api/AlbumSongs
     [HttpPost]
     [ProducesResponseType(Status200OK, Type = typeof(Song))]
     [ValidateModel]
@@ -56,14 +56,42 @@ namespace ITEC5905.Artists.WebApi.Controllers.V1
 
       var dbSong = _databaseContext.Songs.Add(value);
       value.Genre = await _databaseContext.Genres.FirstOrDefaultAsync(t => t.Id == request.GenreId) ?? new Genre() { Id = request.GenreId };
+
+      var dbArtists = await _databaseContext.Artists
+        .Include(t => t.ArtistSongs)
+        .Where(t => request.ArtistIds.Contains(t.Id))
+        .ToListAsync();
+
       for (int i = 0; i < request.ArtistIds.Count; i++)
       {
+        var reqArtistId = request.ArtistIds.ElementAt(i);
+        var dbArtist = dbArtists.First(t => t.Id == reqArtistId);
         value.ArtistSongs.Add(new ArtistSong
         {
-          ArtistId = request.ArtistIds.ElementAt(i),
+          ArtistId = reqArtistId,
+          Artist = dbArtist,
           Index = i,
           Song = value
         });
+        dbArtist.SongCount = dbArtist.ArtistSongs.Count();
+      }
+
+      var dbAlbums = await _databaseContext.Albums
+        .Include(t=> t.AlbumSongs)
+        .Where(t => request.AlbumIds.Contains(t.Id))
+        .ToListAsync();
+
+      for (int i = 0; i < request.AlbumIds.Count; i++)
+      {
+        var reqAlbumId = request.AlbumIds.ElementAt(i);
+        var dbAlbum = dbAlbums.First(t => t.Id == reqAlbumId);
+        value.AlbumSongs.Add(new AlbumSong
+        {
+          AlbumId = reqAlbumId,
+          Album = dbAlbum, 
+          Song = value
+        });
+        dbAlbum.SongCount = dbAlbum.AlbumSongs.Count();
       }
 
       var recordCount = await _databaseContext.SaveChangesAsync()
@@ -76,7 +104,7 @@ namespace ITEC5905.Artists.WebApi.Controllers.V1
       return Ok(dbSong.Entity);
     }
 
-    // Put api/Songs
+    // Put api/AlbumSongs
     [HttpPut]
     [ProducesResponseType(Status200OK, Type = typeof(Song))]
     [ProducesResponseType(Status409Conflict)]
@@ -109,7 +137,7 @@ namespace ITEC5905.Artists.WebApi.Controllers.V1
       return Ok(dbSong);
     }
 
-    // Put api/Songs
+    // Put api/AlbumSongs
     [HttpDelete]
     [ProducesResponseType(Status200OK)]
     [ProducesResponseType(Status404NotFound)]

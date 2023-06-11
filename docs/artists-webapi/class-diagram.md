@@ -29,7 +29,7 @@ classDiagram
     +date: updatedOnUtc
     +number: updateCount
     +Artist: artist;
-    +AlbumSong[]: songs;
+    +AlbumSong[]: albumSongs;
   }
   class AlbumSong{
     +uuid: id
@@ -42,6 +42,13 @@ classDiagram
     +number: updateCount
     +Album: album;
     +Song: song;
+  }
+  class AlbumUpsertRequest{
+    +uuid: id
+    +string: name
+    +uuid: artistId
+    +string: pictureIpfsHash
+    +string: pictureType
   }
   class Artist{
     +uuid: id

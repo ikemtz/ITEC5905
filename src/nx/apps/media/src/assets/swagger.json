@@ -119,14 +119,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "fileType",
-            "required": true,
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {

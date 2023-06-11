@@ -17,11 +17,12 @@ import { songsFeature } from './+state/song.reducer';
 import { SongEffects } from './+state/song.effects';
 
 import { SongListComponent, SongListFacade } from './songs-list';
-import { SongAddComponent, SongEditComponent, SongApiService, SongCrudFacade  } from './songs-crud';
+import { SongAddComponent, SongEditComponent, SongApiService, SongCrudFacade } from './songs-crud';
+import { UploadsModule } from "@progress/kendo-angular-upload";
 
 
 @NgModule({
-  declarations: [SongListComponent, SongAddComponent, SongEditComponent ],
+  declarations: [SongListComponent, SongAddComponent, SongEditComponent],
   imports: [
     CommonModule,
     GridModule,
@@ -38,11 +39,12 @@ import { SongAddComponent, SongEditComponent, SongApiService, SongCrudFacade  } 
     SongsRoutingModule,
     StoreModule.forFeature(songsFeature),
     EffectsModule.forFeature([SongEffects]),
+    UploadsModule,
   ],
   providers: [
     SongListFacade,
     SongCrudFacade,
-    SongApiService, 
+    SongApiService,
   ],
 })
 export class SongsModule { }

@@ -8,6 +8,8 @@ namespace ITEC5905.Artists.Models.V1
     public Artist()
     {
       Genres = new List<ArtistGenre>();
+      Albums = new List<Album>();
+      ArtistSongs = new List<ArtistSong>();
     }
 
     public Guid Id { get; set; }

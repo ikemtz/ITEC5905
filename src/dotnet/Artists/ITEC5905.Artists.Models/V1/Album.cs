@@ -5,6 +5,10 @@ namespace ITEC5905.Artists.Models.V1
 {
   public partial class Album : IIdentifiable, IAuditable, ICalculateable
   {
+    public Album()
+    {
+      AlbumSongs = new List<AlbumSong>();
+    }
     public Guid Id { get; set; }
     [Required]
     [MaxLength(255)]
@@ -12,7 +16,7 @@ namespace ITEC5905.Artists.Models.V1
     [Required]
     public Guid ArtistId { get; set; }
     public Artist Artist { get; set; }
-    public virtual ICollection<AlbumSong> Songs { get; set; }
+    public virtual ICollection<AlbumSong> AlbumSongs { get; set; }
     public int SongCount { get; set; }
     [MaxLength(255)]
     public string? PictureIpfsHash { get; set; }
@@ -29,9 +33,9 @@ namespace ITEC5905.Artists.Models.V1
 
     public void CalculateValues()
     {
-      if (Songs != null)
+      if (AlbumSongs != null)
       {
-        this.SongCount = Songs.Count;
+        this.SongCount = AlbumSongs.Count;
       }
     }
   }

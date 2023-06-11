@@ -1,4 +1,4 @@
-<kendo-grid (detailExpand)="detailExpanded($event)" [height]="800" kendoGridFocusable [imngODataGrid]="this">
+<kendo-grid [height]="800" kendoGridFocusable [imngODataGrid]="this">
   <ng-template kendoGridToolbarTemplate>
     <div class="w-100 d-flex justify-content-between">
       <h3>Songs</h3>
@@ -7,7 +7,8 @@
         (addItemClicked)="addItem()"
         (reloadEntitiesClicked)="reloadEntities()"
         (clearFiltersClicked)="resetFilters()"
-        [hasHiddenColumns$]="hasHiddenColumns$">
+        [hasHiddenColumns$]="hasHiddenColumns$"
+      >
       </imng-kendo-odata-grid-header>
     </div>
   </ng-template>
@@ -22,7 +23,8 @@
                 class="btn btn-sm mx-3 my-2 text-start"
                 (click)="editItem(dataItem)"
                 placement="left"
-                tooltip="Edit">
+                tooltip="Edit"
+              >
                 <span class="k-icon k-i-edit"></span>
                 Edit
               </button>
@@ -35,7 +37,8 @@
                 class="btn btn-sm mx-3 my-2 text-start"
                 (click)="deleteItem(dataItem)"
                 placement="left"
-                tooltip="Delete">
+                tooltip="Delete"
+              >
                 <span class="k-icon k-i-delete"></span>
                 Delete
               </button>
@@ -46,11 +49,18 @@
     </ng-template>
   </kendo-grid-column>
 
-  <kendo-grid-column [field]="props.ID" [width]="100" title="Id" filter="text">
+  <kendo-grid-column
+    [field]="props.ID"
+    [width]="100"
+    title="Id"
+    filter="text"
+    [hidden]="true"
+  >
     <ng-template kendoGridCellTemplate let-dataItem>
       <imng-kendo-copy
-        [displayValue]="dataItem[props.ID] | slice:0:5"
-        [copyValue]="dataItem[props.ID]">
+        [displayValue]="dataItem[props.ID] | slice : 0 : 5"
+        [copyValue]="dataItem[props.ID]"
+      >
       </imng-kendo-copy>
     </ng-template>
     <ng-template kendoGridFilterMenuTemplate let-filter>
@@ -60,52 +70,80 @@
       <span class="h6" title="Id">Id</span>
     </ng-template>
   </kendo-grid-column>
-  <kendo-grid-column [field]="props.NAME" [width]="100" title="Name" filter="text">
+  <kendo-grid-column
+    [field]="props.NAME"
+    [width]="100"
+    title="Name"
+    filter="text"
+  >
     <ng-template class="header" kendoGridHeaderTemplate let-column>
       <span class="h6" title="Name">Name</span>
     </ng-template>
   </kendo-grid-column>
-  <kendo-grid-column [field]="props.ALBUM_ID" [width]="100" title="Album Id" filter="text">
-    <ng-template kendoGridCellTemplate let-dataItem>
-      <imng-kendo-copy
-        [displayValue]="dataItem[props.ALBUM_ID] | slice:0:5"
-        [copyValue]="dataItem[props.ALBUM_ID]">
-      </imng-kendo-copy>
-    </ng-template>
-    <ng-template kendoGridFilterMenuTemplate let-filter>
-      <imng-uuid-filter [filter]="filter"></imng-uuid-filter>
-    </ng-template>
-    <ng-template class="header" kendoGridHeaderTemplate let-column>
-      <span class="h6" title="Album Id">Album Id</span>
-    </ng-template>
-  </kendo-grid-column>
-  <kendo-grid-column
-    [field]="getRelatedField(props.ALBUM, albumProps.NAME)"
-    [width]="100" title="Album" filter="text">
+  <kendo-grid-column [width]="100" title="Album" [filterable]="false">
     <ng-template class="header" kendoGridHeaderTemplate let-column>
       <span class="h6" title="Album">Album</span>
     </ng-template>
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <div *ngFor="let albumSong of dataItem[props.ALBUM_SONGS]">
+        {{ albumSong.album.name }}
+      </div>
+    </ng-template>
   </kendo-grid-column>
-  <kendo-grid-column [field]="props.IPFS_HASH" [width]="100" title="Ipfs Hash" filter="text">
+  <kendo-grid-column
+    [field]="props.GENRE_ID"
+    [width]="100"
+    title="Genre"
+    filter="text"
+  >
+    <ng-template class="header" kendoGridHeaderTemplate let-column>
+      <span class="h6" title="Name">Genre</span>
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column
+    [field]="props.IPFS_HASH"
+    [width]="100"
+    title="Ipfs Hash"
+    filter="text"
+  >
     <ng-template class="header" kendoGridHeaderTemplate let-column>
       <span class="h6" title="Ipfs Hash">Ipfs Hash</span>
     </ng-template>
   </kendo-grid-column>
-  <kendo-grid-column [field]="props.PICTURE_IPFS_HASH" [width]="100" title="Picture Ipfs Hash" filter="text">
+  <kendo-grid-column
+    [field]="props.PICTURE_IPFS_HASH"
+    [width]="100"
+    title="Picture Ipfs Hash"
+    filter="text"
+  >
     <ng-template class="header" kendoGridHeaderTemplate let-column>
       <span class="h6" title="Picture Ipfs Hash">Picture Ipfs Hash</span>
     </ng-template>
   </kendo-grid-column>
-  <kendo-grid-column [field]="props.UPDATE_COUNT" [width]="100" title="Update Count" filter="numeric">
+  <kendo-grid-column
+    [field]="props.UPDATE_COUNT"
+    [width]="100"
+    title="Update Count"
+    filter="numeric"
+    [hidden]="true"
+  >
     <ng-template class="header" kendoGridHeaderTemplate let-column>
       <span class="h6" title="Update Count">Update Count</span>
     </ng-template>
   </kendo-grid-column>
 
   <kendo-grid-pdf [fileName]="getExportFileName('Songs')" [allPages]="false">
-    <kendo-grid-pdf-margin top="1cm" left="1cm" right="1cm" bottom="1cm"></kendo-grid-pdf-margin>
+    <kendo-grid-pdf-margin
+      top="1cm"
+      left="1cm"
+      right="1cm"
+      bottom="1cm"
+    ></kendo-grid-pdf-margin>
   </kendo-grid-pdf>
-  <kendo-grid-excel [fileName]="getExportFileName('Songs')" [fetchData]="excelData"></kendo-grid-excel>
+  <kendo-grid-excel
+    [fileName]="getExportFileName('Songs')"
+    [fetchData]="excelData"
+  ></kendo-grid-excel>
 </kendo-grid>
 <itec-song-add *ngIf="crudFacade.isNewActive$ | async"></itec-song-add>
 <itec-song-edit *ngIf="crudFacade.isEditActive$ | async"></itec-song-edit>

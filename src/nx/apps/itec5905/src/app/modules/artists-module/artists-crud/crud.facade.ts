@@ -11,7 +11,7 @@ import { IMediaUploadRequest } from '../../../../models/media-webapi';
 @Injectable()
 export class ArtistCrudFacade implements IDataEntryFacade<IArtist | IArtistUpsertRequest> {
   loading$ = this.store.select(artistsFeature.selectLoading);
-  currentEntity$ = this.store.select(artistQueries.selectCurrentArtist);
+  currentEntity$ = this.store.select(artistsFeature.selectCurrentArtist);
   isEditActive$ = this.store.select(artistQueries.selectIsEditArtistActive);
   isNewActive$ = this.store.select(artistQueries.selectIsNewArtistActive);
   genres$ = this.store.select(artistsFeature.selectGenres);

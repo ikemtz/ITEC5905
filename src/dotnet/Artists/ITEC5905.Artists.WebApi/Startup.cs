@@ -51,6 +51,12 @@ namespace ITEC5905.Artists.WebApi
       _ = services.AddSingleton<IPublisher<Artist, CreatedEvent>>((x) => new RedisStreamPublisher<Artist, CreatedEvent>(connectionMultiplexer));
       _ = services.AddSingleton<IPublisher<Artist, UpdatedEvent>>((x) => new RedisStreamPublisher<Artist, UpdatedEvent>(connectionMultiplexer));
       _ = services.AddSingleton<IPublisher<Artist, DeletedEvent>>((x) => new RedisStreamPublisher<Artist, DeletedEvent>(connectionMultiplexer));
+      _ = services.AddSingleton<IPublisher<Song, CreatedEvent>>((x) => new RedisStreamPublisher<Song, CreatedEvent>(connectionMultiplexer));
+      _ = services.AddSingleton<IPublisher<Song, UpdatedEvent>>((x) => new RedisStreamPublisher<Song, UpdatedEvent>(connectionMultiplexer));
+      _ = services.AddSingleton<IPublisher<Song, DeletedEvent>>((x) => new RedisStreamPublisher<Song, DeletedEvent>(connectionMultiplexer));
+      _ = services.AddSingleton<IPublisher<Album, CreatedEvent>>((x) => new RedisStreamPublisher<Album, CreatedEvent>(connectionMultiplexer));
+      _ = services.AddSingleton<IPublisher<Album, UpdatedEvent>>((x) => new RedisStreamPublisher<Album, UpdatedEvent>(connectionMultiplexer));
+      _ = services.AddSingleton<IPublisher<Album, DeletedEvent>>((x) => new RedisStreamPublisher<Album, DeletedEvent>(connectionMultiplexer));
 
     }
   }

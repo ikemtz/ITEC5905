@@ -19,5 +19,5 @@ export interface IAlbum {
   pictureType?: string | null;
   updateCount?: number | null;
   artist?: Partial<IArtist>;
-  songs?: Partial<IAlbumSong[]>;
+  albumSongs?: Partial<IAlbumSong[]>;
 }

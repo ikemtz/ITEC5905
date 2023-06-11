@@ -12,10 +12,24 @@
       </imng-kendo-odata-grid-header>
     </div>
   </ng-template>
-  <kendo-grid-column [width]="30">
+  <kendo-grid-column [width]="40">
     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
       <kendo-menu title="Actions" class="p-0">
         <kendo-menu-item icon="menu">
+          <kendo-menu-item>
+            <ng-template kendoMenuItemLinkTemplate>
+              <button
+                type="button"
+                class="btn btn-sm mx-3 my-2 text-start"
+                (click)="addAlbum(dataItem)"
+                placement="left"
+                tooltip="Add Album"
+              >
+                <span class="k-icon k-i-plus-outline"></span>
+                Add Album
+              </button>
+            </ng-template>
+          </kendo-menu-item>
           <kendo-menu-item>
             <ng-template kendoMenuItemLinkTemplate>
               <button
@@ -107,11 +121,9 @@
     [filterable]="false"
   >
     <ng-template kendoGridCellTemplate let-dataItem>
-      <img
-        class="pic"
-        [alt]="dataItem[props.STAGE_NAME] + ' picture'"
-        [src]="dataItem[props.PICTURE_IPFS_HASH]"
-      />
+      <div class="w-100 text-center">
+        <img class="pic" [src]="dataItem.image" />
+      </div>
     </ng-template>
     <ng-template class="header" kendoGridHeaderTemplate let-column>
       <span class="h6" title="Picture">Picture</span>
@@ -129,7 +141,7 @@
   </kendo-grid-column>
   <kendo-grid-column
     [field]="props.ALBUM_COUNT"
-    [width]="50"
+    [width]="40"
     title="Album Count"
     filter="numeric"
   >
@@ -139,7 +151,7 @@
   </kendo-grid-column>
   <kendo-grid-column
     [field]="props.SONG_COUNT"
-    [width]="50"
+    [width]="40"
     title="Song Count"
     filter="numeric"
   >
@@ -160,5 +172,13 @@
     [fetchData]="excelData"
   ></kendo-grid-excel>
 </kendo-grid>
-<itec-artist-add *ngIf="crudFacade.isNewActive$ | async"></itec-artist-add>
-<itec-artist-edit *ngIf="crudFacade.isEditActive$ | async"></itec-artist-edit>
+<itec-artist-add
+  *ngIf="artistCrudFacade.isNewActive$ | async"
+></itec-artist-add>
+<itec-artist-edit
+  *ngIf="artistCrudFacade.isEditActive$ | async"
+></itec-artist-edit>
+<itec-album-add *ngIf="albumCrudFacade.isNewActive$ | async"></itec-album-add>
+<itec-album-edit
+  *ngIf="albumCrudFacade.isEditActive$ | async"
+></itec-album-edit>

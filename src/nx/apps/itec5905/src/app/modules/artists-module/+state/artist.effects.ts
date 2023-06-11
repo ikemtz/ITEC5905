@@ -46,8 +46,7 @@ export class ArtistEffects {
           handleEffectError(action))));
   });
 
-
-  loadArtistsSuccessEffect$ = createEffect(() => {
+  loadImageEffect$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(artistActionTypes.loadArtistsSuccess),
       switchMap((action: ReturnType<typeof artistActionTypes.loadArtistsSuccess>) =>

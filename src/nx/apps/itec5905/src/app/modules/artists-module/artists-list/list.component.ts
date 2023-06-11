@@ -10,6 +10,7 @@ import {
   IArtist,
 } from '../../../../models/artists-webapi';
 import { HttpClient } from '@angular/common/http';
+import { AlbumCrudFacade } from '../album-crud/crud.facade';
 
 const initialGridState: ODataState = {
   take: 20,
@@ -48,18 +49,22 @@ export class ArtistListComponent extends KendoODataBasedComponent<
 
   constructor(
     facade: ArtistListFacade,
-    public readonly crudFacade: ArtistCrudFacade,
+    public readonly artistCrudFacade: ArtistCrudFacade,
+    public readonly albumCrudFacade: AlbumCrudFacade,
     public readonly httpClient: HttpClient
   ) {
     super(facade, initialGridState);
   }
 
   public addItem(): void {
-    this.crudFacade.setCurrentEntity({});
+    this.artistCrudFacade.setCurrentEntity({});
   }
 
   public editItem(item: IArtist): void {
-    this.crudFacade.setCurrentEntity(item);
+    this.artistCrudFacade.setCurrentEntity(item);
+  }
+  public addAlbum(item: IArtist): void {
+    this.albumCrudFacade.setCurrentEntity({ artistId: item.id?.toString() });
   }
 
   public deleteItem(item: IArtist): void {

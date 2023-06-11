@@ -5,6 +5,12 @@ namespace ITEC5905.Artists.Models.V1
 {
   public partial class Song : IIdentifiable, IAuditable
   {
+    public Song()
+    {
+      ArtistSongs = new List<ArtistSong>();
+      AlbumSongs = new List<AlbumSong>();
+    }
+
     public Guid Id { get; set; }
     [Required]
     [MaxLength(255)]

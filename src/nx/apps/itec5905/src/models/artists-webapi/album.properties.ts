@@ -15,5 +15,5 @@ export enum AlbumProperties {
   PICTURE_TYPE = 'pictureType',
   UPDATE_COUNT = 'updateCount',
   ARTIST = 'artist',
-  SONGS = 'songs',
+  ALBUM_SONGS = 'albumSongs',
 }

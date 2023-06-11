@@ -1,5 +1,5 @@
 import { OnInit, Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { BaseDataEntryComponent } from 'imng-kendo-data-entry';
 
 import { ArtistCrudFacade } from './crud.facade';
@@ -8,26 +8,21 @@ import {
   ArtistUpsertRequestProperties,
   GenreProperties,
   IArtistUpsertRequestForm,
-  IGenre,
 } from '../../../../models/artists-webapi';
-import { FileRestrictions, SelectEvent } from '@progress/kendo-angular-upload';
+import { SelectEvent } from '@progress/kendo-angular-upload';
 import { IMediaUploadRequest } from '../../../../models/media-webapi';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
+import { fileContentRegex, fileTypeRegex, photoRestrictions } from '../../media-module';
 
 @Component({ template: '' })
 export abstract class ArtistBaseEntryComponent
   extends BaseDataEntryComponent<ArtistCrudFacade>
   implements OnInit {
-  private readonly imageTypeRegex = /^data:[a-z/;0-9]*;base64/;
-  private readonly imageRegex = /[A-z0-9=/+]*$/;
   public readonly props = ArtistUpsertRequestProperties;
   public addEditForm: FormGroup<IArtistUpsertRequestForm>;
-  public genres$: Observable<IGenre[]>;
-  public artistPicture: IMediaUploadRequest;
-  public restrictions: FileRestrictions = {
-    allowedExtensions: ['jpg', 'jpeg', 'png'],
-    maxFileSize: 1000000,
-  };
+  public genres$: Observable<string[]>;
+  public picture: IMediaUploadRequest;
+  public photoRestrictions = photoRestrictions;
   public selectedGeneres: Array<string> = [];
 
   constructor(facade: ArtistCrudFacade) {
@@ -36,8 +31,10 @@ export abstract class ArtistBaseEntryComponent
 
   public ngOnInit(): void {
     this.initForm();
-    this.facade.loadGenres({ count: false });
-    this.genres$ = this.facade.genres$;
+    this.facade.loadGenres({ selectors: [GenreProperties.ID], count: false });
+    this.genres$ = this.facade.genres$.pipe(
+      map((x) => x.map((m) => m.id ?? ''))
+    );
   }
 
   public initForm(): void {
@@ -51,17 +48,15 @@ export abstract class ArtistBaseEntryComponent
   public selectPicture(e: SelectEvent): void {
     e.files.forEach((file) => {
       if (file && !file.validationErrors) {
-        this.artistPicture = {
+        this.picture = {
           referenceType: 'Artist',
         };
-        this.artistPicture.fileName = file.name;
+        this.picture.fileName = file.name;
         const reader = new FileReader();
         reader.onload = (fileReadProgress) => {
           const result = fileReadProgress.target?.result as string;
-          this.artistPicture.content = this.imageRegex.exec(
-            result
-          )?.[0] as string;
-          this.artistPicture.fileType = this.imageTypeRegex.exec(
+          this.picture.content = fileContentRegex.exec(result)?.[0] as string;
+          this.picture.fileType = fileTypeRegex.exec(
             result
           )?.[0] as string;
         };
@@ -69,6 +64,7 @@ export abstract class ArtistBaseEntryComponent
       }
     });
   }
+
   public onGenreChange(value: string[]) {
     this.selectedGeneres = value;
   }
