@@ -188,22 +188,51 @@ export class SongEffects {
       }).pipe(
         map((mediaResponse) => songActionTypes.saveSongRequest({
           ...action.payload.song,
+          pictureType: action.payload.picture?.fileType,
           pictureIpfsHash: mediaResponse.ipfsHash,
         })),
         handleEffectError(action))));
   });
 
-  loadImageEffect$ = createEffect(() => {
+  loadSongImageEffect$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(songActionTypes.loadSongsSuccess),
       switchMap((action: ReturnType<typeof songActionTypes.loadSongsSuccess>) =>
-        of(...action.payload.data.map(artist =>
-          this.imageApiService.get(artist.pictureIpfsHash, artist.pictureType)
-            .pipe(map(image => ({ id: artist.id, pictureIpfsHash: image })))
+        of(...action.payload.data.map(song =>
+          this.imageApiService.get(song.pictureIpfsHash, song.pictureType)
+            .pipe(map(image => ({ id: song.id, image: image })))
         ))
           .pipe(
             concatAll(),
             map(t => songActionTypes.loadSongImageSuccess(t)),
+            handleEffectError(action))));
+  });
+
+  loadArtistImageEffect$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(songActionTypes.loadArtistsSuccess),
+      switchMap((action: ReturnType<typeof songActionTypes.loadArtistsSuccess>) =>
+        of(...action.payload.data.map(artist =>
+          this.imageApiService.get(artist.pictureIpfsHash, artist.pictureType)
+            .pipe(map(image => ({ id: artist.id, image: image })))
+        ))
+          .pipe(
+            concatAll(),
+            map(t => songActionTypes.loadArtistImageSuccess(t)),
+            handleEffectError(action))));
+  });
+
+  loadAlbumImageEffect$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(songActionTypes.loadAlbumsSuccess),
+      switchMap((action: ReturnType<typeof songActionTypes.loadAlbumsSuccess>) =>
+        of(...action.payload.data.map(album =>
+          this.imageApiService.get(album.pictureIpfsHash, album.pictureType)
+            .pipe(map(image => ({ id: album.id, image: image })))
+        ))
+          .pipe(
+            concatAll(),
+            map(t => songActionTypes.loadAlbumImageSuccess(t)),
             handleEffectError(action))));
   });
 }

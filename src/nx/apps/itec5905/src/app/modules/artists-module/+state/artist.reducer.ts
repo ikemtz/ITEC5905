@@ -13,7 +13,7 @@ import { IAlbum, IArtist, IGenre } from '../../../../models/artists-webapi';
 import * as artistActionTypes from './artist.actions';
 import * as albumActionTypes from './album.actions';
 export const ARTISTS_FEATURE_KEY = 'artists';
-import { IArtistExt } from '../models/artist-ext'
+import { IArtistExt } from '../../../models/artist-ext'
 
 export interface State extends KendoODataGridState<IArtistExt> {
   currentArtist: IArtist | undefined;

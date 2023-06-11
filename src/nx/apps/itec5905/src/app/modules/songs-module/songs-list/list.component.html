@@ -107,17 +107,17 @@
     filter="text"
   >
     <ng-template class="header" kendoGridHeaderTemplate let-column>
-      <span class="h6" title="Ipfs Hash">Ipfs Hash</span>
+      <span class="h6" title="Ipfs Hash">Music Ipfs Hash</span>
     </ng-template>
   </kendo-grid-column>
-  <kendo-grid-column
-    [field]="props.PICTURE_IPFS_HASH"
-    [width]="100"
-    title="Picture Ipfs Hash"
-    filter="text"
-  >
+  <kendo-grid-column [width]="100" title="Song Picture" [filterable]="false">
     <ng-template class="header" kendoGridHeaderTemplate let-column>
-      <span class="h6" title="Picture Ipfs Hash">Picture Ipfs Hash</span>
+      <span class="h6" title="Picture Ipfs Hash">Song Picture</span>
+    </ng-template>
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <div class="w-100 text-center">
+        <img class="pic" [src]="dataItem.image" />
+      </div>
     </ng-template>
   </kendo-grid-column>
   <kendo-grid-column

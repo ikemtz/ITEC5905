@@ -2,7 +2,7 @@ import { createAction } from '@ngrx/store';
 import { IAlbumUpsertRequest } from 'apps/itec5905/src/models/artists-webapi';
 import { ODataResult, ODataState } from 'imng-kendo-odata';
 import { createPayloadAction } from 'imng-ngrx-utils';
-import { IAlbumUpsert } from '../models/album-upsert';
+import { IAlbumUpsert } from '../../../models/album-upsert';
 
 export const loadAlbumsRequest = createPayloadAction<ODataState>(
     '[Artists] Load Albums Request'

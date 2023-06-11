@@ -21,6 +21,7 @@ const initialGridState: ODataState = {
     SongProperties.NAME,
     SongProperties.IPFS_HASH,
     SongProperties.PICTURE_IPFS_HASH,
+    SongProperties.PICTURE_TYPE,
     SongProperties.GENRE_ID,
   ],
   sort: [{ field: SongProperties.NAME, dir: 'asc' }],

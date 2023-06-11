@@ -7,7 +7,7 @@ import {
     IGenre,
     ISong,
 } from '../../../../models/artists-webapi';
-import { ISongUpsert } from '../models/song-upsert';
+import { IAlbumExt, IArtistExt, ISongExt, ISongUpsert } from '../../../models';
 
 export const loadSongsRequest = createPayloadAction<ODataState>(
     '[Songs] Load Songs Request'
@@ -19,10 +19,6 @@ export const reloadSongsRequest = createAction('[Songs] Reload Songs Request');
 export const reloadSongsSuccess = createPayloadAction<ODataResult<ISong>>(
     '[Songs] Reload Songs Success'
 );
-export const loadSongImageSuccess = createPayloadAction<ISong>(
-    '[Songs] Load Song Image Success'
-)
-
 export const clearCurrentSong = createAction('[Songs] Clear Current Song');
 export const setCurrentSong = createPayloadAction<ISong>(
     '[Songs] Set Current Song'
@@ -62,3 +58,13 @@ export const loadGenresRequest = createPayloadAction<ODataState>(
 export const loadGenresSuccess = createPayloadAction<ODataResult<IGenre>>(
     '[Songs] Load Genres Success'
 );
+
+export const loadSongImageSuccess = createPayloadAction<ISongExt>(
+    '[Songs] Load Song Image Success'
+)
+export const loadArtistImageSuccess = createPayloadAction<IArtistExt>(
+    '[Songs] Load Artist Image Success'
+)
+export const loadAlbumImageSuccess = createPayloadAction<IAlbumExt>(
+    '[Songs] Load Album Image Success'
+)

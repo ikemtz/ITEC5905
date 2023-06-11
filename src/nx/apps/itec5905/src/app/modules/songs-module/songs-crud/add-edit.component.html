@@ -69,11 +69,11 @@
           title="Stage Name"
           [width]="100"
         ></kendo-combobox-column>
-        <kendo-combobox-column
-          field="pictureIpfsHash"
-          title="Picture Ipfs Hash"
-          [width]="100"
-        ></kendo-combobox-column>
+        <kendo-combobox-column title="Picture" [width]="100">
+          <ng-template kendoMultiColumnComboBoxColumnCellTemplate let-dataItem>
+            <img class="small-pic" [src]="dataItem.image" />
+          </ng-template>
+        </kendo-combobox-column>
       </kendo-multicolumncombobox>
     </div>
     <div class="col-md-12">
@@ -94,13 +94,9 @@
           title="Name"
           [width]="100"
         ></kendo-combobox-column>
-        <kendo-combobox-column
-          field="pictureIpfsHash"
-          title="Picture Ipfs Hash"
-          [width]="100"
-        >
-          <ng-template kendoComboBoxItemTemplate let-dataItem>
-            {{ dataItem.text }}
+        <kendo-combobox-column title="Picture" [width]="100">
+          <ng-template kendoMultiColumnComboBoxColumnCellTemplate let-dataItem>
+            <img class="small-pic" [src]="dataItem.image" />
           </ng-template>
         </kendo-combobox-column>
       </kendo-multicolumncombobox>

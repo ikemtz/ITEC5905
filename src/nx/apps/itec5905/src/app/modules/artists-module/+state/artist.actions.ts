@@ -2,7 +2,7 @@ import { createAction } from '@ngrx/store';
 import { ODataResult, ODataState } from 'imng-kendo-odata';
 import { createPayloadAction } from 'imng-ngrx-utils';
 import { IArtist, IArtistUpsertRequest, IGenre } from '../../../../models/artists-webapi';
-import { IArtistUpsert } from '../models/artist-upsert';
+import { IArtistUpsert } from '../../../models/artist-upsert';
 
 export const loadArtistsRequest = createPayloadAction<ODataState>(
     '[Artists] Load Artists Request');

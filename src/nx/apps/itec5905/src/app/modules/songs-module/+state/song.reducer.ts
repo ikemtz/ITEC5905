@@ -10,19 +10,15 @@ import {
   findAndModify,
 } from 'imng-ngrx-utils';
 
-import {
-  IAlbum,
-  IArtist,
-  IGenre,
-  ISong,
-} from '../../../../models/artists-webapi';
+import { IGenre } from '../../../../models/artists-webapi';
 import * as songActionTypes from './song.actions';
+import { IAlbumExt, IArtistExt, ISongExt } from '../../../models';
 export const SONGS_FEATURE_KEY = 'songs';
 
-export interface State extends KendoODataGridState<ISong> {
-  currentSong: ISong | undefined;
-  albums: IAlbum[];
-  artists: IArtist[];
+export interface State extends KendoODataGridState<ISongExt> {
+  currentSong: ISongExt | undefined;
+  albums: IAlbumExt[];
+  artists: IArtistExt[];
   genres: IGenre[];
 }
 
@@ -111,9 +107,31 @@ export const songsFeature = createFeature({
           data: findAndModify(
             state.gridData.data,
             payload.id?.toString(),
-            (artist) => (artist.pictureIpfsHash = payload.pictureIpfsHash)
+            (song) => (song.image = payload.image)
           ),
         },
+      })
+    ),
+    on(
+      songActionTypes.loadArtistImageSuccess,
+      (state, { payload }): State => ({
+        ...state,
+        artists: findAndModify(
+          state.artists,
+          payload.id?.toString(),
+          (artist) => (artist.image = payload.image)
+        ),
+      })
+    ),
+    on(
+      songActionTypes.loadAlbumImageSuccess,
+      (state, { payload }): State => ({
+        ...state,
+        albums: findAndModify(
+          state.albums,
+          payload.id?.toString(),
+          (album) => (album.image = payload.image)
+        ),
       })
     ),
     on(imngEffectError, imngEffectErrorReducer)
