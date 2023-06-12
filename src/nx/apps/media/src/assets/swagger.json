@@ -119,6 +119,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "fileType",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -135,6 +143,44 @@
         },
         "tags": [
           "Images"
+        ]
+      }
+    },
+    "/api/picture": {
+      "get": {
+        "operationId": "PictureController_getFile",
+        "parameters": [
+          {
+            "name": "ipfsHash",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fileType",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Pictures"
         ]
       }
     }
